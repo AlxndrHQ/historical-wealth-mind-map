@@ -22890,6 +22890,13 @@ function computeOverlaps(D){
   pairs.forEach(({a,b,path,hub})=>{ if(!hub) return; if(!meet.has(hub)) meet.set(hub,new Map());
     const i=path.indexOf(hub), m=meet.get(hub), set=(p,pp)=>{ if(!m.has(p)||pp.length<m.get(p).length) m.set(p,pp); };
     set(a,path.slice(0,i+1)); set(b,path.slice(i).reverse()); });
+  // a company also lists everyone tied to it directly, so it never looks like its own founder or CEO is missing
+  D.entities.forEach(e=>{
+    const direct=(adj.get(e.id)||[]).map(x=>x.id).filter(id=>D.byId[id]._kind==='profile');
+    if(new Set(direct).size<2 && !meet.has(e.id)) return;
+    if(!meet.has(e.id)) meet.set(e.id,new Map());
+    direct.forEach(p=>meet.get(e.id).set(p,[p,e.id]));
+  });
   const byProfile=new Map(D.profiles.map(p=>[p.id,[]]));
   pairs.forEach(pr=>{ byProfile.get(pr.a).push({other:pr.b,path:pr.path}); byProfile.get(pr.b).push({other:pr.a,path:[...pr.path].reverse()}); });
   byProfile.forEach(l=>l.sort((x,y)=>x.path.length-y.path.length));
