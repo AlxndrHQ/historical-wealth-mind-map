@@ -1,0 +1,275 @@
+[
+  {
+    "id": "john-paterakis",
+    "name": "John Paterakis Sr.",
+    "type": "operator",
+    "category": "B2B Operators",
+    "netWorthTier": "$1B+",
+    "humbleBeginnings": "Graduated from Patterson Park High School in 1947 and took over his father Steve's bakery, which started as a two-man operation working rented ovens on Fagley Street in Baltimore's Highlandtown.",
+    "breakthrough": "Grew H&S Bakery into one of the largest bread, bun and roll producers in the U.S. Its Northeast Foods / Automatic Rolls division bakes buns for McDonald's from plants along the East Coast.",
+    "shieldingStrategy": "Kept the company private with control concentrated in his hands, and recycled bakery cash flow into real estate. H&S Properties developed Baltimore's Harbor East waterfront.",
+    "industry": "Food Logistics & Manufacturing",
+    "originBadge": "Self-Made Origin",
+    "engineBadge": "B2B Supply Monopolies",
+    "capitalBadge": "Reinvested Cashflow",
+    "connections": [
+      {"id": "hs-bakery", "type": "ownership", "label": "ran for six decades"},
+      {"id": "harbor-east", "type": "capital", "label": "reinvested cash flow"}
+    ],
+    "lifespan": "c.1929–2016",
+    "base": "Baltimore, MD",
+    "tierBasis": "estimated",
+    "wealthNote": "No published net-worth figure. The $1B+ tier is an estimate based on a 23-state private bakery business plus Harbor East, which Baltimore Magazine describes as ~$1B of development.",
+    "breakthroughDetail": [
+      {"t": "Inherited a micro-bakery, scaled it nationally.", "d": "H&S, named for brother-in-law Harry Tsakalos and father Steve, grew to operate in 23 states with ~2,000 employees.", "basis": "documented"},
+      {"t": "Dedicated QSR bun capacity.", "d": "Northeast Foods' Automatic Rolls plants (Baltimore, New Jersey, North Carolina, New England) produce McDonald's buns.", "basis": "documented"},
+      {"t": "Bakery cash → waterfront real estate.", "d": "Redeployed operating cash flow into H&S Properties and the Harbor East district next to company headquarters.", "basis": "documented"}
+    ],
+    "shieldingDetail": [
+      {"t": "One voting share.", "d": "\"This company has one share of voting stock and that's me\" (2013), so control stayed absolute and private.", "basis": "documented"},
+      {"t": "Operating and property arms kept separate.", "d": "Bakery and real estate ran as distinct companies (H&S Bakery / H&S Properties), so risk in one didn't automatically reach the other.", "basis": "pattern"},
+      {"t": "Succession tested in court.", "d": "After his death, a multimillion-dollar estate dispute between his widow and his children was settled in the children's favor (2021), a reminder that private structures still need clear succession documents.", "basis": "documented"}
+    ],
+    "sources": [
+      {"label": "Baltimore Magazine — H&S Bakery chief John Paterakis Sr. dies at 87", "url": "https://www.baltimoremagazine.com/section/community/h-s-bakery-chief-john-paterakis-sr-dies-at-age-87/"},
+      {"label": "NJBIZ — Northeast Foods, producer of McDonald's buns, expands", "url": "https://njbiz.com/northeast-foods-producer-of-mcdonalds-buns-expands-factory/"},
+      {"label": "Baltimore Sun — Paterakis estate battle ends", "url": "https://www.baltimoresun.com/business/bs-bz-paterakis-family-feud-settled-20211027-fksgvumtxrarxbx5anrvnb56sm-story.html"}
+    ]
+  },
+  {
+    "id": "ag-gaston",
+    "name": "A.G. Gaston",
+    "type": "historic",
+    "category": "Historic Visionaries",
+    "netWorthTier": "$100M-$500M",
+    "humbleBeginnings": "Grandson of formerly enslaved people, born in Demopolis, Alabama. After Army service in World War I he worked in mines run by Tennessee Coal, Iron & Railroad near Birmingham, selling boxed lunches to fellow miners and lending them money at 25% interest.",
+    "breakthrough": "Turned a miners' burial society into a Black-owned conglomerate: Booker T. Washington Insurance, Citizens Federal Savings & Loan, funeral homes, a business college, the Gaston Motel and Birmingham radio.",
+    "shieldingStrategy": "Built community-chartered financial institutions (an insurer and an S&L) so Black enterprise capital didn't depend on banks that redlined it, then sold the companies to their employees to keep them Black-owned.",
+    "industry": "Financial Services & Real Estate",
+    "originBadge": "Historic Pioneer",
+    "engineBadge": "Capital Intermediation",
+    "capitalBadge": "Depositor Network",
+    "connections": [
+      {"id": "btw-insurance", "type": "ownership", "label": "founded"},
+      {"id": "citizens-federal", "type": "ownership", "label": "founded 1957"},
+      {"id": "gaston-motel", "type": "ownership", "label": "built 1954"},
+      {"id": "birmingham-campaign", "type": "civic", "label": "bail & quiet funding"},
+      {"id": "clarence-avant", "type": "parallel", "label": "thematic parallel"}
+    ],
+    "lifespan": "1892–1996",
+    "base": "Birmingham, AL",
+    "tierBasis": "reported",
+    "peakWealth": ">$130M at death (1996 est.)",
+    "breakthroughDetail": [
+      {"t": "Burial society as float.", "d": "Small weekly dues came in steadily and payouts came later. It was formalized as the Booker T. Washington Burial Society (1923) and later became an insurance company.", "basis": "documented"},
+      {"t": "Vertical integration.", "d": "Owned funeral homes, so policy claims flowed back into his own operations.", "basis": "documented"},
+      {"t": "Banking the redlined.", "d": "Citizens Federal Savings & Loan (1957) lent to Black homeowners and businesses that white-owned banks refused.", "basis": "documented"},
+      {"t": "Talent pipeline.", "d": "Booker T. Washington Business College trained the clerks and agents his companies needed.", "basis": "documented"}
+    ],
+    "shieldingDetail": [
+      {"t": "Quiet movement financing.", "d": "Housed 1963 Birmingham Campaign leaders at the Gaston Motel and helped post bail while publicly favoring negotiation, which kept white business counterparts at the table.", "basis": "documented"},
+      {"t": "Employee-ownership exit (1987).", "d": "Sold his companies to employees at a fraction of market value rather than to outside acquirers.", "basis": "documented"},
+      {"t": "Entity diversification.", "d": "Separately chartered, regulated companies limited how far any single legal, political or credit shock could spread.", "basis": "pattern"}
+    ],
+    "sources": [
+      {"label": "Wikipedia — A. G. Gaston", "url": "https://en.wikipedia.org/wiki/A._G._Gaston"},
+      {"label": "Encyclopedia of Alabama — A. G. Gaston", "url": "https://encyclopediaofalabama.org/article/a-g-gaston/"}
+    ]
+  },
+  {
+    "id": "clarence-avant",
+    "name": "Clarence Avant",
+    "type": "historic",
+    "category": "Historic Visionaries",
+    "netWorthTier": "$100M-$500M",
+    "humbleBeginnings": "Born in Climax, North Carolina, the oldest of eight. He attended a one-room school through eighth grade, moved to New Jersey in 1947, and became manager of Teddy P's Lounge, a Newark nightclub.",
+    "breakthrough": "Brokered record deals, label sales, endorsements and corporate mergers behind the scenes. His Venture Records (1967) was an early joint venture between a Black executive and a major label, and in 1973 he bought KAGB-FM, LA's first Black-owned FM station.",
+    "shieldingStrategy": "Operated through privately held labels and stations (Venture Records, Sussex Records, Tabu Records, KAGB-FM) and avoided publicity. Most of his leverage was relationship capital rather than visible assets.",
+    "industry": "Media, Entertainment & Venture",
+    "originBadge": "Power Broker",
+    "engineBadge": "Deal Structuring",
+    "capitalBadge": "Private Equity & Media",
+    "aliases": ["The Black Godfather"],
+    "connections": [
+      {"id": "venture-records", "type": "ownership", "label": "founded 1967"},
+      {"id": "sussex-records", "type": "ownership", "label": "founded 1969"},
+      {"id": "tabu-records", "type": "ownership", "label": "founded"},
+      {"id": "kagb-fm", "type": "ownership", "label": "bought 1973 · $321K"},
+      {"id": "motown", "type": "board", "label": "board chair 1993"}
+    ],
+    "lifespan": "1931–2023",
+    "base": "Los Angeles, CA",
+    "tierBasis": "estimated",
+    "wealthNote": "No reliable public net-worth figure exists. The tier is an estimate; he is included for the scale of deal flow he controlled.",
+    "breakthroughDetail": [
+      {"t": "Representation → equity.", "d": "Went from negotiating for artists such as Little Willie John and Lalo Schifrin to owning labels: Venture, then Sussex (home of Bill Withers), then Tabu.", "basis": "documented"},
+      {"t": "Own the distribution.", "d": "Bought KAGB-FM (formerly KTYM-FM, Inglewood) for $321,000 in 1973.", "basis": "documented"},
+      {"t": "Broker of last resort.", "d": "Became chairman of Motown's board in 1993 and was a trusted intermediary across music, sports and politics.", "basis": "documented"},
+      {"t": "Compounding talent.", "d": "Tabu helped launch producers Jimmy Jam & Terry Lewis.", "basis": "documented"}
+    ],
+    "shieldingDetail": [
+      {"t": "Zero-publicity style.", "d": "His role became widely known mainly through the 2019 Netflix documentary The Black Godfather.", "basis": "documented"},
+      {"t": "Relationship capital.", "d": "Trust and favors can't be seized, sued away or assessed like property.", "basis": "pattern"},
+      {"t": "Private advisory retainers.", "d": "Specific fee and entity arrangements are not publicly documented.", "basis": "pattern"}
+    ],
+    "sources": [
+      {"label": "Wikipedia — Clarence Avant", "url": "https://en.wikipedia.org/wiki/Clarence_Avant"},
+      {"label": "Hollywood Reporter — Clarence Avant dies at 92", "url": "https://www.hollywoodreporter.com/music/music-news/clarence-avant-dead-godfather-black-music-1235565979/"}
+    ]
+  },
+  {
+    "id": "sheldon-lavin",
+    "name": "Sheldon Lavin",
+    "type": "operator",
+    "category": "B2B Operators",
+    "netWorthTier": "$1B+",
+    "humbleBeginnings": "A Chicago financial consultant and former banker. In the early 1970s McDonald's wanted its family-run patty supplier, Otto & Sons, to build a dedicated plant, but the Ottos couldn't get financing.",
+    "breakthrough": "Structured the plant financing in exchange for equity, took control as the family stepped back, and built OSI Group into a private global protein processor that follows McDonald's worldwide.",
+    "shieldingStrategy": "Never took OSI public, so there are no proxy filings or outside shareholders, and its products ship under customers' brands, which leaves almost no consumer-facing name exposure.",
+    "industry": "Food Processing & Supply Chain",
+    "originBadge": "Banker-Turned-Owner",
+    "engineBadge": "Anchor-Customer Supply",
+    "capitalBadge": "Equity-for-Structuring",
+    "connections": [
+      {"id": "otto-and-sons", "type": "capital", "label": "structured plant financing"},
+      {"id": "osi-group", "type": "ownership", "label": "chairman / owner"}
+    ],
+    "lifespan": "b. 1932",
+    "base": "Chicago area, IL",
+    "tierBasis": "reported",
+    "peakWealth": "~$1.5B+ (Forbes est.)",
+    "breakthroughDetail": [
+      {"t": "Equity instead of a fee.", "d": "Became a partner rather than taking an advisory fee. The company was renamed OSI in 1975.", "basis": "documented"},
+      {"t": "One anchor customer, replicated globally.", "d": "Built plants alongside McDonald's international expansion.", "basis": "documented"},
+      {"t": "Diversify the book.", "d": "Expanded into poultry, pizza, bacon, vegetables and plant-based products for many customers.", "basis": "documented"}
+    ],
+    "shieldingDetail": [
+      {"t": "Never IPO'd.", "d": "Private ownership means minimal public disclosure.", "basis": "documented"},
+      {"t": "Brand-invisible.", "d": "White-label production keeps the name out of consumer view.", "basis": "pattern"}
+    ],
+    "sources": [
+      {"label": "Wikipedia — OSI Group", "url": "https://en.wikipedia.org/wiki/OSI_Group"},
+      {"label": "Wikipedia — Sheldon Lavin", "url": "https://en.wikipedia.org/wiki/Sheldon_Lavin"}
+    ]
+  },
+  {
+    "id": "louis-kuchuris",
+    "name": "Louis Kuchuris",
+    "type": "operator",
+    "category": "B2B Operators",
+    "netWorthTier": "$100M-$500M",
+    "humbleBeginnings": "Lost his father at age 6. In 1939 he bought Mary Ann, a bankrupt bakery on Chicago's northwest side that sold bread and buns to restaurants, drive-ins, hotels and schools.",
+    "breakthrough": "A 1955 handshake with Ray Kroc to supply buns to Chicago-area McDonald's became East Balt, an automated bun bakery that grew to ~20 plants in 14 countries.",
+    "shieldingStrategy": "Kept the business family-held for ~70 years, then exited through a private sale to JPMorgan's One Equity Partners (2012) rather than an IPO.",
+    "industry": "Industrial Baking",
+    "originBadge": "Distressed-Asset Buyer",
+    "engineBadge": "B2B Supply Monopolies",
+    "capitalBadge": "Reinvested Cashflow",
+    "connections": [
+      {"id": "east-balt", "type": "ownership", "label": "founded 1969"}
+    ],
+    "lifespan": "1913–1983",
+    "base": "Chicago, IL",
+    "tierBasis": "estimated",
+    "wealthNote": "The family fortune was never published. The company later sold for ~$650M (One Equity Partners → Grupo Bimbo, 2017); that number measures the asset, not his personal wealth.",
+    "breakthroughDetail": [
+      {"t": "The handshake (1955).", "d": "Agreed with Ray Kroc to supply Chicago-area McDonald's from the chain's earliest days.", "basis": "documented"},
+      {"t": "Purpose-built capacity (1969).", "d": "East Balt Commissary was an automated bun bakery dedicated to ~40 Chicago McDonald's.", "basis": "documented"},
+      {"t": "Follow the customer abroad.", "d": "Eventually supplied ~9,000 McDonald's worldwide.", "basis": "documented"}
+    ],
+    "shieldingDetail": [
+      {"t": "Family-held for ~70 years.", "d": "Private from 1939 until the 2012 sale.", "basis": "documented"},
+      {"t": "Private liquidity event.", "d": "A private-equity sale turned a concentrated stake into cash without public-market disclosure.", "basis": "pattern"}
+    ],
+    "sources": [
+      {"label": "Baking Business — Baking Hall of Fame", "url": "https://www.bakingbusiness.com/articles/38780-baking-hall-of-fame"},
+      {"label": "Food Business News — East Balt sale to JPMorgan group", "url": "https://www.foodbusinessnews.net/articles/551-east-balt-to-be-acquired-by-jpmorgan-chase-group"},
+      {"label": "Bakery & Snacks — Grupo Bimbo buys East Balt", "url": "https://www.bakeryandsnacks.com/Article/2017/07/21/Grupo-Bimbo-buys-East-Balt-Bakeries-to-expand-global-footprint/"}
+    ]
+  },
+  {
+    "id": "chuck-feeney",
+    "name": "Chuck Feeney",
+    "type": "investor",
+    "category": "Capital Allocators",
+    "netWorthTier": "$1B+",
+    "humbleBeginnings": "Born to a working-class Irish-American family in Elizabeth, New Jersey. He was an Air Force radio operator, studied at Cornell's hotel school on the GI Bill, then sold tax-free goods to U.S. servicemen in Europe.",
+    "breakthrough": "Co-founded Duty Free Shoppers (1960), winning exclusive airport concessions just as Japanese outbound tourism surged.",
+    "shieldingStrategy": "In 1982 he secretly and irrevocably transferred nearly his entire stake to what became Atlantic Philanthropies, required grantees to keep the donor anonymous, and spent the foundation down to zero.",
+    "industry": "Travel Retail & Philanthropy",
+    "originBadge": "Self-Made Origin",
+    "engineBadge": "Concession Monopolies",
+    "capitalBadge": "Partnership Equity",
+    "connections": [
+      {"id": "dfs", "type": "ownership", "label": "co-founded 1960"},
+      {"id": "atlantic-philanthropies", "type": "capital", "label": "secret 1982 transfer"}
+    ],
+    "lifespan": "1931–2023",
+    "base": "Global (NY / Bermuda / Dublin / SF)",
+    "tierBasis": "reported",
+    "peakWealth": "~$8B given away",
+    "breakthroughDetail": [
+      {"t": "Concession economics.", "d": "Exclusive licenses at airport chokepoints gave pricing power without consumer brand-building.", "basis": "pattern"},
+      {"t": "Ride the tourist wave.", "d": "Positioned DFS for the surge of Japanese travelers in Honolulu and Hong Kong.", "basis": "documented"}
+    ],
+    "shieldingDetail": [
+      {"t": "Anonymity by contract.", "d": "His role surfaced only in 1997, when the sale of DFS to LVMH forced disclosure.", "basis": "documented"},
+      {"t": "Giving while living.", "d": "Atlantic spent down its endowment and closed instead of becoming a perpetual institution.", "basis": "documented"}
+    ],
+    "sources": [
+      {"label": "Wikipedia — Chuck Feeney", "url": "https://en.wikipedia.org/wiki/Chuck_Feeney"},
+      {"label": "Wikipedia — Atlantic Philanthropies", "url": "https://en.wikipedia.org/wiki/Atlantic_Philanthropies"}
+    ]
+  },
+  {
+    "id": "jim-goodnight",
+    "name": "Jim Goodnight",
+    "type": "tech",
+    "category": "Tech Compounders",
+    "netWorthTier": "$1B+",
+    "humbleBeginnings": "Grew up in Wilmington, North Carolina, and worked on statistical software at NC State University as part of a federally funded agricultural research project.",
+    "breakthrough": "Spun the NC State software into SAS Institute (1976) and licensed it on annual renewals, building recurring revenue decades before SaaS.",
+    "shieldingStrategy": "Kept SAS private and venture-free for decades, with ownership concentrated between him and co-founder John Sall, so there were no outside shareholders or quarterly reporting.",
+    "industry": "Enterprise Software & Analytics",
+    "originBadge": "Academic Spin-Out",
+    "engineBadge": "Recurring Licenses",
+    "capitalBadge": "Bootstrapped",
+    "connections": [
+      {"id": "sas-institute", "type": "ownership", "label": "co-founded 1976"}
+    ],
+    "lifespan": "b. 1943",
+    "base": "Cary, NC",
+    "tierBasis": "reported",
+    "peakWealth": "Multi-billion (Forbes est.)",
+    "wealthNote": "Estimates move with private valuations of SAS. Check current figures and ownership status before publishing.",
+    "sources": [
+      {"label": "Wikipedia — James Goodnight", "url": "https://en.wikipedia.org/wiki/James_Goodnight"},
+      {"label": "Wikipedia — SAS Institute", "url": "https://en.wikipedia.org/wiki/SAS_Institute"}
+    ]
+  },
+
+  {"id": "mcdonalds-corp", "name": "McDonald's", "type": "entity", "kind": "QSR Anchor Customer", "description": "The anchor customer behind several of the quietest supply-chain fortunes in food."},
+  {"id": "hs-bakery", "name": "H&S Bakery", "type": "entity", "kind": "Industrial Baking", "description": "Baltimore family bakery grown into a 23-state producer.", "connections": [{"id": "northeast-foods", "type": "ownership", "label": "sister division"}]},
+  {"id": "northeast-foods", "name": "Northeast Foods / Automatic Rolls", "type": "entity", "kind": "QSR Bun Supplier", "description": "Paterakis-family bun operation; Automatic Rolls plants supply McDonald's.", "connections": [{"id": "mcdonalds-corp", "type": "supply", "label": "McDonald's buns"}]},
+  {"id": "harbor-east", "name": "Harbor East (H&S Properties)", "type": "entity", "kind": "Real Estate", "description": "Baltimore waterfront district developed by the Paterakis family; ~$1B of office, retail and residential."},
+  {"id": "btw-insurance", "name": "Booker T. Washington Insurance Co.", "type": "entity", "kind": "Insurance", "description": "Grew out of Gaston's 1923 burial society; the cash engine of his group."},
+  {"id": "citizens-federal", "name": "Citizens Federal Savings & Loan", "type": "entity", "kind": "Banking", "description": "Founded 1957 to serve Black borrowers in Birmingham."},
+  {"id": "gaston-motel", "name": "Gaston Motel", "type": "entity", "kind": "Hospitality", "description": "Opened 1954; headquarters for the 1963 Birmingham Campaign.", "connections": [{"id": "birmingham-campaign", "type": "civic", "label": "campaign HQ"}]},
+  {"id": "birmingham-campaign", "name": "Birmingham Campaign (1963)", "type": "entity", "kind": "Civil Rights", "description": "SCLC-led campaign; Gaston provided lodging and financial support."},
+  {"id": "venture-records", "name": "Venture Records", "type": "entity", "kind": "Record Label", "description": "Avant's 1967–69 label; an early Black-executive joint venture with a major label."},
+  {"id": "sussex-records", "name": "Sussex Records", "type": "entity", "kind": "Record Label", "description": "Avant's 1969–75 label; home of Bill Withers.", "connections": [{"id": "buddah-records", "type": "capital", "label": "distribution 1970–74"}]},
+  {"id": "buddah-records", "name": "Buddah Records", "type": "entity", "kind": "Distributor", "description": "Distributed Sussex Records, 1970–1974."},
+  {"id": "tabu-records", "name": "Tabu Records", "type": "entity", "kind": "Record Label", "description": "Avant's label; S.O.S. Band; early home of Jimmy Jam & Terry Lewis."},
+  {"id": "kagb-fm", "name": "KAGB-FM", "type": "entity", "kind": "Radio", "description": "First Black-owned FM station in metropolitan Los Angeles (1973)."},
+  {"id": "motown", "name": "Motown Records", "type": "entity", "kind": "Record Label", "description": "Avant became board chairman in 1993."},
+  {"id": "otto-and-sons", "name": "Otto & Sons", "type": "entity", "kind": "Meat Processor", "description": "Family McDonald's supplier since 1955; became OSI in 1975.", "connections": [{"id": "osi-group", "type": "ownership", "label": "renamed 1975"}, {"id": "mcdonalds-corp", "type": "supply", "label": "patties since 1955"}]},
+  {"id": "osi-group", "name": "OSI Group", "type": "entity", "kind": "Food Processing", "description": "Private global protein processor.", "connections": [{"id": "mcdonalds-corp", "type": "supply", "label": "global protein"}]},
+  {"id": "east-balt", "name": "East Balt Bakeries", "type": "entity", "kind": "Industrial Baking", "description": "Bun supplier to McDonald's worldwide; sold 2012 and 2017.", "connections": [{"id": "mcdonalds-corp", "type": "supply", "label": "buns since 1955"}]},
+  {"id": "one-equity-partners", "name": "One Equity Partners", "type": "entity", "kind": "Private Equity", "description": "JPMorgan's PE arm; bought East Balt in 2012 and nearly doubled EBITDA.", "connections": [{"id": "east-balt", "type": "capital", "label": "acquired 2012"}]},
+  {"id": "grupo-bimbo", "name": "Grupo Bimbo", "type": "entity", "kind": "Strategic Acquirer", "description": "Bought East Balt from OEP in 2017 (~$650M).", "connections": [{"id": "east-balt", "type": "capital", "label": "acquired 2017"}]},
+  {"id": "dfs", "name": "Duty Free Shoppers", "type": "entity", "kind": "Travel Retail", "description": "Co-founded 1960 by Chuck Feeney and Robert Miller."},
+  {"id": "atlantic-philanthropies", "name": "Atlantic Philanthropies", "type": "entity", "kind": "Foundation", "description": "Received Feeney's DFS stake in 1982; spent down and closed."},
+  {"id": "lvmh", "name": "LVMH", "type": "entity", "kind": "Strategic Acquirer", "description": "Bought control of DFS in 1997, exposing Feeney's secret giving.", "connections": [{"id": "dfs", "type": "capital", "label": "acquired 1997"}]},
+  {"id": "sas-institute", "name": "SAS Institute", "type": "entity", "kind": "Enterprise Software", "description": "Analytics software company co-founded 1976."},
+  {"id": "nc-state", "name": "NC State University", "type": "entity", "kind": "University", "description": "Where the SAS software originated.", "connections": [{"id": "sas-institute", "type": "origin", "label": "spun out of"}]}
+]

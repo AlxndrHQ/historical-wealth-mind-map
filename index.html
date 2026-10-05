@@ -1,0 +1,1465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Quiet Capital — Mind Map &amp; Executive Briefing</title>
+<meta name="description" content="Interactive mind map and executive dossiers on quiet millionaires, billionaires, and historic Black business visionaries: origins, capital engines, and asset-protection models.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#090c11; --bg2:#0d1218; --panel:#111821; --panel2:#16202b; --line:#1d2833; --line2:#2a3846;
+  --text:#e7edf3; --muted:#8d9aa8; --dim:#5a6776;
+  --blue:#3B82F6; --purple:#8B5CF6; --gold:#F59E0B; --green:#10B981; --entity:#64748B;
+  --doc:#10B981; --pattern:#f5a524;
+  --r:12px; --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--text);font:14px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--blue)}
+::selection{background:#3B82F644}
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh}
+
+/* ============ HEADER ============ */
+header.top{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0e141c,#0a0e13);padding:12px 20px 0;flex:none;z-index:5}
+.row1{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#3B82F633,#8B5CF622 60%,transparent);border:1px solid var(--line2)}
+.brand h1{font-size:15px;font-weight:700;margin:0;letter-spacing:.2px;white-space:nowrap}
+.brand small{display:block;font:500 10.5px var(--mono);color:var(--muted);letter-spacing:.8px;text-transform:uppercase}
+.search{flex:1;min-width:200px;max-width:520px;position:relative;margin-left:auto}
+.search input{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:9px 12px 9px 34px;color:var(--text);font:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+.search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #3B82F622}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.55}
+.search kbd{position:absolute;right:9px;top:50%;transform:translateY(-50%);font:500 10.5px var(--mono);color:var(--dim);border:1px solid var(--line2);border-radius:5px;padding:1px 6px}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:3px;gap:2px}
+.seg button{background:none;border:0;padding:6px 12px;border-radius:7px;color:var(--muted);font-weight:600;font-size:12.5px;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--panel2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line2)}
+.row2{display:flex;align-items:center;gap:14px;padding:12px 0;overflow-x:auto;scrollbar-width:none}
+.row2::-webkit-scrollbar{display:none}
+.chips{display:flex;gap:6px;flex:none}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);background:transparent;border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--muted);white-space:nowrap;transition:all .15s}
+.chip .d{width:8px;height:8px;border-radius:50%;background:var(--c,#8d9aa8);box-shadow:0 0 8px var(--c,transparent)}
+.chip .n{font:500 10.5px var(--mono);color:var(--dim)}
+.chip:hover{color:var(--text);border-color:#3a4a5c}
+.chip[aria-pressed="true"]{color:var(--text);border-color:var(--c,var(--text));background:color-mix(in srgb,var(--c,#8d9aa8) 12%,transparent)}
+.divider{width:1px;height:22px;background:var(--line2);flex:none}
+.lbl{font:500 10.5px var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.8px;flex:none}
+
+/* ============ STAGE ============ */
+main{flex:1;min-height:0;position:relative}
+#map,#grid{position:absolute;inset:0}
+#map{background:radial-gradient(1200px 600px at 50% 40%,#0f1620 0%,var(--bg) 70%)}
+#map svg{display:block;width:100%;height:100%;cursor:grab}
+#map svg:active{cursor:grabbing}
+#grid{overflow:auto;padding:22px 20px 40px}
+[hidden]{display:none!important}
+
+/* graph */
+.link{fill:none;stroke-width:1.4;opacity:.55;transition:opacity .15s}
+.link.dashed{stroke-dasharray:6 4}
+.link.dotted{stroke-dasharray:1.5 4;stroke-linecap:round}
+.elabel{font:500 9.5px var(--mono);fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:3px;opacity:0;pointer-events:none;transition:opacity .2s}
+svg.zoomed .elabel{opacity:.85}
+.node{cursor:pointer}
+.node text{font-family:var(--sans);pointer-events:none;paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+.node.profile text{font-size:12px;font-weight:700;fill:var(--text)}
+.node.entity text{font-size:10.5px;font-weight:500;fill:var(--muted)}
+.node .halo{opacity:.0;transition:opacity .2s}
+.node:hover .halo,.node.sel .halo{opacity:.55}
+.node,.link,.elabel{transition:opacity .18s}
+.faded{opacity:.08!important}
+.dimq{opacity:.16!important}
+.link.hot{opacity:1;stroke-width:2.2}
+
+/* overlays */
+.overlay{position:absolute;background:#0d1319e6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line2);border-radius:var(--r);padding:10px 12px;font-size:12px}
+.legend{left:16px;bottom:16px;max-width:260px}
+.legend h4,.ctrls h4{margin:0 0 6px;font:600 10px var(--mono);letter-spacing:.9px;text-transform:uppercase;color:var(--dim)}
+.legend .it{display:flex;align-items:center;gap:8px;color:var(--muted);line-height:1.9}
+.legend .sw{width:10px;height:10px;border-radius:50%;flex:none}
+.legend .ln{width:22px;height:0;border-top:2px solid;flex:none}
+.legend .extra{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.legend .extra h4+.sizes{margin-bottom:8px}
+.legend .sizes{display:flex;gap:10px;align-items:flex-end;color:var(--muted);font-size:11px}
+.legend .sz{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px}
+.legend .sz i{display:block;border:1.2px solid #94A3B8;border-radius:50%}
+.seg .n{font:500 10px var(--mono);color:var(--dim);margin-left:3px}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.badge{font-size:11px;font-weight:600;border-radius:6px;padding:2px 8px;border:1px solid}
+.b-origin{color:#FCD34D;border-color:#F59E0B55;background:#F59E0B14}
+.b-engine{color:#93C5FD;border-color:#3B82F655;background:#3B82F614}
+.b-capital{color:#C4B5FD;border-color:#8B5CF655;background:#8B5CF614}
+.dbadges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.dbadge{border:1px solid;border-radius:10px;padding:7px 10px;font-size:12.5px;font-weight:600;line-height:1.3}
+.dbadge label{display:block;font:600 9px var(--mono);letter-spacing:.8px;text-transform:uppercase;opacity:.75;margin-bottom:2px}
+.sec blockquote.callout{margin-bottom:10px}
+.ctrls{right:16px;bottom:16px;display:flex;flex-direction:column;gap:8px}
+.ctrls .btns{display:flex;gap:6px}
+.ibtn{background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--muted);font-weight:600}
+.ibtn:hover{color:var(--text);border-color:#3a4a5c}
+.hint{left:50%;top:14px;transform:translateX(-50%);color:var(--muted);font-size:11.5px;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.empty{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);text-align:center;pointer-events:none}
+
+/* ============ GRID ============ */
+.gridhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;max-width:1280px;margin:0 auto 14px;flex-wrap:wrap}
+.gridhead h2{margin:0;font-size:18px}
+.gridhead .meta{font:500 11.5px var(--mono);color:var(--dim)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;max-width:1280px;margin:0 auto}
+.card{position:relative;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 14px;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s;outline:none;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:var(--c);box-shadow:0 0 14px var(--c)}
+.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:color-mix(in srgb,var(--c) 45%,var(--line));box-shadow:0 10px 30px -12px color-mix(in srgb,var(--c) 40%,transparent)}
+.ctop{display:flex;align-items:center;gap:8px;font:500 10.5px var(--mono);text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
+.ctop .d{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+.ctop .era{margin-left:auto;color:var(--dim)}
+.card h3{margin:10px 0 2px;font-size:17px;letter-spacing:.1px}
+.life{font-size:12px;color:var(--dim)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.kpi{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 10px;min-width:0}
+.kpi label,.bt label{display:block;font:500 9.5px var(--mono);text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:2px}
+.kpi b{font-size:12.5px;font-weight:600;display:block;line-height:1.35}
+.kpi b.mono{font-family:var(--mono);color:var(--c)}
+.bt{margin:0;font-size:13px;color:#c9d3dd}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.tag{font-size:11px;color:var(--muted);border:1px solid var(--line2);border-radius:6px;padding:1px 7px}
+mark{background:#F59E0B33;color:inherit;border-radius:3px;padding:0 1px}
+.foot{max-width:1280px;margin:22px auto 0;font-size:11.5px;color:var(--dim)}
+
+/* ============ DRAWER ============ */
+.scrim{position:fixed;inset:0;background:#0008;opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
+.scrim.on{opacity:1;pointer-events:auto}
+aside#drawer{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(580px,100vw);background:var(--bg2);border-left:1px solid var(--line2);z-index:21;transform:translateX(102%);transition:transform .32s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-30px 0 60px -20px #000}
+aside#drawer.open{transform:none}
+.dhead{padding:18px 22px 16px;border-bottom:1px solid var(--line);position:relative;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 10%,transparent),transparent)}
+.dhead::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--c);box-shadow:0 0 16px var(--c)}
+.dclose{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:9px;border:1px solid var(--line2);background:var(--panel);display:grid;place-items:center;color:var(--muted)}
+.dclose:hover{color:var(--text)}
+.eyebrow{font:600 10.5px var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--c);display:flex;gap:10px;align-items:center}
+.eyebrow span+span{color:var(--dim)}
+.dhead h2{margin:8px 44px 2px 0;font-size:24px;line-height:1.2;letter-spacing:-.2px}
+.dbody{flex:1;overflow:auto;padding:18px 22px 40px}
+.dbody .kpis{grid-template-columns:repeat(3,1fr);margin-top:0}
+.note{font-size:11.5px;color:var(--muted);margin:-4px 0 14px;padding:8px 10px;border-left:2px solid var(--pattern);background:#f5a52410;border-radius:0 8px 8px 0}
+blockquote.callout{margin:0 0 18px;padding:12px 14px;border:1px solid color-mix(in srgb,var(--c) 35%,var(--line));border-radius:10px;background:color-mix(in srgb,var(--c) 7%,transparent);font-size:14px}
+blockquote.callout label{display:block;font:600 9.5px var(--mono);letter-spacing:.9px;text-transform:uppercase;color:var(--c);margin-bottom:4px}
+.sec{margin-top:22px}
+.sec h3{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:.2px}
+.sec h3 .num{font:600 10.5px var(--mono);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 40%,var(--line));border-radius:6px;padding:1px 6px}
+.sec p{margin:0;color:#c9d3dd}
+ol.steps,ul.bul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ol.steps li,ul.bul li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:#c9d3dd;font-size:13.5px}
+ol.steps li b,ul.bul li b{color:var(--text)}
+.basis{float:right;margin:1px 0 4px 8px;font:600 9px var(--mono);letter-spacing:.7px;padding:2px 6px;border-radius:5px;text-transform:uppercase;cursor:help}
+.basis.documented{color:var(--doc);border:1px solid #10B98155;background:#10B98112}
+.basis.pattern{color:var(--pattern);border:1px solid #f5a52455;background:#f5a52412}
+.net{display:flex;flex-direction:column;gap:6px}
+.net button{display:flex;align-items:center;gap:10px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 12px;transition:border-color .15s}
+.net button:hover{border-color:#3a4a5c}
+.net .d{width:9px;height:9px;border-radius:50%;flex:none}
+.net .nm{font-weight:600;font-size:13px}
+.net .rel{font-size:12px;color:var(--muted);margin-left:auto;text-align:right}
+.net .ar{font-family:var(--mono);color:var(--dim);font-size:11px}
+.srcs{display:flex;flex-direction:column;gap:4px;font-size:12.5px}
+.disc{margin-top:24px;font-size:11px;color:var(--dim);border-top:1px solid var(--line);padding-top:12px}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:760px){
+  header.top{padding:10px 14px 0}
+  .search{order:3;flex-basis:100%;max-width:none;margin-left:0}
+  .search kbd{display:none}
+  .row1 .seg{margin-left:auto}
+  .brand small{display:none}
+  #grid{padding:16px 14px 40px}
+  .legend .extra{display:none}
+  .dbadges{grid-template-columns:1fr}
+  .legend{left:10px;top:10px;bottom:auto;padding:6px 10px;font-size:11px}
+  .legend h4{display:none}
+  .legend .it{line-height:1.7}
+  .ctrls{right:10px;left:10px;bottom:10px;flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:8px}
+  .ctrls .seg button{padding:5px 9px;font-size:12px}
+  .ctrls h4{display:none}
+  .hint{display:none}
+  .dhead,.dbody{padding-left:16px;padding-right:16px}
+  .dbody .kpis{grid-template-columns:1fr 1fr}
+  .dhead h2{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="top">
+    <div class="row1">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="4" cy="4" r="2.2" fill="#3B82F6"/><circle cx="12" cy="5" r="2.2" fill="#8B5CF6"/><circle cx="5" cy="12" r="2.2" fill="#F59E0B"/><circle cx="12.5" cy="12" r="2.2" fill="#10B981"/><path d="M4 4L12 5M4 4L5 12M12 5L12.5 12M5 12L12.5 12" stroke="#5a6776" stroke-width=".8"/></svg>
+        </div>
+        <div><h1>Quiet Capital</h1><small>Mind Map · Executive Briefing</small></div>
+      </div>
+      <label class="search" aria-label="Search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search names, strategies, industries…" autocomplete="off" spellcheck="false">
+        <kbd>/</kbd>
+      </label>
+      <div class="seg" role="group" aria-label="View">
+        <button data-view="map" aria-pressed="true">Mind Map Graph</button>
+        <button data-view="grid" aria-pressed="false">Directory Cards</button>
+      </div>
+    </div>
+    <div class="row2">
+      <span class="lbl">Archetype</span>
+      <div class="chips" id="catChips"></div>
+      <span class="divider"></span>
+      <span class="lbl">Net Worth</span>
+      <div class="seg" id="tierSeg" role="group" aria-label="Net worth tier"></div>
+    </div>
+  </header>
+
+  <main>
+    <section id="map" aria-label="Mind map">
+      <div class="overlay hint">Drag nodes · Scroll to zoom · Click for dossier</div>
+      <div class="overlay legend" id="legend"></div>
+      <div class="overlay ctrls">
+        <h4>Layout</h4>
+        <div class="seg" id="layoutSeg" role="group" aria-label="Layout">
+          <button data-layout="force" aria-pressed="true">Organic</button>
+          <button data-layout="cluster" aria-pressed="false">Clusters</button>
+          <button data-layout="tier" aria-pressed="false">By Tier</button>
+        </div>
+        <div class="btns">
+          <button class="ibtn" id="fitBtn">Fit view</button>
+          <button class="ibtn" id="shakeBtn">Re‑run layout</button>
+        </div>
+      </div>
+      <div class="empty" id="mapEmpty" hidden>No profiles match these filters.</div>
+    </section>
+    <section id="grid" aria-label="Directory" hidden></section>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside id="drawer" aria-hidden="true" aria-label="Executive dossier"></aside>
+
+<script>
+/* =====================================================================
+   DATASET — one flat array. To extend, append an object.
+   ---------------------------------------------------------------------
+   PROFILE (required):
+     id, name, type ("operator"|"investor"|"historic"|"tech"),
+     category ("B2B Operators"|"Capital Allocators"|"Historic Visionaries"|"Tech Compounders"),
+     netWorthTier ("$100M-$500M"|"$500M-$1B"|"$1B+"),
+     humbleBeginnings, breakthrough, shieldingStrategy, industry,
+     originBadge, engineBadge, capitalBadge,
+     connections: ["other-id", ...]   ← plain ids work
+               or [{"id":"other-id","type":"supply","label":"buns since 1955"}, ...]
+   PROFILE (optional): lifespan, base, aliases[], peakWealth, wealthNote,
+     tierBasis ("reported"|"estimated"),
+     breakthroughDetail[] / shieldingDetail[]  → {t, d, basis:"documented"|"pattern"},
+     sources[] → {label, url}
+   ENTITY (companies, funds, institutions):
+     {id, name, type:"entity", kind, description, connections?}
+   Edge types: ownership supply capital board mentorship civic family deal origin parallel
+   If a data.json sits next to this page, it is loaded instead of this copy.
+   ===================================================================== */
+const EMBEDDED_DATA = /*DATA-START*/[
+ {
+  "id": "john-paterakis",
+  "name": "John Paterakis Sr.",
+  "type": "operator",
+  "category": "B2B Operators",
+  "netWorthTier": "$1B+",
+  "humbleBeginnings": "Graduated from Patterson Park High School in 1947 and took over his father Steve's bakery, which started as a two-man operation working rented ovens on Fagley Street in Baltimore's Highlandtown.",
+  "breakthrough": "Grew H&S Bakery into one of the largest bread, bun and roll producers in the U.S. Its Northeast Foods / Automatic Rolls division bakes buns for McDonald's from plants along the East Coast.",
+  "shieldingStrategy": "Kept the company private with control concentrated in his hands, and recycled bakery cash flow into real estate. H&S Properties developed Baltimore's Harbor East waterfront.",
+  "industry": "Food Logistics & Manufacturing",
+  "originBadge": "Self-Made Origin",
+  "engineBadge": "B2B Supply Monopolies",
+  "capitalBadge": "Reinvested Cashflow",
+  "connections": [
+   {
+    "id": "hs-bakery",
+    "type": "ownership",
+    "label": "ran for six decades"
+   },
+   {
+    "id": "harbor-east",
+    "type": "capital",
+    "label": "reinvested cash flow"
+   }
+  ],
+  "lifespan": "c.1929–2016",
+  "base": "Baltimore, MD",
+  "tierBasis": "estimated",
+  "wealthNote": "No published net-worth figure. The $1B+ tier is an estimate based on a 23-state private bakery business plus Harbor East, which Baltimore Magazine describes as ~$1B of development.",
+  "breakthroughDetail": [
+   {
+    "t": "Inherited a micro-bakery, scaled it nationally.",
+    "d": "H&S, named for brother-in-law Harry Tsakalos and father Steve, grew to operate in 23 states with ~2,000 employees.",
+    "basis": "documented"
+   },
+   {
+    "t": "Dedicated QSR bun capacity.",
+    "d": "Northeast Foods' Automatic Rolls plants (Baltimore, New Jersey, North Carolina, New England) produce McDonald's buns.",
+    "basis": "documented"
+   },
+   {
+    "t": "Bakery cash → waterfront real estate.",
+    "d": "Redeployed operating cash flow into H&S Properties and the Harbor East district next to company headquarters.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "One voting share.",
+    "d": "\"This company has one share of voting stock and that's me\" (2013), so control stayed absolute and private.",
+    "basis": "documented"
+   },
+   {
+    "t": "Operating and property arms kept separate.",
+    "d": "Bakery and real estate ran as distinct companies (H&S Bakery / H&S Properties), so risk in one didn't automatically reach the other.",
+    "basis": "pattern"
+   },
+   {
+    "t": "Succession tested in court.",
+    "d": "After his death, a multimillion-dollar estate dispute between his widow and his children was settled in the children's favor (2021), a reminder that private structures still need clear succession documents.",
+    "basis": "documented"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Baltimore Magazine — H&S Bakery chief John Paterakis Sr. dies at 87",
+    "url": "https://www.baltimoremagazine.com/section/community/h-s-bakery-chief-john-paterakis-sr-dies-at-age-87/"
+   },
+   {
+    "label": "NJBIZ — Northeast Foods, producer of McDonald's buns, expands",
+    "url": "https://njbiz.com/northeast-foods-producer-of-mcdonalds-buns-expands-factory/"
+   },
+   {
+    "label": "Baltimore Sun — Paterakis estate battle ends",
+    "url": "https://www.baltimoresun.com/business/bs-bz-paterakis-family-feud-settled-20211027-fksgvumtxrarxbx5anrvnb56sm-story.html"
+   }
+  ]
+ },
+ {
+  "id": "ag-gaston",
+  "name": "A.G. Gaston",
+  "type": "historic",
+  "category": "Historic Visionaries",
+  "netWorthTier": "$100M-$500M",
+  "humbleBeginnings": "Grandson of formerly enslaved people, born in Demopolis, Alabama. After Army service in World War I he worked in mines run by Tennessee Coal, Iron & Railroad near Birmingham, selling boxed lunches to fellow miners and lending them money at 25% interest.",
+  "breakthrough": "Turned a miners' burial society into a Black-owned conglomerate: Booker T. Washington Insurance, Citizens Federal Savings & Loan, funeral homes, a business college, the Gaston Motel and Birmingham radio.",
+  "shieldingStrategy": "Built community-chartered financial institutions (an insurer and an S&L) so Black enterprise capital didn't depend on banks that redlined it, then sold the companies to their employees to keep them Black-owned.",
+  "industry": "Financial Services & Real Estate",
+  "originBadge": "Historic Pioneer",
+  "engineBadge": "Capital Intermediation",
+  "capitalBadge": "Depositor Network",
+  "connections": [
+   {
+    "id": "btw-insurance",
+    "type": "ownership",
+    "label": "founded"
+   },
+   {
+    "id": "citizens-federal",
+    "type": "ownership",
+    "label": "founded 1957"
+   },
+   {
+    "id": "gaston-motel",
+    "type": "ownership",
+    "label": "built 1954"
+   },
+   {
+    "id": "birmingham-campaign",
+    "type": "civic",
+    "label": "bail & quiet funding"
+   },
+   {
+    "id": "clarence-avant",
+    "type": "parallel",
+    "label": "thematic parallel"
+   }
+  ],
+  "lifespan": "1892–1996",
+  "base": "Birmingham, AL",
+  "tierBasis": "reported",
+  "peakWealth": ">$130M at death (1996 est.)",
+  "breakthroughDetail": [
+   {
+    "t": "Burial society as float.",
+    "d": "Small weekly dues came in steadily and payouts came later. It was formalized as the Booker T. Washington Burial Society (1923) and later became an insurance company.",
+    "basis": "documented"
+   },
+   {
+    "t": "Vertical integration.",
+    "d": "Owned funeral homes, so policy claims flowed back into his own operations.",
+    "basis": "documented"
+   },
+   {
+    "t": "Banking the redlined.",
+    "d": "Citizens Federal Savings & Loan (1957) lent to Black homeowners and businesses that white-owned banks refused.",
+    "basis": "documented"
+   },
+   {
+    "t": "Talent pipeline.",
+    "d": "Booker T. Washington Business College trained the clerks and agents his companies needed.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "Quiet movement financing.",
+    "d": "Housed 1963 Birmingham Campaign leaders at the Gaston Motel and helped post bail while publicly favoring negotiation, which kept white business counterparts at the table.",
+    "basis": "documented"
+   },
+   {
+    "t": "Employee-ownership exit (1987).",
+    "d": "Sold his companies to employees at a fraction of market value rather than to outside acquirers.",
+    "basis": "documented"
+   },
+   {
+    "t": "Entity diversification.",
+    "d": "Separately chartered, regulated companies limited how far any single legal, political or credit shock could spread.",
+    "basis": "pattern"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Wikipedia — A. G. Gaston",
+    "url": "https://en.wikipedia.org/wiki/A._G._Gaston"
+   },
+   {
+    "label": "Encyclopedia of Alabama — A. G. Gaston",
+    "url": "https://encyclopediaofalabama.org/article/a-g-gaston/"
+   }
+  ]
+ },
+ {
+  "id": "clarence-avant",
+  "name": "Clarence Avant",
+  "type": "historic",
+  "category": "Historic Visionaries",
+  "netWorthTier": "$100M-$500M",
+  "humbleBeginnings": "Born in Climax, North Carolina, the oldest of eight. He attended a one-room school through eighth grade, moved to New Jersey in 1947, and became manager of Teddy P's Lounge, a Newark nightclub.",
+  "breakthrough": "Brokered record deals, label sales, endorsements and corporate mergers behind the scenes. His Venture Records (1967) was an early joint venture between a Black executive and a major label, and in 1973 he bought KAGB-FM, LA's first Black-owned FM station.",
+  "shieldingStrategy": "Operated through privately held labels and stations (Venture Records, Sussex Records, Tabu Records, KAGB-FM) and avoided publicity. Most of his leverage was relationship capital rather than visible assets.",
+  "industry": "Media, Entertainment & Venture",
+  "originBadge": "Power Broker",
+  "engineBadge": "Deal Structuring",
+  "capitalBadge": "Private Equity & Media",
+  "aliases": [
+   "The Black Godfather"
+  ],
+  "connections": [
+   {
+    "id": "venture-records",
+    "type": "ownership",
+    "label": "founded 1967"
+   },
+   {
+    "id": "sussex-records",
+    "type": "ownership",
+    "label": "founded 1969"
+   },
+   {
+    "id": "tabu-records",
+    "type": "ownership",
+    "label": "founded"
+   },
+   {
+    "id": "kagb-fm",
+    "type": "ownership",
+    "label": "bought 1973 · $321K"
+   },
+   {
+    "id": "motown",
+    "type": "board",
+    "label": "board chair 1993"
+   }
+  ],
+  "lifespan": "1931–2023",
+  "base": "Los Angeles, CA",
+  "tierBasis": "estimated",
+  "wealthNote": "No reliable public net-worth figure exists. The tier is an estimate; he is included for the scale of deal flow he controlled.",
+  "breakthroughDetail": [
+   {
+    "t": "Representation → equity.",
+    "d": "Went from negotiating for artists such as Little Willie John and Lalo Schifrin to owning labels: Venture, then Sussex (home of Bill Withers), then Tabu.",
+    "basis": "documented"
+   },
+   {
+    "t": "Own the distribution.",
+    "d": "Bought KAGB-FM (formerly KTYM-FM, Inglewood) for $321,000 in 1973.",
+    "basis": "documented"
+   },
+   {
+    "t": "Broker of last resort.",
+    "d": "Became chairman of Motown's board in 1993 and was a trusted intermediary across music, sports and politics.",
+    "basis": "documented"
+   },
+   {
+    "t": "Compounding talent.",
+    "d": "Tabu helped launch producers Jimmy Jam & Terry Lewis.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "Zero-publicity style.",
+    "d": "His role became widely known mainly through the 2019 Netflix documentary The Black Godfather.",
+    "basis": "documented"
+   },
+   {
+    "t": "Relationship capital.",
+    "d": "Trust and favors can't be seized, sued away or assessed like property.",
+    "basis": "pattern"
+   },
+   {
+    "t": "Private advisory retainers.",
+    "d": "Specific fee and entity arrangements are not publicly documented.",
+    "basis": "pattern"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Wikipedia — Clarence Avant",
+    "url": "https://en.wikipedia.org/wiki/Clarence_Avant"
+   },
+   {
+    "label": "Hollywood Reporter — Clarence Avant dies at 92",
+    "url": "https://www.hollywoodreporter.com/music/music-news/clarence-avant-dead-godfather-black-music-1235565979/"
+   }
+  ]
+ },
+ {
+  "id": "sheldon-lavin",
+  "name": "Sheldon Lavin",
+  "type": "operator",
+  "category": "B2B Operators",
+  "netWorthTier": "$1B+",
+  "humbleBeginnings": "A Chicago financial consultant and former banker. In the early 1970s McDonald's wanted its family-run patty supplier, Otto & Sons, to build a dedicated plant, but the Ottos couldn't get financing.",
+  "breakthrough": "Structured the plant financing in exchange for equity, took control as the family stepped back, and built OSI Group into a private global protein processor that follows McDonald's worldwide.",
+  "shieldingStrategy": "Never took OSI public, so there are no proxy filings or outside shareholders, and its products ship under customers' brands, which leaves almost no consumer-facing name exposure.",
+  "industry": "Food Processing & Supply Chain",
+  "originBadge": "Banker-Turned-Owner",
+  "engineBadge": "Anchor-Customer Supply",
+  "capitalBadge": "Equity-for-Structuring",
+  "connections": [
+   {
+    "id": "otto-and-sons",
+    "type": "capital",
+    "label": "structured plant financing"
+   },
+   {
+    "id": "osi-group",
+    "type": "ownership",
+    "label": "chairman / owner"
+   }
+  ],
+  "lifespan": "b. 1932",
+  "base": "Chicago area, IL",
+  "tierBasis": "reported",
+  "peakWealth": "~$1.5B+ (Forbes est.)",
+  "breakthroughDetail": [
+   {
+    "t": "Equity instead of a fee.",
+    "d": "Became a partner rather than taking an advisory fee. The company was renamed OSI in 1975.",
+    "basis": "documented"
+   },
+   {
+    "t": "One anchor customer, replicated globally.",
+    "d": "Built plants alongside McDonald's international expansion.",
+    "basis": "documented"
+   },
+   {
+    "t": "Diversify the book.",
+    "d": "Expanded into poultry, pizza, bacon, vegetables and plant-based products for many customers.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "Never IPO'd.",
+    "d": "Private ownership means minimal public disclosure.",
+    "basis": "documented"
+   },
+   {
+    "t": "Brand-invisible.",
+    "d": "White-label production keeps the name out of consumer view.",
+    "basis": "pattern"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Wikipedia — OSI Group",
+    "url": "https://en.wikipedia.org/wiki/OSI_Group"
+   },
+   {
+    "label": "Wikipedia — Sheldon Lavin",
+    "url": "https://en.wikipedia.org/wiki/Sheldon_Lavin"
+   }
+  ]
+ },
+ {
+  "id": "louis-kuchuris",
+  "name": "Louis Kuchuris",
+  "type": "operator",
+  "category": "B2B Operators",
+  "netWorthTier": "$100M-$500M",
+  "humbleBeginnings": "Lost his father at age 6. In 1939 he bought Mary Ann, a bankrupt bakery on Chicago's northwest side that sold bread and buns to restaurants, drive-ins, hotels and schools.",
+  "breakthrough": "A 1955 handshake with Ray Kroc to supply buns to Chicago-area McDonald's became East Balt, an automated bun bakery that grew to ~20 plants in 14 countries.",
+  "shieldingStrategy": "Kept the business family-held for ~70 years, then exited through a private sale to JPMorgan's One Equity Partners (2012) rather than an IPO.",
+  "industry": "Industrial Baking",
+  "originBadge": "Distressed-Asset Buyer",
+  "engineBadge": "B2B Supply Monopolies",
+  "capitalBadge": "Reinvested Cashflow",
+  "connections": [
+   {
+    "id": "east-balt",
+    "type": "ownership",
+    "label": "founded 1969"
+   }
+  ],
+  "lifespan": "1913–1983",
+  "base": "Chicago, IL",
+  "tierBasis": "estimated",
+  "wealthNote": "The family fortune was never published. The company later sold for ~$650M (One Equity Partners → Grupo Bimbo, 2017); that number measures the asset, not his personal wealth.",
+  "breakthroughDetail": [
+   {
+    "t": "The handshake (1955).",
+    "d": "Agreed with Ray Kroc to supply Chicago-area McDonald's from the chain's earliest days.",
+    "basis": "documented"
+   },
+   {
+    "t": "Purpose-built capacity (1969).",
+    "d": "East Balt Commissary was an automated bun bakery dedicated to ~40 Chicago McDonald's.",
+    "basis": "documented"
+   },
+   {
+    "t": "Follow the customer abroad.",
+    "d": "Eventually supplied ~9,000 McDonald's worldwide.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "Family-held for ~70 years.",
+    "d": "Private from 1939 until the 2012 sale.",
+    "basis": "documented"
+   },
+   {
+    "t": "Private liquidity event.",
+    "d": "A private-equity sale turned a concentrated stake into cash without public-market disclosure.",
+    "basis": "pattern"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Baking Business — Baking Hall of Fame",
+    "url": "https://www.bakingbusiness.com/articles/38780-baking-hall-of-fame"
+   },
+   {
+    "label": "Food Business News — East Balt sale to JPMorgan group",
+    "url": "https://www.foodbusinessnews.net/articles/551-east-balt-to-be-acquired-by-jpmorgan-chase-group"
+   },
+   {
+    "label": "Bakery & Snacks — Grupo Bimbo buys East Balt",
+    "url": "https://www.bakeryandsnacks.com/Article/2017/07/21/Grupo-Bimbo-buys-East-Balt-Bakeries-to-expand-global-footprint/"
+   }
+  ]
+ },
+ {
+  "id": "chuck-feeney",
+  "name": "Chuck Feeney",
+  "type": "investor",
+  "category": "Capital Allocators",
+  "netWorthTier": "$1B+",
+  "humbleBeginnings": "Born to a working-class Irish-American family in Elizabeth, New Jersey. He was an Air Force radio operator, studied at Cornell's hotel school on the GI Bill, then sold tax-free goods to U.S. servicemen in Europe.",
+  "breakthrough": "Co-founded Duty Free Shoppers (1960), winning exclusive airport concessions just as Japanese outbound tourism surged.",
+  "shieldingStrategy": "In 1982 he secretly and irrevocably transferred nearly his entire stake to what became Atlantic Philanthropies, required grantees to keep the donor anonymous, and spent the foundation down to zero.",
+  "industry": "Travel Retail & Philanthropy",
+  "originBadge": "Self-Made Origin",
+  "engineBadge": "Concession Monopolies",
+  "capitalBadge": "Partnership Equity",
+  "connections": [
+   {
+    "id": "dfs",
+    "type": "ownership",
+    "label": "co-founded 1960"
+   },
+   {
+    "id": "atlantic-philanthropies",
+    "type": "capital",
+    "label": "secret 1982 transfer"
+   }
+  ],
+  "lifespan": "1931–2023",
+  "base": "Global (NY / Bermuda / Dublin / SF)",
+  "tierBasis": "reported",
+  "peakWealth": "~$8B given away",
+  "breakthroughDetail": [
+   {
+    "t": "Concession economics.",
+    "d": "Exclusive licenses at airport chokepoints gave pricing power without consumer brand-building.",
+    "basis": "pattern"
+   },
+   {
+    "t": "Ride the tourist wave.",
+    "d": "Positioned DFS for the surge of Japanese travelers in Honolulu and Hong Kong.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "Anonymity by contract.",
+    "d": "His role surfaced only in 1997, when the sale of DFS to LVMH forced disclosure.",
+    "basis": "documented"
+   },
+   {
+    "t": "Giving while living.",
+    "d": "Atlantic spent down its endowment and closed instead of becoming a perpetual institution.",
+    "basis": "documented"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Wikipedia — Chuck Feeney",
+    "url": "https://en.wikipedia.org/wiki/Chuck_Feeney"
+   },
+   {
+    "label": "Wikipedia — Atlantic Philanthropies",
+    "url": "https://en.wikipedia.org/wiki/Atlantic_Philanthropies"
+   }
+  ]
+ },
+ {
+  "id": "jim-goodnight",
+  "name": "Jim Goodnight",
+  "type": "tech",
+  "category": "Tech Compounders",
+  "netWorthTier": "$1B+",
+  "humbleBeginnings": "Grew up in Wilmington, North Carolina, and worked on statistical software at NC State University as part of a federally funded agricultural research project.",
+  "breakthrough": "Spun the NC State software into SAS Institute (1976) and licensed it on annual renewals, building recurring revenue decades before SaaS.",
+  "shieldingStrategy": "Kept SAS private and venture-free for decades, with ownership concentrated between him and co-founder John Sall, so there were no outside shareholders or quarterly reporting.",
+  "industry": "Enterprise Software & Analytics",
+  "originBadge": "Academic Spin-Out",
+  "engineBadge": "Recurring Licenses",
+  "capitalBadge": "Bootstrapped",
+  "connections": [
+   {
+    "id": "sas-institute",
+    "type": "ownership",
+    "label": "co-founded 1976"
+   }
+  ],
+  "lifespan": "b. 1943",
+  "base": "Cary, NC",
+  "tierBasis": "reported",
+  "peakWealth": "Multi-billion (Forbes est.)",
+  "wealthNote": "Estimates move with private valuations of SAS. Check current figures and ownership status before publishing.",
+  "sources": [
+   {
+    "label": "Wikipedia — James Goodnight",
+    "url": "https://en.wikipedia.org/wiki/James_Goodnight"
+   },
+   {
+    "label": "Wikipedia — SAS Institute",
+    "url": "https://en.wikipedia.org/wiki/SAS_Institute"
+   }
+  ]
+ },
+ {
+  "id": "mcdonalds-corp",
+  "name": "McDonald's",
+  "type": "entity",
+  "kind": "QSR Anchor Customer",
+  "description": "The anchor customer behind several of the quietest supply-chain fortunes in food."
+ },
+ {
+  "id": "hs-bakery",
+  "name": "H&S Bakery",
+  "type": "entity",
+  "kind": "Industrial Baking",
+  "description": "Baltimore family bakery grown into a 23-state producer.",
+  "connections": [
+   {
+    "id": "northeast-foods",
+    "type": "ownership",
+    "label": "sister division"
+   }
+  ]
+ },
+ {
+  "id": "northeast-foods",
+  "name": "Northeast Foods / Automatic Rolls",
+  "type": "entity",
+  "kind": "QSR Bun Supplier",
+  "description": "Paterakis-family bun operation; Automatic Rolls plants supply McDonald's.",
+  "connections": [
+   {
+    "id": "mcdonalds-corp",
+    "type": "supply",
+    "label": "McDonald's buns"
+   }
+  ]
+ },
+ {
+  "id": "harbor-east",
+  "name": "Harbor East (H&S Properties)",
+  "type": "entity",
+  "kind": "Real Estate",
+  "description": "Baltimore waterfront district developed by the Paterakis family; ~$1B of office, retail and residential."
+ },
+ {
+  "id": "btw-insurance",
+  "name": "Booker T. Washington Insurance Co.",
+  "type": "entity",
+  "kind": "Insurance",
+  "description": "Grew out of Gaston's 1923 burial society; the cash engine of his group."
+ },
+ {
+  "id": "citizens-federal",
+  "name": "Citizens Federal Savings & Loan",
+  "type": "entity",
+  "kind": "Banking",
+  "description": "Founded 1957 to serve Black borrowers in Birmingham."
+ },
+ {
+  "id": "gaston-motel",
+  "name": "Gaston Motel",
+  "type": "entity",
+  "kind": "Hospitality",
+  "description": "Opened 1954; headquarters for the 1963 Birmingham Campaign.",
+  "connections": [
+   {
+    "id": "birmingham-campaign",
+    "type": "civic",
+    "label": "campaign HQ"
+   }
+  ]
+ },
+ {
+  "id": "birmingham-campaign",
+  "name": "Birmingham Campaign (1963)",
+  "type": "entity",
+  "kind": "Civil Rights",
+  "description": "SCLC-led campaign; Gaston provided lodging and financial support."
+ },
+ {
+  "id": "venture-records",
+  "name": "Venture Records",
+  "type": "entity",
+  "kind": "Record Label",
+  "description": "Avant's 1967–69 label; an early Black-executive joint venture with a major label."
+ },
+ {
+  "id": "sussex-records",
+  "name": "Sussex Records",
+  "type": "entity",
+  "kind": "Record Label",
+  "description": "Avant's 1969–75 label; home of Bill Withers.",
+  "connections": [
+   {
+    "id": "buddah-records",
+    "type": "capital",
+    "label": "distribution 1970–74"
+   }
+  ]
+ },
+ {
+  "id": "buddah-records",
+  "name": "Buddah Records",
+  "type": "entity",
+  "kind": "Distributor",
+  "description": "Distributed Sussex Records, 1970–1974."
+ },
+ {
+  "id": "tabu-records",
+  "name": "Tabu Records",
+  "type": "entity",
+  "kind": "Record Label",
+  "description": "Avant's label; S.O.S. Band; early home of Jimmy Jam & Terry Lewis."
+ },
+ {
+  "id": "kagb-fm",
+  "name": "KAGB-FM",
+  "type": "entity",
+  "kind": "Radio",
+  "description": "First Black-owned FM station in metropolitan Los Angeles (1973)."
+ },
+ {
+  "id": "motown",
+  "name": "Motown Records",
+  "type": "entity",
+  "kind": "Record Label",
+  "description": "Avant became board chairman in 1993."
+ },
+ {
+  "id": "otto-and-sons",
+  "name": "Otto & Sons",
+  "type": "entity",
+  "kind": "Meat Processor",
+  "description": "Family McDonald's supplier since 1955; became OSI in 1975.",
+  "connections": [
+   {
+    "id": "osi-group",
+    "type": "ownership",
+    "label": "renamed 1975"
+   },
+   {
+    "id": "mcdonalds-corp",
+    "type": "supply",
+    "label": "patties since 1955"
+   }
+  ]
+ },
+ {
+  "id": "osi-group",
+  "name": "OSI Group",
+  "type": "entity",
+  "kind": "Food Processing",
+  "description": "Private global protein processor.",
+  "connections": [
+   {
+    "id": "mcdonalds-corp",
+    "type": "supply",
+    "label": "global protein"
+   }
+  ]
+ },
+ {
+  "id": "east-balt",
+  "name": "East Balt Bakeries",
+  "type": "entity",
+  "kind": "Industrial Baking",
+  "description": "Bun supplier to McDonald's worldwide; sold 2012 and 2017.",
+  "connections": [
+   {
+    "id": "mcdonalds-corp",
+    "type": "supply",
+    "label": "buns since 1955"
+   }
+  ]
+ },
+ {
+  "id": "one-equity-partners",
+  "name": "One Equity Partners",
+  "type": "entity",
+  "kind": "Private Equity",
+  "description": "JPMorgan's PE arm; bought East Balt in 2012 and nearly doubled EBITDA.",
+  "connections": [
+   {
+    "id": "east-balt",
+    "type": "capital",
+    "label": "acquired 2012"
+   }
+  ]
+ },
+ {
+  "id": "grupo-bimbo",
+  "name": "Grupo Bimbo",
+  "type": "entity",
+  "kind": "Strategic Acquirer",
+  "description": "Bought East Balt from OEP in 2017 (~$650M).",
+  "connections": [
+   {
+    "id": "east-balt",
+    "type": "capital",
+    "label": "acquired 2017"
+   }
+  ]
+ },
+ {
+  "id": "dfs",
+  "name": "Duty Free Shoppers",
+  "type": "entity",
+  "kind": "Travel Retail",
+  "description": "Co-founded 1960 by Chuck Feeney and Robert Miller."
+ },
+ {
+  "id": "atlantic-philanthropies",
+  "name": "Atlantic Philanthropies",
+  "type": "entity",
+  "kind": "Foundation",
+  "description": "Received Feeney's DFS stake in 1982; spent down and closed."
+ },
+ {
+  "id": "lvmh",
+  "name": "LVMH",
+  "type": "entity",
+  "kind": "Strategic Acquirer",
+  "description": "Bought control of DFS in 1997, exposing Feeney's secret giving.",
+  "connections": [
+   {
+    "id": "dfs",
+    "type": "capital",
+    "label": "acquired 1997"
+   }
+  ]
+ },
+ {
+  "id": "sas-institute",
+  "name": "SAS Institute",
+  "type": "entity",
+  "kind": "Enterprise Software",
+  "description": "Analytics software company co-founded 1976."
+ },
+ {
+  "id": "nc-state",
+  "name": "NC State University",
+  "type": "entity",
+  "kind": "University",
+  "description": "Where the SAS software originated.",
+  "connections": [
+   {
+    "id": "sas-institute",
+    "type": "origin",
+    "label": "spun out of"
+   }
+  ]
+ }
+]/*DATA-END*/;
+
+const META = {
+  disclaimer: "Educational profiles compiled from public sources. Net-worth tiers marked “est.” are estimates; private-company and personal wealth are rarely disclosed. Items tagged PATTERN are interpretive reads of strategy, not documented legal structures."
+};
+
+/* =====================================================================
+   CONFIG
+   ===================================================================== */
+const CATS = {
+  'B2B Operators':        {short:'B2B / Supply Chain',  color:'#3B82F6'},
+  'Capital Allocators':   {short:'Capital Allocator',   color:'#8B5CF6'},
+  'Historic Visionaries': {short:'Historic Visionary',  color:'#F59E0B'},
+  'Tech Compounders':     {short:'Tech Compounder',     color:'#10B981'}
+};
+const TYPE_TO_CAT = {operator:'B2B Operators', investor:'Capital Allocators', historic:'Historic Visionaries', tech:'Tech Compounders'};
+const TIERS = {'$100M-$500M':{r:15,rank:1}, '$500M-$1B':{r:20,rank:2}, '$1B+':{r:26,rank:3}};
+const EDGE = {
+  ownership: {label:'Ownership / founder', color:'#94A3B8'},
+  supply:    {label:'Supply contract',     color:'#3B82F6'},
+  capital:   {label:'Money flow / M&A',    color:'#8B5CF6'},
+  board:     {label:'Board seat',          color:'#A78BFA'},
+  mentorship:{label:'Mentorship / broker', color:'#F59E0B'},
+  civic:     {label:'Civic / movement',    color:'#10B981'},
+  family:    {label:'Family tie',          color:'#F472B6'},
+  deal:      {label:'Deal / joint venture',color:'#38BDF8'},
+  origin:    {label:'Origin / spin-out',   color:'#34D399'},
+  parallel:  {label:'Thematic parallel',   color:'#475569'},
+  connection:{label:'Connection',          color:'#64748B'}
+};
+const DASHED = ['board','mentorship','civic','origin'], DOTTED = ['parallel','family'];
+const ENTITY_COLOR = '#64748B';
+
+const state = {cat:'all', tier:'all', q:'', view:'map', layout:'force', openId:null};
+let DATA;
+
+/* =====================================================================
+   DATA
+   ===================================================================== */
+function normalize(raw){
+  const arr = Array.isArray(raw) ? raw : (raw.records || raw.profiles || []);
+  const byId = {}, profiles = [], entities = [];
+  arr.forEach(r=>{
+    if(!r || !r.id){ console.warn('Skipping record without id', r); return; }
+    const n = {...r};
+    if(n.type === 'entity'){ n._kind='entity'; entities.push(n); }
+    else {
+      n._kind='profile';
+      if(!CATS[n.category]) n.category = TYPE_TO_CAT[n.type] || 'B2B Operators';
+      if(!TIERS[n.netWorthTier]) console.warn(`${n.id}: unknown netWorthTier "${n.netWorthTier}"`);
+      profiles.push(n);
+    }
+    byId[n.id]=n;
+  });
+  const links = [], seen = new Set();
+  arr.forEach(r=>(r?.connections||[]).forEach(c=>{
+    const o = typeof c==='string' ? {id:c} : c;
+    if(!byId[o.id]){ console.warn(`${r.id}: connection to unknown id "${o.id}" skipped`); return; }
+    const key=[r.id,o.id].sort().join('|');
+    if(seen.has(key)) return; seen.add(key);
+    links.push({source:r.id, target:o.id, type:EDGE[o.type]?o.type:'connection', label:o.label||''});
+  }));
+  const nbNames = id => links.filter(l=>l.source===id||l.target===id).map(l=>byId[l.source===id?l.target:l.source].name);
+  profiles.forEach(p=>{ p._hay=[p.name,...(p.aliases||[]),p.category,p.industry,p.netWorthTier,p.originBadge,p.engineBadge,p.capitalBadge,
+    p.humbleBeginnings,p.breakthrough,p.shieldingStrategy,p.base,
+    ...(p.breakthroughDetail||[]).map(x=>x.t+' '+x.d),...(p.shieldingDetail||[]).map(x=>x.t+' '+x.d),
+    ...nbNames(p.id)].join(' ').toLowerCase(); });
+  entities.forEach(e=>{ e._hay=[e.name,e.kind,e.description].join(' ').toLowerCase(); });
+  return {profiles, entities, links, byId};
+}
+const catColor = n => CATS[n.category]?.color || '#94A3B8';
+const colorOf = n => n._kind==='profile' ? catColor(n) : ENTITY_COLOR;
+const passCat = p => state.cat==='all' || p.category===state.cat;
+const passTier = p => state.tier==='all' || p.netWorthTier===state.tier;
+const terms = () => state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+const matchQ = n => { const t=terms(); return !t.length || t.every(w=>n._hay.includes(w)); };
+const visibleProfiles = () => DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&matchQ(p));
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function hl(text){
+  const t=terms(); let out=esc(text); if(!t.length) return out;
+  t.forEach(w=>{ const re=new RegExp('('+esc(w).replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'); out=out.replace(re,'<mark>$1</mark>'); });
+  return out;
+}
+function neighbors(id){
+  return DATA.links.filter(l=>l.source===id||l.target===id).map(l=>{
+    const out=l.source===id; return {link:l, other:DATA.byId[out?l.target:l.source], out};
+  });
+}
+const tierLabel = p => (p.netWorthTier||'—') + (p.tierBasis==='estimated'?' est.':'');
+
+/* Visible subgraph: filtered profiles + entities reachable through entities (≤2 hops) */
+function subgraph(){
+  const profs = visibleProfiles();
+  const vis = new Map(profs.map(p=>[p.id,{cat:p.category,tier:p.netWorthTier}]));
+  let frontier = profs.map(p=>p.id);
+  for(let hop=0; hop<2; hop++){
+    const next=[];
+    frontier.forEach(id=>{
+      const home=vis.get(id);
+      DATA.links.forEach(l=>{
+        if(l.type==='parallel') return;
+        const other = l.source===id ? l.target : l.target===id ? l.source : null;
+        if(!other || vis.has(other) || DATA.byId[other]._kind!=='entity') return;
+        vis.set(other,home); next.push(other);
+      });
+    });
+    frontier=next;
+  }
+  return {vis, links: DATA.links.filter(l=>vis.has(l.source)&&vis.has(l.target))};
+}
+
+/* =====================================================================
+   FILTER UI
+   ===================================================================== */
+function renderChips(){
+  const base = DATA.profiles.filter(p=>passTier(p)&&matchQ(p));
+  const items = [['all','All','#E2E8F0',base.length], ...Object.entries(CATS).map(([k,c])=>[k,k,c.color,base.filter(p=>p.category===k).length])];
+  document.getElementById('catChips').innerHTML = items.map(([k,l,c,n])=>
+    `<button class="chip" data-cat="${esc(k)}" aria-pressed="${state.cat===k}" style="--c:${c}">${k==='all'?'':'<span class="d"></span>'}${esc(l)} <span class="n">${n}</span></button>`).join('');
+  const tb = DATA.profiles.filter(p=>passCat(p)&&matchQ(p));
+  document.getElementById('tierSeg').innerHTML = [['all','All Tiers'],...Object.keys(TIERS).map(t=>[t,t])].map(([k,l])=>
+    `<button data-tier="${esc(k)}" aria-pressed="${state.tier===k}">${esc(l)} <span class="n">${k==='all'?tb.length:tb.filter(p=>p.netWorthTier===k).length}</span></button>`).join('');
+}
+function bindUI(){
+  document.getElementById('catChips').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cat]'); if(b){ state.cat=b.dataset.cat; refresh(); }
+  });
+  document.getElementById('tierSeg').addEventListener('click',e=>{
+    const b=e.target.closest('[data-tier]'); if(b){ state.tier=b.dataset.tier; refresh(); }
+  });
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{ location.hash='#/'+b.dataset.view; }));
+  document.getElementById('layoutSeg').addEventListener('click',e=>{
+    const b=e.target.closest('[data-layout]'); if(!b) return; state.layout=b.dataset.layout;
+    document.querySelectorAll('#layoutSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    applyLayout(true);
+  });
+  document.getElementById('fitBtn').onclick=()=>fit(600);
+  document.getElementById('shakeBtn').onclick=()=>{ G.nodes.forEach(n=>{n.fx=n.fy=null;}); applyLayout(true); };
+  const q=document.getElementById('q'); let qt;
+  q.addEventListener('input',()=>{ state.q=q.value; clearTimeout(qt); qt=setTimeout(refresh, state.view==='map'?160:0); });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='/' && document.activeElement!==q){ e.preventDefault(); q.focus(); }
+    if(e.key==='Escape'){ if(state.openId) closeDrawer(); else if(document.activeElement===q){ q.value=''; state.q=''; refresh(); q.blur(); } }
+  });
+  document.getElementById('scrim').onclick=closeDrawer;
+  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(()=>{ if(state.view==='map') renderMap(); },180); });
+  window.addEventListener('hashchange',route);
+}
+function refresh(){
+  renderChips();
+  if(state.view==='map') renderMap(); else renderGrid();
+}
+
+/* =====================================================================
+   MIND MAP (D3 force graph)
+   ===================================================================== */
+const G = {svg:null, root:null, zoom:null, sim:null, nodes:[], links:[], pos:new Map(), w:0, h:0, fitT:null};
+const rFor = n => n._kind==='entity' ? 7 : (TIERS[n.netWorthTier]?.r || 15);
+
+function renderLegend(){
+  const cats = Object.entries(CATS).map(([k,c])=>`<div class="it"><span class="sw" style="background:${c.color};box-shadow:0 0 8px ${c.color}"></span>${esc(c.short)}</div>`).join('');
+  const sizes = Object.entries(TIERS).map(([k,t])=>`<span class="sz"><i style="width:${t.r}px;height:${t.r}px"></i>${esc(k)}</span>`).join('');
+  const used = new Set(DATA.links.map(l=>l.type));
+  const edges = Object.entries(EDGE).filter(([k])=>used.has(k)).map(([k,e])=>`<div class="it"><span class="ln" style="border-color:${e.color};border-top-style:${DASHED.includes(k)?'dashed':DOTTED.includes(k)?'dotted':'solid'}"></span>${e.label}</div>`).join('');
+  document.getElementById('legend').innerHTML = `<h4>Archetype</h4>${cats}<div class="it"><span class="sw" style="background:${ENTITY_COLOR}"></span>Company / fund / entity</div>
+    <div class="extra"><h4>Net Worth Tier</h4><div class="sizes">${sizes}</div><h4>Connection</h4>${edges}</div>`;
+}
+
+function renderMap(){
+  const host=document.getElementById('map');
+  host.querySelector('svg')?.remove();
+  if(G.sim) G.sim.stop();
+  const {vis,links}=subgraph();
+  document.getElementById('mapEmpty').hidden = vis.size>0;
+  const w=host.clientWidth, h=host.clientHeight; G.w=w; G.h=h;
+
+  G.nodes=[...vis.entries()].map(([id,home])=>{
+    const src=DATA.byId[id], p=G.pos.get(id);
+    return {...src, home, r:rFor(src), x:p?.x ?? w/2+(Math.random()-.5)*240, y:p?.y ?? h/2+(Math.random()-.5)*240};
+  });
+  G.links=links.map(l=>({...l}));
+
+  const svg=d3.select(host).insert('svg',':first-child').attr('viewBox',[0,0,w,h]).attr('role','img').attr('aria-label','Network mind map');
+  G.svg=svg;
+  const defs=svg.append('defs');
+  defs.append('filter').attr('id','glow').attr('x','-80%').attr('y','-80%').attr('width','260%').attr('height','260%')
+    .append('feGaussianBlur').attr('stdDeviation',6);
+  Object.entries(EDGE).forEach(([k,e])=>{
+    defs.append('marker').attr('id','ar-'+k).attr('viewBox','0 -5 10 10').attr('refX',8).attr('refY',0)
+      .attr('markerWidth',7).attr('markerHeight',7).attr('orient','auto')
+      .append('path').attr('d','M0,-4L9,0L0,4').attr('fill',e.color);
+  });
+
+  const root=svg.append('g'); G.root=root;
+  G.zoom=d3.zoom().scaleExtent([.25,4]).on('zoom',ev=>{ root.attr('transform',ev.transform); svg.classed('zoomed',ev.transform.k>1.25); });
+  svg.call(G.zoom).on('dblclick.zoom',null);
+  svg.on('click',ev=>{ if(ev.target===svg.node()) clearHot(); });
+
+  const link=root.append('g').selectAll('path').data(G.links).join('path')
+    .attr('class',d=>`link ${DASHED.includes(d.type)?'dashed':''} ${DOTTED.includes(d.type)?'dotted':''}`)
+    .attr('stroke',d=>EDGE[d.type].color)
+    .attr('marker-end',d=>d.type==='parallel'?null:`url(#ar-${d.type})`);
+  link.append('title').text(d=>`${DATA.byId[d.source].name} → ${DATA.byId[d.target].name}: ${d.label||EDGE[d.type].label}`);
+  const elabel=root.append('g').selectAll('text').data(G.links).join('text').attr('class','elabel').attr('text-anchor','middle').text(d=>d.label||'');
+
+  const node=root.append('g').selectAll('g').data(G.nodes,d=>d.id).join('g')
+    .attr('class',d=>`node ${d._kind}`).attr('tabindex',0).attr('role','button').attr('aria-label',d=>d.name)
+    .on('click',(ev,d)=>{ ev.stopPropagation(); openNode(d.id); })
+    .on('keydown',(ev,d)=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); openNode(d.id);} })
+    .on('mouseenter',(ev,d)=>hot(d.id)).on('mouseleave',()=>{ state.openId ? hot(state.openId) : clearHot(); })
+    .call(d3.drag()
+      .on('start',(ev,d)=>{ if(!ev.active) G.sim.alphaTarget(.2).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag',(ev,d)=>{ d.fx=ev.x; d.fy=ev.y; })
+      .on('end',(ev,d)=>{ if(!ev.active) G.sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  const prof=node.filter(d=>d._kind==='profile');
+  prof.append('circle').attr('class','halo').attr('r',d=>d.r+8).attr('fill',colorOf).attr('filter','url(#glow)');
+  node.append('circle').attr('r',d=>d.r)
+    .attr('fill',d=>d._kind==='profile'?colorOf(d):'#111827').attr('fill-opacity',d=>d._kind==='profile'?.16:1)
+    .attr('stroke',d=>d._kind==='profile'?colorOf(d):'#334155').attr('stroke-width',d=>d._kind==='profile'?2:1.2)
+    .attr('stroke-dasharray',d=>d.tierBasis==='estimated'?'4 3':null);
+  prof.append('circle').attr('r',d=>Math.max(4,d.r*.28)).attr('fill',colorOf);
+  node.append('text').attr('text-anchor','middle').attr('dy',d=>d.r+(d._kind==='profile'?16:13)).text(d=>d.name);
+
+  G.sim=d3.forceSimulation(G.nodes)
+    .force('link',d3.forceLink(G.links).id(d=>d.id)
+      .distance(l=>l.type==='parallel'?220:(l.source._kind==='profile'||l.target._kind==='profile')?95:70)
+      .strength(l=>l.type==='parallel'?.05:.7))
+    .force('charge',d3.forceManyBody().strength(d=>d._kind==='profile'?-650:-220))
+    .force('collide',d3.forceCollide(d=>d.r+(d._kind==='profile'?26:16)))
+    .on('tick',()=>{
+      link.attr('d',d=>{
+        const dx=d.target.x-d.source.x, dy=d.target.y-d.source.y, L=Math.hypot(dx,dy)||1;
+        const tr=d.type==='parallel'?d.target.r:d.target.r+5;
+        return `M${d.source.x+dx/L*d.source.r},${d.source.y+dy/L*d.source.r}L${d.target.x-dx/L*tr},${d.target.y-dy/L*tr}`;
+      });
+      elabel.attr('x',d=>(d.source.x+d.target.x)/2).attr('y',d=>(d.source.y+d.target.y)/2-4);
+      node.attr('transform',d=>`translate(${d.x},${d.y})`);
+    })
+    .on('end',()=>G.nodes.forEach(n=>G.pos.set(n.id,{x:n.x,y:n.y})));
+
+  applyLayout(false);
+  if(state.openId) hot(state.openId);
+}
+
+function applyLayout(reheat){
+  if(!G.sim) return;
+  const {w,h}=G, sim=G.sim;
+  const quad={'B2B Operators':[.3,.32],'Capital Allocators':[.7,.32],'Historic Visionaries':[.3,.72],'Tech Compounders':[.7,.72]};
+  const tierX={'$100M-$500M':.22,'$500M-$1B':.5,'$1B+':.78};
+  sim.force('center', state.layout==='force' ? d3.forceCenter(w/2,h/2) : null);
+  if(state.layout==='cluster'){
+    sim.force('x',d3.forceX(d=>w*(quad[d.home?.cat]||[.5,.5])[0]).strength(d=>d._kind==='profile'?.18:.08));
+    sim.force('y',d3.forceY(d=>h*(quad[d.home?.cat]||[.5,.5])[1]).strength(d=>d._kind==='profile'?.18:.08));
+  } else if(state.layout==='tier'){
+    sim.force('x',d3.forceX(d=>w*(tierX[d.home?.tier]||.5)).strength(d=>d._kind==='profile'?.3:.1));
+    sim.force('y',d3.forceY(h/2).strength(.05));
+  } else {
+    sim.force('x',d3.forceX(w/2).strength(.03)); sim.force('y',d3.forceY(h/2).strength(.03));
+  }
+  sim.alpha(reheat?.9:1).restart();
+  clearTimeout(G.fitT); G.fitT=setTimeout(()=>fit(500),900);
+}
+
+function fit(dur){
+  if(!G.nodes.length||!G.svg) return;
+  const pad=70, xs=G.nodes.map(n=>n.x), ys=G.nodes.map(n=>n.y);
+  const x0=Math.min(...xs)-pad, x1=Math.max(...xs)+pad, y0=Math.min(...ys)-pad, y1=Math.max(...ys)+pad+20;
+  const L = G.w>760 ? (document.getElementById('legend').offsetWidth+24) : 0;   // keep clear of the legend panel
+  const aw=G.w-L, k=Math.max(.3,Math.min(1.6, Math.min(aw/(x1-x0), G.h/(y1-y0))));
+  G.svg.transition().duration(dur).call(G.zoom.transform, d3.zoomIdentity.translate(L+aw/2-k*(x0+x1)/2, G.h/2-k*(y0+y1)/2).scale(k));
+}
+function hot(id){
+  if(!G.root) return;
+  const nb=new Set([id]); G.links.forEach(l=>{ if(l.source.id===id) nb.add(l.target.id); if(l.target.id===id) nb.add(l.source.id); });
+  const on=d=>d.source.id===id||d.target.id===id;
+  G.root.selectAll('.node').classed('faded',d=>!nb.has(d.id)).classed('sel',d=>d.id===state.openId);
+  G.root.selectAll('.link').classed('faded',d=>!on(d)).classed('hot',on);
+  G.root.selectAll('.elabel').classed('faded',d=>!on(d)).style('opacity',d=>on(d)?.95:null);
+}
+function clearHot(){
+  if(!G.root) return;
+  G.root.selectAll('.node').classed('faded',false).classed('sel',d=>d.id===state.openId);
+  G.root.selectAll('.link').classed('faded',false).classed('hot',false);
+  G.root.selectAll('.elabel').classed('faded',false).style('opacity',null);
+}
+
+/* =====================================================================
+   DIRECTORY CARDS
+   ===================================================================== */
+function renderGrid(){
+  const list=visibleProfiles().sort((a,b)=>(TIERS[b.netWorthTier]?.rank||0)-(TIERS[a.netWorthTier]?.rank||0));
+  const title = state.cat==='all' ? 'All Profiles' : state.cat;
+  document.getElementById('grid').innerHTML = `
+    <div class="gridhead"><h2>${esc(title)}</h2><span class="meta">${list.length} profile${list.length===1?'':'s'} · ${state.tier==='all'?'All tiers':esc(state.tier)}</span></div>
+    <div class="cards">${list.map(card).join('') || '<p style="color:var(--muted)">No profiles match these filters.</p>'}</div>
+    <p class="foot">${esc(META.disclaimer)}</p>`;
+}
+const badges = p => `<div class="badges">
+  ${p.originBadge?`<span class="badge b-origin" title="Self-Made Origin">${esc(p.originBadge)}</span>`:''}
+  ${p.engineBadge?`<span class="badge b-engine" title="Primary Revenue Engine">${esc(p.engineBadge)}</span>`:''}
+  ${p.capitalBadge?`<span class="badge b-capital" title="Capital Source">${esc(p.capitalBadge)}</span>`:''}</div>`;
+function card(p){
+  return `<article class="card" tabindex="0" role="button" data-id="${esc(p.id)}" style="--c:${catColor(p)}">
+    <div class="ctop"><span class="d"></span>${esc(CATS[p.category].short)}<span class="era">${esc(p.lifespan||'')}</span></div>
+    <h3>${hl(p.name)}</h3>
+    <div class="life">${hl(p.industry||'')}${p.base?' · '+esc(p.base):''}</div>
+    <div class="kpis">
+      <div class="kpi"><label>Net Worth Tier</label><b class="mono">${esc(tierLabel(p))}</b></div>
+      <div class="kpi"><label>Origin</label><b>${hl(p.originBadge||'—')}</b></div>
+    </div>
+    <p class="bt"><label>Breakthrough</label>${hl(p.breakthrough||'')}</p>
+    ${badges(p)}
+  </article>`;
+}
+document.addEventListener('click',e=>{ const c=e.target.closest('.card[data-id]'); if(c) openNode(c.dataset.id); });
+document.addEventListener('keydown',e=>{ const c=e.target.closest?.('.card[data-id]'); if(c&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); openNode(c.dataset.id);} });
+
+/* =====================================================================
+   EXECUTIVE BRIEFING DRAWER
+   ===================================================================== */
+function openNode(id){ location.hash='#/p/'+encodeURIComponent(id); }
+function closeDrawer(){ location.hash='#/'+state.view; }
+
+const BASIS_TIP={documented:'Documented in public sources',pattern:'Interpretive read of the strategy — not a documented legal structure'};
+const bullets=(arr,tag)=>!(arr||[]).length?'':`<${tag} class="${tag==='ol'?'steps':'bul'}">${arr.map(x=>`<li><span class="basis ${esc(x.basis)}" title="${BASIS_TIP[x.basis]||''}">${x.basis==='documented'?'Doc':'Pattern'}</span><b>${esc(x.t)}</b> ${esc(x.d)}</li>`).join('')}</${tag}>`;
+
+function networkList(id){
+  const nb=neighbors(id);
+  if(!nb.length) return '<p>No connections recorded yet.</p>';
+  return `<div class="net">${nb.map(({link,other,out})=>`
+    <button data-go="${esc(other.id)}"><span class="d" style="background:${colorOf(other)};box-shadow:0 0 6px ${colorOf(other)}"></span>
+      <span><span class="nm">${esc(other.name)}</span><br><span class="ar">${other._kind==='profile'?esc(other.category):esc(other.kind||'Entity')}</span></span>
+      <span class="rel">${out?'→':'←'} ${esc(link.label||EDGE[link.type].label)}<br><span class="ar">${esc(EDGE[link.type].label)}</span></span>
+    </button>`).join('')}</div>`;
+}
+
+function dossierHTML(n){
+  if(n._kind==='entity'){
+    return `<div class="dhead" style="--c:#94A3B8">
+      <button class="dclose" aria-label="Close">✕</button>
+      <div class="eyebrow"><span>Entity</span><span>${esc(n.kind||'')}</span></div>
+      <h2>${esc(n.name)}</h2></div>
+      <div class="dbody" style="--c:#94A3B8"><p style="color:#CBD5E1">${esc(n.description||'')}</p>
+      <section class="sec"><h3><span class="num">↔</span>Connected Ecosystem</h3>${networkList(n.id)}</section></div>`;
+  }
+  const c=catColor(n);
+  return `<div class="dhead" style="--c:${c}">
+    <button class="dclose" aria-label="Close">✕</button>
+    <div class="eyebrow"><span>Executive Briefing</span><span>${esc(n.category)}</span></div>
+    <h2>${esc(n.name)}</h2>
+    <div class="life">${(n.aliases||[]).length?'“'+esc(n.aliases[0])+'” · ':''}${esc(n.lifespan||'')}${n.base?' · '+esc(n.base):''}</div>
+    <div class="dbadges">
+      <div class="dbadge b-origin"><label>Origin</label>${esc(n.originBadge||'—')}</div>
+      <div class="dbadge b-engine"><label>Primary Revenue Engine</label>${esc(n.engineBadge||'—')}</div>
+      <div class="dbadge b-capital"><label>Capital Source</label>${esc(n.capitalBadge||'—')}</div>
+    </div>
+  </div>
+  <div class="dbody" style="--c:${c}">
+    <div class="kpis">
+      <div class="kpi"><label>Net Worth Tier</label><b class="mono">${esc(tierLabel(n))}</b></div>
+      <div class="kpi"><label>Peak Wealth</label><b class="mono">${esc(n.peakWealth||'Undisclosed')}</b></div>
+      <div class="kpi"><label>Industry</label><b>${esc(n.industry||'—')}</b></div>
+    </div>
+    ${n.wealthNote?`<div class="note">${esc(n.wealthNote)}</div>`:''}
+    <section class="sec"><h3><span class="num">01</span>Humble Beginnings</h3><p>${esc(n.humbleBeginnings||'')}</p></section>
+    <section class="sec"><h3><span class="num">02</span>Breakthrough Contract / Engine</h3>
+      <blockquote class="callout">${esc(n.breakthrough||'')}</blockquote>${bullets(n.breakthroughDetail,'ol')}</section>
+    <section class="sec"><h3><span class="num">03</span>Asset Protection &amp; Shielding Strategy</h3>
+      <blockquote class="callout">${esc(n.shieldingStrategy||'')}</blockquote>${bullets(n.shieldingDetail,'ul')}</section>
+    <section class="sec"><h3><span class="num">04</span>Connected Ecosystem</h3>${networkList(n.id)}</section>
+    ${(n.sources||[]).length?`<section class="sec"><h3><span class="num">§</span>Sources</h3><div class="srcs">${n.sources.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a>`).join('')}</div></section>`:''}
+    <p class="disc">${esc(META.disclaimer)}</p>
+  </div>`;
+}
+
+function showDrawer(id){
+  const n=DATA.byId[id]; if(!n) return;
+  state.openId=id;
+  const d=document.getElementById('drawer');
+  d.innerHTML=dossierHTML(n);
+  d.classList.add('open'); d.setAttribute('aria-hidden','false');
+  document.getElementById('scrim').classList.add('on');
+  d.querySelector('.dclose').onclick=closeDrawer;
+  d.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>openNode(b.dataset.go));
+  d.querySelector('.dbody').scrollTop=0;
+  document.title=`${n.name} — Quiet Capital`;
+  if(state.view==='map'){
+    if(G.root && !G.nodes.some(x=>x.id===id)){   // target hidden by filters → clear them
+      state.cat='all'; state.tier='all'; state.q=''; document.getElementById('q').value=''; refresh();
+    }
+    hot(id);
+  }
+  setTimeout(()=>d.querySelector('.dclose')?.focus({preventScroll:true}),50);
+}
+function hideDrawer(){
+  state.openId=null;
+  const d=document.getElementById('drawer');
+  d.classList.remove('open'); d.setAttribute('aria-hidden','true');
+  document.getElementById('scrim').classList.remove('on');
+  document.title='Quiet Capital — Mind Map & Executive Briefing';
+  clearHot();
+}
+
+/* =====================================================================
+   ROUTER  (#/map · #/grid · #/p/<id>)
+   ===================================================================== */
+function setView(v){
+  state.view=v;
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v));
+  document.getElementById('map').hidden = v!=='map';
+  document.getElementById('grid').hidden = v!=='grid';
+  if(v==='map') renderMap(); else renderGrid();
+}
+function route(){
+  const [a,b]=location.hash.replace(/^#\/?/,'').split('/');
+  const id=b?decodeURIComponent(b):'';
+  if(a==='p' && DATA.byId[id]){ showDrawer(id); return; }
+  hideDrawer();
+  if((a==='grid'||a==='map') && a!==state.view) setView(a);
+}
+
+/* =====================================================================
+   BOOT
+   ===================================================================== */
+(async function boot(){
+  try{
+    const r=await fetch('data.json',{cache:'no-store'});
+    if(r.ok) DATA=normalize(await r.json());
+  }catch(_){/* opened from file:// or no data.json — use embedded copy */}
+  if(!DATA) DATA=normalize(EMBEDDED_DATA);
+  renderChips(); renderLegend(); bindUI();
+  setView(location.hash.startsWith('#/grid')?'grid':'map');
+  route();
+})();
+</script>
+</body>
+</html>
