@@ -81,6 +81,15 @@ svg.zoomed .elabel{opacity:.85}
 .node .minor{opacity:0;transition:opacity .2s}
 svg.zoomed .node .minor,.node:hover .minor,.node.nb .minor,.node.sel .minor{opacity:1}
 .node.hub text{fill:var(--hub);font-weight:700}
+.node.tax-sector text{font:700 12px var(--mono);fill:var(--text);letter-spacing:.5px}
+.node.tax-sector text.tax-sub{font:600 11px var(--sans);fill:var(--muted);letter-spacing:0}
+.node.tax-sub text{font-size:10px;font-style:italic;fill:#7b8a9b}
+.gics{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font:500 11.5px var(--mono);color:var(--muted);margin:0 0 14px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.gics button{background:none;border:0;padding:0;font:inherit;color:var(--text)}
+.gics button:hover{text-decoration:underline}
+.gics .etf{color:var(--text);font-weight:700}
+.gics .b{margin-left:auto;font-size:9.5px;text-transform:uppercase;letter-spacing:.7px;border:1px solid var(--line2);border-radius:5px;padding:1px 6px;cursor:help}
+.sect{font:500 10.5px var(--mono);color:var(--dim);margin-top:4px}
 
 /* overlays */
 .overlay{position:absolute;background:#0d1319e6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line2);border-radius:var(--r);padding:10px 12px;font-size:12px}
@@ -247,6 +256,9 @@ ol.steps li b,ul.bul li b{color:var(--text)}
       <span class="divider"></span>
       <span class="lbl">Net Worth</span>
       <div class="seg" id="tierSeg" role="group" aria-label="Net worth tier"></div>
+      <span class="divider"></span>
+      <span class="lbl" title="GICS sector of each person's primary business, with its sector ETF">Sector</span>
+      <div class="seg" id="secChips" role="group" aria-label="Sector"></div>
     </div>
   </header>
 
@@ -260,6 +272,7 @@ ol.steps li b,ul.bul li b{color:var(--text)}
           <button data-layout="force" aria-pressed="true">Organic</button>
           <button data-layout="cluster" aria-pressed="false">Clusters</button>
           <button data-layout="tier" aria-pressed="false">By Tier</button>
+          <button data-layout="sector" aria-pressed="false" title="Group companies by GICS sector ETF and sub-industry">By Sector</button>
         </div>
         <div class="btns">
           <button class="ibtn" id="fitBtn">Fit view</button>
@@ -6586,7 +6599,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "QSR Anchor Customer",
   "description": "The anchor customer behind several of the quietest supply-chain fortunes in food.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Restaurants",
+   "basis": "official"
+  }
  },
  {
   "id": "hs-bakery",
@@ -6600,7 +6617,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "sister division"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "northeast-foods",
@@ -6614,7 +6635,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "McDonald's buns"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "harbor-east",
@@ -6622,7 +6647,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Real Estate",
   "description": "Baltimore waterfront district developed by the Paterakis family; ~$1B of office, retail and residential.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Real Estate Development",
+   "basis": "inferred"
+  }
  },
  {
   "id": "btw-insurance",
@@ -6630,7 +6659,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Insurance",
   "description": "Grew out of Gaston's 1923 burial society; the cash engine of his group.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "citizens-federal",
@@ -6638,7 +6671,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Banking",
   "description": "Founded 1957 to serve Black borrowers in Birmingham.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Commercial & Residential Mortgage Finance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "gaston-motel",
@@ -6652,7 +6689,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "civic",
     "label": "campaign HQ"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Hotels, Resorts & Cruise Lines",
+   "basis": "inferred"
+  }
  },
  {
   "id": "birmingham-campaign",
@@ -6660,7 +6701,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Civil Rights",
   "description": "SCLC-led campaign; Gaston provided lodging and financial support.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "venture-records",
@@ -6668,7 +6713,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record Label",
   "description": "Avant's 1967–69 label; an early Black-executive joint venture with a major label.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "sussex-records",
@@ -6682,7 +6731,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "distribution 1970–74"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "buddah-records",
@@ -6690,7 +6743,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Distributor",
   "description": "Distributed Sussex Records, 1970–1974.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "tabu-records",
@@ -6698,7 +6755,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record Label",
   "description": "Avant's label; S.O.S. Band; early home of Jimmy Jam & Terry Lewis.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "kagb-fm",
@@ -6706,7 +6767,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Radio",
   "description": "First Black-owned FM station in metropolitan Los Angeles (1973).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Broadcasting",
+   "basis": "inferred"
+  }
  },
  {
   "id": "motown",
@@ -6714,7 +6779,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record Label",
   "description": "Avant became board chairman in 1993.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "otto-and-sons",
@@ -6733,7 +6802,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "patties since 1955"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "osi-group",
@@ -6747,7 +6820,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "global protein"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "east-balt",
@@ -6761,7 +6838,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "buns since 1955"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "one-equity-partners",
@@ -6775,7 +6856,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "acquired 2012"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "grupo-bimbo",
@@ -6789,7 +6874,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "acquired 2017"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "official"
+  }
  },
  {
   "id": "dfs",
@@ -6797,7 +6886,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Travel Retail",
   "description": "Co-founded 1960 by Chuck Feeney and Robert Miller.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "atlantic-philanthropies",
@@ -6805,7 +6898,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Foundation",
   "description": "Received Feeney's DFS stake in 1982; spent down and closed.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lvmh",
@@ -6819,7 +6916,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "acquired 1997"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Apparel, Accessories & Luxury Goods",
+   "basis": "official"
+  }
  },
  {
   "id": "sas-institute",
@@ -6827,7 +6928,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Enterprise Software",
   "description": "Analytics software company co-founded 1976.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "nc-state",
@@ -6841,7 +6946,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "spun out of"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "tlc-beatrice",
@@ -6855,7 +6964,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "LBO financing"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "mccall-pattern",
@@ -6863,7 +6976,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Sewing patterns",
   "description": "Bought by TLC Group in 1984 in a heavily leveraged buyout and sold about three years later at a roughly 90-to-1 return.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Leisure Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "drexel-burnham-lambert",
@@ -6871,7 +6988,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Investment bank",
   "description": "Michael Milken's junk-bond house, which helped finance the 1987 Beatrice International buyout.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Investment Banking & Brokerage",
+   "basis": "inferred"
+  }
  },
  {
   "id": "black-enterprise",
@@ -6879,7 +7000,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Business magazine",
   "description": "Founded by Earl Graves in 1970. Its BE 100s list and Company of the Year awards record the largest Black-owned businesses.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "pepsi-cola-washington",
@@ -6887,7 +7012,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Soft-drink bottler",
   "description": "The D.C. Pepsi bottling franchise bought in 1990 by Earl Graves and Magic Johnson in a $60M deal; Graves sold his stake to Pepsi in 1998.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Soft Drinks & Non-alcoholic Beverages",
+   "basis": "inferred"
+  }
  },
  {
   "id": "johnson-publishing",
@@ -6901,7 +7030,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "founder's first employer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "supreme-life",
@@ -6915,7 +7048,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "fuller-products",
@@ -6929,7 +7066,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "spawned via alumnus"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "johnson-products",
@@ -6948,7 +7089,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "rival Black hair-care maker"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "independence-bank",
@@ -6962,7 +7107,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned lender"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "soul-train",
@@ -6970,7 +7119,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "TV program",
   "description": "Don Cornelius's syndicated music show; Johnson Products was its first Black-controlled sponsor.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Broadcasting",
+   "basis": "inferred"
+  }
  },
  {
   "id": "hj-russell",
@@ -6984,7 +7137,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "built HQ 1987"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Construction & Engineering",
+   "basis": "inferred"
+  }
  },
  {
   "id": "concessions-international",
@@ -6992,7 +7149,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Airport concessions",
   "description": "Russell's airport food and beverage operator; majority control moved to trusts for his children in 2013.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Restaurants",
+   "basis": "inferred"
+  }
  },
  {
   "id": "citizens-trust-bank",
@@ -7006,7 +7167,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned bank"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "coca-cola",
@@ -7014,7 +7179,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Beverage company",
   "description": "Atlanta-based beverage maker; H.J. Russell & Company worked on its headquarters, completed in 1987.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Soft Drinks & Non-alcoholic Beverages",
+   "basis": "official"
+  }
  },
  {
   "id": "ariel-investments",
@@ -7022,7 +7191,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Asset manager",
   "description": "Chicago value-investing firm founded by John W. Rogers Jr. in 1983, about 95% owned by employees and board; its Project Black private-equity fund raised $1.45B.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "actone-group",
@@ -7030,7 +7203,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Staffing & HR services",
   "description": "Janice Bryant Howroyd's privately held workforce-services group, founded in 1978 in Beverly Hills, with more than $1B in sales.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Human Resource & Employment Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "inner-city-broadcasting",
@@ -7049,7 +7226,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "early Black-owned FM"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Broadcasting",
+   "basis": "inferred"
+  }
  },
  {
   "id": "apollo-theater",
@@ -7057,7 +7238,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Performance venue",
   "description": "Harlem landmark bought out of bankruptcy by Inner City Broadcasting in 1981 for $225,000 and renovated; home of It's Showtime at the Apollo.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "pro-line",
@@ -7071,7 +7256,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "acquired 2000"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "alberto-culver",
@@ -7079,7 +7268,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Consumer products",
   "description": "Chicago-area personal-care company that bought Pro-Line in 2000.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "texas-rangers",
@@ -7087,7 +7280,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "MLB team",
   "description": "Bought in 1989 by a group including George W. Bush and Comer Cottrell, its first Black co-owner.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "paul-quinn-college",
@@ -7095,7 +7292,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "HBCU",
   "description": "Moved from Waco to Dallas on the former Bishop College campus, which Comer Cottrell bought in 1990.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "barden-companies",
@@ -7109,7 +7310,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "casino subsidiary"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Multi-Sector Holdings",
+   "basis": "inferred"
+  }
  },
  {
   "id": "majestic-star-casino",
@@ -7117,7 +7322,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Casino operator",
   "description": "Barden's casino LLC (Gary, Tunica, Black Hawk, Las Vegas Fitzgeralds); filed for bankruptcy in 2009.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Casinos & Gaming",
+   "basis": "inferred"
+  }
  },
  {
   "id": "comcast",
@@ -7125,7 +7334,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Cable operator",
   "description": "Bought Barden's Detroit cable system in 1994 for more than $100M.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Cable & Satellite",
+   "basis": "official"
+  }
  },
  {
   "id": "madam-cj-walker-manufacturing",
@@ -7139,7 +7352,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "rival agent model"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "poro-college",
@@ -7147,7 +7364,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "School & manufacturer",
   "description": "Annie Malone's St. Louis cosmetology school, factory and sales hub (1918).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "atlanta-life",
@@ -7166,7 +7387,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "nc-mutual",
@@ -7180,7 +7405,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "harvard-university",
@@ -7188,7 +7417,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "University",
   "description": "Reginald Lewis gave $3M to Harvard Law School in 1992, and the school named a building after him.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "morgan-state-university",
@@ -7196,7 +7429,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "HBCU",
   "description": "Earl Graves's alma mater; after his $1M gift in 1995 it named its business school for him.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "st-luke-penny-savings-bank",
@@ -7215,7 +7452,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned lender"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "independent-order-st-luke",
@@ -7229,7 +7470,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "burial/benefit society roots"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "solvent-savings-bank",
@@ -7243,7 +7488,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Southern Black bank"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "church-park",
@@ -7257,7 +7506,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Black-owned civic venue"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "overton-hygienic",
@@ -7276,7 +7529,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "rival Black cosmetics"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "douglass-national-bank",
@@ -7290,7 +7547,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "rival Bronzeville bank"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "victory-life",
@@ -7304,7 +7565,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "parallel",
     "label": "Chicago Black insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "binga-state-bank",
@@ -7312,7 +7577,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Banking",
   "description": "Jesse Binga's bank, opened privately in 1908 and state-chartered in 1921; the first Chicago bank to fail in the Depression (1930).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "chicago-defender",
@@ -7326,7 +7595,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "Sengstacke chain, 1960s"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "pittsburgh-courier",
@@ -7340,7 +7613,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "owned via Courier group"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "forten-sail-loft",
@@ -7348,7 +7625,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Sailmaker",
   "description": "James Forten's Philadelphia sail loft (bought 1798), one of the city's largest and racially integrated.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Textiles",
+   "basis": "inferred"
+  }
  },
  {
   "id": "the-liberator",
@@ -7356,7 +7637,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Abolitionist newspaper",
   "description": "William Lloyd Garrison's paper (1831); James Forten was a key financial backer.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "first-ame-los-angeles",
@@ -7364,7 +7649,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Church",
   "description": "The city's first Black church, founded and financed in 1872 by Biddy Mason and Charles Owens.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lafon-old-folks-home",
@@ -7372,7 +7661,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Charitable home",
   "description": "New Orleans home funded by Thomy Lafon's bequests.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "accessory-transit-company",
@@ -7380,7 +7673,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Transport company",
   "description": "Cornelius Vanderbilt-linked Nicaragua transit firm that Jeremiah Hamilton sued in the 1850s.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Marine Transportation",
+   "basis": "inferred"
+  }
  },
  {
   "id": "general-atlantic",
@@ -7399,7 +7696,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "founded 1980"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cornell-university",
@@ -7413,7 +7714,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "hotel school, GI Bill"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "oak-foundation",
@@ -7421,7 +7726,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Private foundation",
   "description": "Geneva-based foundation set up in 1983 by DFS partner Alan Parker with duty-free wealth. It made about $383M in grants in 2025.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "king-power",
@@ -7435,7 +7744,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "Downtown DFS JV 1989"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "leicester-city",
@@ -7449,7 +7762,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "King Power-owned"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "gebr-heinemann",
@@ -7457,7 +7774,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Travel retailer & distributor",
   "description": "Hamburg family company founded in 1879 as a tax-free supplier to ships. Now one of the world's top five travel retailers, with €4.3B revenue (2024).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lotte-duty-free",
@@ -7471,7 +7792,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "Guam concession rival"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "britesmile",
@@ -7479,7 +7804,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Teeth-whitening company",
   "description": "Public tooth-whitening company whose largest shareholder was Pilaro-family trust vehicle LCO Investments (about 44.5% in the mid-2000s).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Health Care Supplies",
+   "basis": "inferred"
+  }
  },
  {
   "id": "ron-brown-scholar-program",
@@ -7487,7 +7816,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Scholarship program",
   "description": "Scholarship for high-achieving African-American students, founded in 1996 by Anthony Pilaro in memory of Commerce Secretary Ron Brown.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "stanford-university",
@@ -7495,7 +7828,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "University",
   "description": "Private research university. General Atlantic's Steven Denning chaired its board of trustees.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "a-and-m-records",
@@ -7514,7 +7851,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "JV with Jam & Lewis 1991"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "rondor-music",
@@ -7533,7 +7874,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "held Stax publishing"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "polygram",
@@ -7562,7 +7907,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "distributed via A&M 1991–93"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "universal-music-group",
@@ -7591,7 +7940,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "absorbed Tabu 1999"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "official"
+  }
  },
  {
   "id": "boston-ventures",
@@ -7605,7 +7958,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "owned 1988–93"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "jobete-music",
@@ -7619,7 +7976,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "sister company"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "emi-music-publishing",
@@ -7633,7 +7994,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "acquired 1997–2004"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "atlantic-records",
@@ -7647,7 +8012,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "distributed 1965–68; kept masters"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "warner-music-group",
@@ -7671,7 +8040,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "seed loan & distribution 1973"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "official"
+  }
  },
  {
   "id": "stax-records",
@@ -7685,7 +8058,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "brokered 1968 sale · 10%"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cbs-records",
@@ -7709,7 +8086,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "distribution 1978–91"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "sony-music",
@@ -7738,7 +8119,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "catalog via BMG"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "arista-records",
@@ -7757,7 +8142,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "distribution 1978–83"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "laface-records",
@@ -7765,7 +8154,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record label",
   "description": "Atlanta label founded in 1989 by L.A. Reid and Babyface as a joint venture with Arista; home of TLC, Toni Braxton, OutKast and Usher.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "solar-records",
@@ -7773,7 +8166,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record label",
   "description": "Los Angeles R&B label that signed The Deele (with L.A. Reid and Babyface). Jam & Lewis first met Clarence Avant through it.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "flyte-tyme-productions",
@@ -7787,7 +8184,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "S.O.S. Band, Cherrelle, O'Neal"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "perspective-records",
@@ -7795,7 +8196,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record label",
   "description": "Jam & Lewis's 1991 joint venture with A&M; its acts included Sounds of Blackness.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "philadelphia-international-records",
@@ -7809,7 +8214,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "took over its Broad St building"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "mighty-three-music",
@@ -7817,7 +8226,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Music publisher",
   "description": "Gamble, Huff and Thom Bell's publishing company; Warner Chappell bought it in 1990.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "universal-companies",
@@ -7825,7 +8238,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Nonprofit developer",
   "description": "Kenny Gamble's South Philadelphia nonprofit for housing, charter schools and economic development; it has handled more than $1.5B of development.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cameo-parkway-records",
@@ -7833,7 +8250,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record label",
   "description": "Philadelphia label that collapsed in 1968. Neil Bogart ran its Michigan office, and its building later housed Philadelphia International.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "casablanca-records",
@@ -7847,7 +8268,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "founded by ex-Buddah team"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "bellmark-records",
@@ -7855,7 +8280,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Record label",
   "description": "Al Bell's 1989 label ('Whoomp! There It Is'); bankrupt in 1997, and its assets sold for $166K in 1999.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "founders-national-bank",
@@ -7863,7 +8292,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Bank",
   "description": "Los Angeles bank described as the first Black-owned national bank; shareholders included Jheryl Busby, Magic Johnson and Janet Jackson.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "herb-alpert-foundation",
@@ -7871,7 +8304,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Private foundation",
   "description": "Alpert's foundation for arts education; it gave $30M to endow UCLA's Herb Alpert School of Music (2007).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "rock-and-roll-hall-of-fame",
@@ -7879,7 +8316,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Institution",
   "description": "Co-founded and chaired by Ahmet Ertegun. Its non-performer award is named for him, and Gamble & Huff were its first recipients in 2008.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "keystone-foods",
@@ -7908,7 +8349,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "distribution arm sold 2012"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "reyes-holdings",
@@ -7927,7 +8372,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "supply",
     "label": "Great Lakes Coca-Cola bottler"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Food Distributors",
+   "basis": "inferred"
+  }
  },
  {
   "id": "martin-brower",
@@ -7946,7 +8395,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "bought 9 DCs 2018"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Food Distributors",
+   "basis": "inferred"
+  }
  },
  {
   "id": "golden-state-foods",
@@ -7975,7 +8428,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "bought 2 DCs 2006"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "havi",
@@ -7999,7 +8456,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "sold a DC 2006"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Air Freight & Logistics",
+   "basis": "inferred"
+  }
  },
  {
   "id": "simplot",
@@ -8018,7 +8479,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "startup capital"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Agricultural Products & Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "micron-technology",
@@ -8026,7 +8491,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Semiconductor maker",
   "description": "Boise memory-chip maker that J.R. Simplot backed early on, holding about 20% by 1994.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Semiconductors",
+   "basis": "official"
+  }
  },
  {
   "id": "franchise-realty",
@@ -8040,7 +8509,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "McDonald's land arm"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Real Estate Development",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cargill",
@@ -8059,7 +8532,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "rival bidder 2018"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Agricultural Products & Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lindsay-goldberg",
@@ -8078,7 +8555,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "controlling stake 2024"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "yucaipa",
@@ -8086,7 +8567,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Private equity firm",
   "description": "Ron Burkle's Los Angeles buyout firm, founded 1986. It owned 70% of Golden State Foods from 1998 until 2004.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "wetterau-inc",
@@ -8094,7 +8579,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Grocery wholesaler",
   "description": "St. Louis family food distributor founded in 1869 and sold to SuperValu for $1.1B in 1992. The sale funded Wetterau Associates.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Food Distributors",
+   "basis": "inferred"
+  }
  },
  {
   "id": "marfrig",
@@ -8108,7 +8597,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "sold Keystone logistics 2012"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "official"
+  }
  },
  {
   "id": "tyson-foods",
@@ -8116,7 +8609,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Protein processor",
   "description": "U.S. meat company that bought Keystone Foods from Marfrig in 2018 for $2.16B, beating bids from Cargill and others.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "official"
+  }
  },
  {
   "id": "ronald-mcdonald-house-charities",
@@ -8130,7 +8627,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "civic",
     "label": "system charity"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "epic-systems",
@@ -8144,7 +8645,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "founded in Madison"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Health Care Technology",
+   "basis": "inferred"
+  }
  },
  {
   "id": "peoplesoft",
@@ -8158,7 +8663,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "deal",
     "label": "hostile takeover 2005"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "workday",
@@ -8177,7 +8686,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "capital",
     "label": "early backer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "official"
+  }
  },
  {
   "id": "oracle",
@@ -8185,7 +8698,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Enterprise software",
   "description": "Database and applications giant whose 2003–2005 hostile takeover of PeopleSoft prompted the founding of Workday.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "official"
+  }
  },
  {
   "id": "trilogy",
@@ -8199,7 +8716,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "ownership",
     "label": "sister holding company"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "esw-capital",
@@ -8207,7 +8728,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Software holding company",
   "description": "Joe Liemandt's private buyer of mature software companies (more than 100 per Forbes), run for maintenance cash flow with Crossover contractors.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "alpha-school",
@@ -8215,7 +8740,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Private school network",
   "description": "Austin-founded (2014) school built on two-hour AI-tutored academic days, funded by about $1B from Joe Liemandt.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Education Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "esri",
@@ -8229,7 +8758,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "origin",
     "label": "Harvard graphics lab roots"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "vista-equity-partners",
@@ -8237,7 +8770,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Private equity firm",
   "description": "Austin-based enterprise-software buyout firm founded in 2000 by Robert F. Smith, with about $100B under management.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "reynolds-and-reynolds",
@@ -8245,7 +8782,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Auto-dealer software",
   "description": "Dealership-management software company taken private in 2006 by Robert Brockman's Universal Computer Systems for about $2.8B.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "barr-systems",
@@ -8253,7 +8794,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Output-management software",
   "description": "Gainesville, FL print/output-management software firm founded in 1983 by SAS co-founder Anthony Barr.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cary-academy",
@@ -8272,7 +8817,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
     "type": "civic",
     "label": "SAS scholarship program"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "giving-pledge",
@@ -8280,7 +8829,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Philanthropic pledge",
   "description": "Commitment by the very wealthy to give away the majority of their wealth. Signers in this cluster include the Salls, Faulkner, the Dangermonds, Smith and the Bhusris.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "nature-conservancy",
@@ -8288,7 +8841,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Conservation nonprofit",
   "description": "U.S. conservation group. John Sall sat on its board (2002–2011), and the Dangermonds gave its largest-ever gift, $165M in 2017.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "university-of-wisconsin",
@@ -8296,7 +8853,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "University",
   "description": "Where Judy Faulkner earned her computer science master's. Epic started in Madison.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "goldman-sachs",
@@ -8304,7 +8865,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Investment bank",
   "description": "Wall Street bank where Robert F. Smith and Brian Sheth both worked in technology M&A before Vista.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Investment Banking & Brokerage",
+   "basis": "official"
+  }
  },
  {
   "id": "greylock-partners",
@@ -8312,7 +8877,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Venture capital firm",
   "description": "Silicon Valley VC firm. Aneel Bhusri has been a partner since 1999, and it co-funded Workday.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "maddies-fund",
@@ -8320,7 +8889,11 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "Private foundation",
   "description": "Animal-welfare foundation endowed with $200M by Dave and Cheryl Duffield in 1994 and named for their schnauzer.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "morehouse-college",
@@ -8328,12 +8901,16 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "type": "entity",
   "kind": "HBCU",
   "description": "Atlanta men's college whose 2019 graduating class had its student debt (~$34M) paid off by Robert F. Smith.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  }
 ]/*DATA-END*/;
 
 const META = {
-  disclaimer: "Educational profiles compiled from public sources. Net-worth tiers marked “est.” are estimates; private-company and personal wealth are rarely disclosed. Items tagged PATTERN are interpretive reads of strategy, not documented legal structures."
+  disclaimer: "Educational profiles compiled from public sources. Net-worth tiers marked “est.” are estimates; private-company and personal wealth are rarely disclosed. Items tagged PATTERN are interpretive reads of strategy, not documented legal structures. Sector tags follow GICS: listed companies carry their official classification, while private and historical companies carry the closest-fit sub-industry and are not ETF holdings."
 };
 
 /* =====================================================================
@@ -8358,13 +8935,63 @@ const EDGE = {
   deal:      {label:'Deal / joint venture',color:'#38BDF8'},
   origin:    {label:'Origin / spin-out',   color:'#34D399'},
   parallel:  {label:'Thematic parallel',   color:'#475569'},
+  tax:       {label:'Sector › sub-industry',color:'#334155'},
   connection:{label:'Connection',          color:'#64748B'}
 };
 const SOFT = ['board','civic','family','mentorship'];   // weaker layout pull than ownership/supply/money/deals
-const DASHED = ['board','mentorship','civic','origin'], DOTTED = ['parallel','family'];
+const DASHED = ['board','mentorship','civic','origin'], DOTTED = ['parallel','family','tax'];
 const ENTITY_COLOR = '#64748B';
 
-const state = {cat:'all', tier:'all', q:'', view:'map', layout:'force', openId:null, overlap:false};
+/* GICS taxonomy. Sector ETFs are the Select Sector SPDRs; industry ETFs are common examples, not exhaustive.
+   GICS[subIndustry] = [industry, sector, industryETF?] */
+const SECTORS = {
+  'Consumer Discretionary':{etf:'XLY',short:'Cons. Discretionary'}, 'Consumer Staples':{etf:'XLP',short:'Cons. Staples'},
+  'Industrials':{etf:'XLI',short:'Industrials'}, 'Real Estate':{etf:'XLRE',short:'Real Estate'},
+  'Financials':{etf:'XLF',short:'Financials'}, 'Non-market':{etf:'',short:'Non-market'},
+  'Information Technology':{etf:'XLK',short:'Technology'}, 'Health Care':{etf:'XLV',short:'Health Care'},
+  'Communication Services':{etf:'XLC',short:'Comm. Services'}, 'Energy':{etf:'XLE',short:'Energy'},
+  'Materials':{etf:'XLB',short:'Materials'}, 'Utilities':{etf:'XLU',short:'Utilities'}
+};
+const GICS = {
+  'Restaurants':['Hotels, Restaurants & Leisure','Consumer Discretionary'],
+  'Hotels, Resorts & Cruise Lines':['Hotels, Restaurants & Leisure','Consumer Discretionary'],
+  'Casinos & Gaming':['Hotels, Restaurants & Leisure','Consumer Discretionary'],
+  'Other Specialty Retail':['Specialty Retail','Consumer Discretionary','XRT'],
+  'Apparel, Accessories & Luxury Goods':['Textiles, Apparel & Luxury Goods','Consumer Discretionary'],
+  'Textiles':['Textiles, Apparel & Luxury Goods','Consumer Discretionary'],
+  'Leisure Products':['Leisure Products','Consumer Discretionary'],
+  'Education Services':['Diversified Consumer Services','Consumer Discretionary'],
+  'Packaged Foods & Meats':['Food Products','Consumer Staples','PBJ'],
+  'Agricultural Products & Services':['Food Products','Consumer Staples','PBJ'],
+  'Soft Drinks & Non-alcoholic Beverages':['Beverages','Consumer Staples','PBJ'],
+  'Food Distributors':['Consumer Staples Distribution & Retail','Consumer Staples'],
+  'Personal Care Products':['Personal Care Products','Consumer Staples'],
+  'Life & Health Insurance':['Insurance','Financials','KIE'],
+  'Regional Banks':['Banks','Financials','KRE'],
+  'Commercial & Residential Mortgage Finance':['Financial Services','Financials'],
+  'Multi-Sector Holdings':['Financial Services','Financials'],
+  'Asset Management & Custody Banks':['Capital Markets','Financials','KCE'],
+  'Investment Banking & Brokerage':['Capital Markets','Financials','KCE'],
+  'Movies & Entertainment':['Entertainment','Communication Services'],
+  'Broadcasting':['Media','Communication Services'],
+  'Cable & Satellite':['Media','Communication Services'],
+  'Publishing':['Media','Communication Services'],
+  'Application Software':['Software','Information Technology','IGV'],
+  'Systems Software':['Software','Information Technology','IGV'],
+  'Semiconductors':['Semiconductors & Semiconductor Equipment','Information Technology','SOXX'],
+  'Health Care Technology':['Health Care Technology','Health Care'],
+  'Health Care Supplies':['Health Care Equipment & Supplies','Health Care'],
+  'Construction & Engineering':['Construction & Engineering','Industrials'],
+  'Human Resource & Employment Services':['Professional Services','Industrials'],
+  'Air Freight & Logistics':['Air Freight & Logistics','Industrials'],
+  'Marine Transportation':['Marine Transportation','Industrials'],
+  'Real Estate Development':['Real Estate Management & Development','Real Estate'],
+  'Non-market':['Universities, foundations & civic','Non-market']
+};
+const sectorName = s => (SECTORS[s]?.etf ? SECTORS[s].etf+' · ' : '') + s;
+const sectorTag = n => n?._sector ? (SECTORS[n._sector]?.etf || 'Non-market') + (n._sub && n._sub!=='Non-market' ? ' · '+n._sub : '') : '';
+
+const state = {cat:'all', tier:'all', sector:'all', q:'', view:'map', layout:'force', openId:null, overlap:false};
 let DATA;
 
 /* =====================================================================
@@ -8393,12 +9020,24 @@ function normalize(raw){
     if(seen.has(key)) return; seen.add(key);
     links.push({source:r.id, target:o.id, type:EDGE[o.type]?o.type:'connection', label:o.label||''});
   }));
+  entities.forEach(e=>{ const g=GICS[e.gics?.sub]; if(!g) return; e._sub=e.gics.sub; e._ind=g[0]; e._sector=g[1]; e._gicsBasis=e.gics.basis; });
+  profiles.forEach(p=>{   // a person's sector = their primary business (an owned company first)
+    const biz=links.filter(l=>l.type!=='parallel'&&(l.source===p.id||l.target===p.id)).map(l=>({l,o:byId[l.source===p.id?l.target:l.source]}))
+      .filter(x=>x.o._kind==='entity'&&x.o._sector&&x.o._sector!=='Non-market');
+    const pick=biz.find(x=>x.l.type==='ownership')||biz[0];
+    if(pick){ p._primary=pick.o.id; p._sector=pick.o._sector; p._sub=pick.o._sub; } else p._sector='Non-market';
+  });
+  entities.forEach(e=>{ if(!e._sector) return;
+    const sid='sector:'+e._sector, bid='sub:'+e._sub;
+    byId[sid] ||= {id:sid, _kind:'tax', level:'sector', sector:e._sector, name:sectorName(e._sector)};
+    byId[bid] ||= {id:bid, _kind:'tax', level:'sub', sector:e._sector, sub:e._sub, name:e._sub==='Non-market'?'Universities, foundations & civic':e._sub};
+  });
   const nbNames = id => links.filter(l=>l.source===id||l.target===id).map(l=>byId[l.source===id?l.target:l.source].name);
   profiles.forEach(p=>{ p._hay=[p.name,...(p.aliases||[]),p.category,p.industry,p.netWorthTier,p.originBadge,p.engineBadge,p.capitalBadge,
     p.humbleBeginnings,p.breakthrough,p.shieldingStrategy,p.base,
     ...(p.breakthroughDetail||[]).map(x=>x.t+' '+x.d),...(p.shieldingDetail||[]).map(x=>x.t+' '+x.d),
-    ...nbNames(p.id)].join(' ').toLowerCase(); });
-  entities.forEach(e=>{ e._hay=[e.name,e.kind,e.description].join(' ').toLowerCase(); });
+    ...nbNames(p.id), p._sector, SECTORS[p._sector]?.etf, p._sub].join(' ').toLowerCase(); });
+  entities.forEach(e=>{ e._hay=[e.name,e.kind,e.description,e._sector,SECTORS[e._sector]?.etf,e._sub,e._ind].join(' ').toLowerCase(); });
   return {profiles, entities, links, byId};
 }
 /* Overlaps: two people overlap when they reach the same entity through real (non-"parallel")
@@ -8472,6 +9111,8 @@ function computeCommunities(D){
   Object.values(D.byId).forEach(n=>{ n._comm=idx.has(comm.get(n.id))?idx.get(comm.get(n.id)):-1; });
   return regions.length;
 }
+const sectorCenter = (s,w,h) => { const L=G.sectors||[], i=L.indexOf(s), n=L.length||1;
+  if(i<0) return [w/2,h/2]; const a=-Math.PI/2+2*Math.PI*i/n; return [w/2+Math.cos(a)*w*.42, h/2+Math.sin(a)*h*.4]; };
 const commCenter = (i,w,h) => { const n=DATA.nComm||1, a=-Math.PI/2+2*Math.PI*i/n, R=Math.min(w,h)*.36;
   return i<0 ? [w/2,h/2] : [w/2+Math.cos(a)*R*1.25, h/2+Math.sin(a)*R]; };
 const linkBetween = (a,b) => DATA.links.find(l=>(l.source===a&&l.target===b)||(l.source===b&&l.target===a));
@@ -8483,7 +9124,8 @@ const passCat = p => state.cat==='all' || p.category===state.cat;
 const passTier = p => state.tier==='all' || p.netWorthTier===state.tier;
 const terms = () => state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
 const matchQ = n => { const t=terms(); return !t.length || t.every(w=>n._hay.includes(w)); };
-const visibleProfiles = () => DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&matchQ(p));
+const passSector = p => state.sector==='all' || p._sector===state.sector;
+const visibleProfiles = () => DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&passSector(p)&&matchQ(p));
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function hl(text){
   const t=terms(); let out=esc(text); if(!t.length) return out;
@@ -8532,17 +9174,24 @@ function subgraph(){
    FILTER UI
    ===================================================================== */
 function renderChips(){
-  const base = DATA.profiles.filter(p=>passTier(p)&&matchQ(p));
+  const base = DATA.profiles.filter(p=>passTier(p)&&passSector(p)&&matchQ(p));
   const items = [['all','All','#E2E8F0',base.length], ...Object.entries(CATS).map(([k,c])=>[k,k,c.color,base.filter(p=>p.category===k).length])];
   document.getElementById('catChips').innerHTML = items.map(([k,l,c,n])=>
     `<button class="chip" data-cat="${esc(k)}" aria-pressed="${state.cat===k}" style="--c:${c}">${k==='all'?'':'<span class="d"></span>'}${esc(l)} <span class="n">${n}</span></button>`).join('');
-  const tb = DATA.profiles.filter(p=>passCat(p)&&matchQ(p));
+  const tb = DATA.profiles.filter(p=>passCat(p)&&passSector(p)&&matchQ(p));
   document.getElementById('tierSeg').innerHTML = [['all','All Tiers'],...Object.keys(TIERS).map(t=>[t,t])].map(([k,l])=>
     `<button data-tier="${esc(k)}" aria-pressed="${state.tier===k}">${esc(l)} <span class="n">${k==='all'?tb.length:tb.filter(p=>p.netWorthTier===k).length}</span></button>`).join('');
+  const sb = DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&matchQ(p));
+  const secs = Object.keys(SECTORS).filter(k=>DATA.profiles.some(p=>p._sector===k));
+  document.getElementById('secChips').innerHTML = [['all','All'],...secs.map(k=>[k,SECTORS[k].etf||'Non-mkt'])].map(([k,l])=>
+    `<button data-sector="${esc(k)}" aria-pressed="${state.sector===k}" title="${esc(k==='all'?'All sectors':sectorName(k))}">${esc(l)} <span class="n">${k==='all'?sb.length:sb.filter(p=>p._sector===k).length}</span></button>`).join('');
 }
 function bindUI(){
   document.getElementById('catChips').addEventListener('click',e=>{
     const b=e.target.closest('[data-cat]'); if(b){ state.cat=b.dataset.cat; refresh(); }
+  });
+  document.getElementById('secChips').addEventListener('click',e=>{
+    const b=e.target.closest('[data-sector]'); if(b){ state.sector=b.dataset.sector; refresh(); }
   });
   document.getElementById('tierSeg').addEventListener('click',e=>{
     const b=e.target.closest('[data-tier]'); if(b){ state.tier=b.dataset.tier; refresh(); }
@@ -8553,9 +9202,9 @@ function bindUI(){
     refresh();
   });
   document.getElementById('layoutSeg').addEventListener('click',e=>{
-    const b=e.target.closest('[data-layout]'); if(!b) return; state.layout=b.dataset.layout;
+    const b=e.target.closest('[data-layout]'); if(!b) return; const was=state.layout; state.layout=b.dataset.layout;
     document.querySelectorAll('#layoutSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));
-    applyLayout(true);
+    if(was==='sector'||state.layout==='sector') renderMap(); else applyLayout(true);
   });
   document.getElementById('fitBtn').onclick=()=>fit(600);
   document.getElementById('shakeBtn').onclick=()=>{ G.nodes.forEach(n=>{n.fx=n.fy=null;}); applyLayout(true); };
@@ -8604,6 +9253,18 @@ function renderMap(){
     return {...src, home, r:rFor(src), x:p?.x ?? cx+(Math.random()-.5)*120, y:p?.y ?? cy+(Math.random()-.5)*120};
   });
   G.links=links.map(l=>({...l}));
+  if(state.layout==='sector'){   // add sector-ETF hubs and sub-industry spokes for the visible companies
+    const add=new Map(), seen=new Set();
+    G.nodes.forEach(n=>{ if(n._kind!=='entity'||!n._sector) return;
+      const sid='sector:'+n._sector, bid='sub:'+n._sub;
+      add.set(sid,DATA.byId[sid]); add.set(bid,DATA.byId[bid]);
+      if(!seen.has(bid)){ seen.add(bid); G.links.push({source:sid,target:bid,type:'tax',label:''}); }
+      G.links.push({source:bid,target:n.id,type:'tax',label:''});
+    });
+    const cnt=new Map(); G.nodes.forEach(n=>{ const s=n._sector; if(s) cnt.set(s,(cnt.get(s)||0)+1); });
+    G.sectors=Object.keys(SECTORS).filter(s=>cnt.has(s));
+    add.forEach(t=>{ const [x,y]=sectorCenter(t.sector,w,h); G.nodes.push({...t, r:t.level==='sector'?26:6, x, y}); });
+  }
 
   const svg=d3.select(host).insert('svg',':first-child').attr('viewBox',[0,0,w,h]).attr('role','img').attr('aria-label','Network mind map');
   G.svg=svg;
@@ -8625,12 +9286,12 @@ function renderMap(){
   const link=root.append('g').selectAll('path').data(G.links).join('path')
     .attr('class',d=>`link ${DASHED.includes(d.type)?'dashed':''} ${DOTTED.includes(d.type)?'dotted':''}`)
     .attr('stroke',d=>EDGE[d.type].color)
-    .attr('marker-end',d=>d.type==='parallel'?null:`url(#ar-${d.type})`);
+    .attr('marker-end',d=>d.type==='parallel'||d.type==='tax'?null:`url(#ar-${d.type})`);
   link.append('title').text(d=>`${DATA.byId[d.source].name} → ${DATA.byId[d.target].name}: ${d.label||EDGE[d.type].label}`);
   const elabel=root.append('g').selectAll('text').data(G.links).join('text').attr('class','elabel').attr('text-anchor','middle').text(d=>d.label||'');
 
   const node=root.append('g').selectAll('g').data(G.nodes,d=>d.id).join('g')
-    .attr('class',d=>`node ${d._kind}${isHub(d)?' hub':''}`).attr('tabindex',0).attr('role','button').attr('aria-label',d=>d.name)
+    .attr('class',d=>`node ${d._kind}${isHub(d)?' hub':''}${d._kind==='tax'?' tax-'+d.level:''}`).attr('tabindex',0).attr('role','button').attr('aria-label',d=>d.name)
     .on('click',(ev,d)=>{ ev.stopPropagation(); openNode(d.id); })
     .on('keydown',(ev,d)=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); openNode(d.id);} })
     .on('mouseenter',(ev,d)=>hot(d.id)).on('mouseleave',()=>{ state.openId ? hot(state.openId) : clearHot(); })
@@ -8642,20 +9303,22 @@ function renderMap(){
   const prof=node.filter(d=>d._kind==='profile');
   prof.append('circle').attr('class','halo').attr('r',d=>d.r+8).attr('fill',colorOf).attr('filter','url(#glow)');
   node.append('circle').attr('r',d=>d.r)
-    .attr('fill',d=>d._kind==='profile'?colorOf(d):'#111827').attr('fill-opacity',d=>d._kind==='profile'?.16:1)
-    .attr('stroke',d=>d._kind==='profile'?colorOf(d):isHub(d)?'#E2E8F0':'#334155').attr('stroke-width',d=>d._kind==='profile'||isHub(d)?2:1.2)
-    .attr('stroke-dasharray',d=>d.tierBasis==='estimated'?'4 3':null);
+    .attr('fill',d=>d._kind==='profile'?colorOf(d):d._kind==='tax'?'#0b1016':'#111827').attr('fill-opacity',d=>d._kind==='profile'?.16:1)
+    .attr('stroke',d=>d._kind==='profile'?colorOf(d):d._kind==='tax'?(d.level==='sector'?'#94A3B8':'#475569'):isHub(d)?'#E2E8F0':'#334155')
+    .attr('stroke-width',d=>d._kind==='profile'||isHub(d)||d.level==='sector'?2:1.2)
+    .attr('stroke-dasharray',d=>d.tierBasis==='estimated'?'4 3':d.level==='sub'?'2 2':null);
   prof.append('circle').attr('r',d=>Math.max(4,d.r*.28)).attr('fill',colorOf);
   const crowded=G.nodes.length>60;
-  node.append('text').attr('text-anchor','middle').attr('dy',d=>d.r+(d._kind==='profile'?16:13))
-    .attr('class',d=>crowded&&d._kind==='entity'&&!isHub(d)?'minor':null).text(d=>d.name);
+  node.append('text').attr('text-anchor','middle').attr('dy',d=>d.level==='sector'?5:d.r+(d._kind==='profile'?16:13))
+    .attr('class',d=>crowded&&d._kind==='entity'&&!isHub(d)?'minor':null).text(d=>d.level==='sector'?(SECTORS[d.sector].etf||'NON-MKT'):d.name);
+  node.filter(d=>d.level==='sector').append('text').attr('class','tax-sub').attr('text-anchor','middle').attr('dy',d=>d.r+15).text(d=>d.sector);
   node.filter(isHub).append('title').text(d=>`${d.name}: shared by ${d._shared} people`);
 
   G.sim=d3.forceSimulation(G.nodes)
     .force('link',d3.forceLink(G.links).id(d=>d.id)
-      .distance(l=>l.type==='parallel'?220:(l.source._kind==='profile'||l.target._kind==='profile')?95:70)
-      .strength(l=>l.type==='parallel'?.05:SOFT.includes(l.type)?.25:.7))
-    .force('charge',d3.forceManyBody().strength(d=>d._kind==='profile'?-480:isHub(d)?-300:-150))
+      .distance(l=>l.type==='tax'?(l.source.level==='sector'?70:40):l.type==='parallel'?220:(l.source._kind==='profile'||l.target._kind==='profile')?95:70)
+      .strength(l=>l.type==='tax'?.8:state.layout==='sector'?(l.type==='parallel'?0:.03):l.type==='parallel'?.05:SOFT.includes(l.type)?.25:.7))
+    .force('charge',d3.forceManyBody().strength(d=>d._kind==='profile'?-480:d.level==='sector'?-500:isHub(d)?-300:-150))
     .force('collide',d3.forceCollide(d=>d.r+(d._kind==='profile'?26:16)))
     .on('tick',()=>{
       link.attr('d',d=>{
@@ -8678,9 +9341,14 @@ function applyLayout(reheat){
   const quad={'B2B Operators':[.3,.32],'Capital Allocators':[.7,.32],'Historic Visionaries':[.3,.72],'Tech Compounders':[.7,.72]};
   const tierX={'$500K-$5M':.1,'$5M-$100M':.3,'$100M-$500M':.5,'$500M-$1B':.7,'$1B+':.9};
   sim.force('center', state.layout==='force' ? d3.forceCenter(w/2,h/2) : null);
+  if(state.layout!=='sector') G.sectors=null;
   if(state.layout==='cluster'){
     sim.force('x',d3.forceX(d=>w*(quad[d.home?.cat]||[.5,.5])[0]).strength(d=>d._kind==='profile'?.18:.08));
     sim.force('y',d3.forceY(d=>h*(quad[d.home?.cat]||[.5,.5])[1]).strength(d=>d._kind==='profile'?.18:.08));
+  } else if(state.layout==='sector'){
+    const c=d=>sectorCenter(d._kind==='tax'?d.sector:d._sector,w,h);
+    sim.force('x',d3.forceX(d=>c(d)[0]).strength(d=>d.level==='sector'?.6:d._kind==='profile'?.12:.14));
+    sim.force('y',d3.forceY(d=>c(d)[1]).strength(d=>d.level==='sector'?.6:d._kind==='profile'?.12:.14));
   } else if(state.layout==='tier'){
     sim.force('x',d3.forceX(d=>w*(tierX[d.home?.tier]||.5)).strength(d=>d._kind==='profile'?.3:.1));
     sim.force('y',d3.forceY(h/2).strength(.05));
@@ -8738,12 +9406,32 @@ function renderOverlaps(){
     <div class="gridhead"><h2>Where the Businesses Connect</h2><span class="meta">${hubs.length} shared hub${hubs.length===1?'':'s'} · ${people.size} people connected · ${ties.length} direct tie${ties.length===1?'':'s'}</span></div>
     <p class="lede">A company, fund or institution counts as shared when two or more people reach it through ownership, supply, money, board, deal or family links, up to ${OVL_HOPS} steps away. Thematic parallels are not counted. Click any name to open its dossier, or switch on “Overlaps only” to see these paths on the map.</p>
     <div class="hubs">${hubs.map(({id,ppl})=>{ const e=DATA.byId[id]; return `<article class="hub">
-      <div class="hh"><div><button data-open="${esc(id)}">${hl(e.name)}</button><span class="kind">${esc(e.kind||'Entity')}</span></div><span class="cnt">${ppl.length} people</span></div>
+      <div class="hh"><div><button data-open="${esc(id)}">${hl(e.name)}</button><span class="kind">${esc(e.kind||'Entity')}${e._sector?' · '+esc(sectorTag(e)):''}</span></div><span class="cnt">${ppl.length} people</span></div>
       <ul class="who">${ppl.sort((a,b)=>a[1].length-b[1].length).map(who).join('')}</ul></article>`; }).join('') || '<p style="color:var(--muted)">No shared companies among the profiles that match these filters.</p>'}</div>
+    ${crossHTML()}
     ${ties.length?`<h3 class="subh">Direct ties between people</h3><div class="ties">${ties.map(l=>`<div class="tie">
       <button data-open="${esc(l.source)}">${hl(DATA.byId[l.source].name)}</button><span class="rel">— ${esc(l.label||EDGE[l.type].label)} (${esc(EDGE[l.type].label.toLowerCase())}) —</span>
       <button data-open="${esc(l.target)}">${hl(DATA.byId[l.target].name)}</button></div>`).join('')}</div>`:''}
     <p class="foot">${esc(META.disclaimer)}</p>`;
+}
+/* Real business links between companies in different GICS sectors: where one sector's hub runs on another's spokes. */
+function crossHTML(){
+  const groups=new Map();
+  DATA.links.forEach(l=>{
+    if(l.type==='parallel') return;
+    const a=DATA.byId[l.source], b=DATA.byId[l.target];
+    if(a._kind!=='entity'||b._kind!=='entity'||!a._sector||!b._sector||a._sector===b._sector||a._sector==='Non-market'||b._sector==='Non-market') return;
+    if(state.sector!=='all'&&a._sector!==state.sector&&b._sector!==state.sector) return;
+    const k=[a._sector,b._sector].sort().join('|'); if(!groups.has(k)) groups.set(k,[]); groups.get(k).push(l);
+  });
+  if(!groups.size) return '';
+  const rows=[...groups.entries()].sort((x,y)=>y[1].length-x[1].length).map(([k,ls])=>{
+    const [s1,s2]=k.split('|');
+    return `<div class="tie" style="flex-direction:column;align-items:stretch">
+      <div style="display:flex;gap:8px;align-items:baseline;flex-wrap:wrap"><button data-open="sector:${esc(s1)}">${esc(sectorName(s1))}</button><span class="rel">↔</span><button data-open="sector:${esc(s2)}">${esc(sectorName(s2))}</button><span class="rel" style="margin-left:auto">${ls.length} link${ls.length===1?'':'s'}</span></div>
+      <div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${ls.map(l=>`<span class="rel"><button data-open="${esc(l.source)}" style="font-weight:500">${esc(DATA.byId[l.source].name)}</button> → <button data-open="${esc(l.target)}" style="font-weight:500">${esc(DATA.byId[l.target].name)}</button> · ${esc(l.label||EDGE[l.type].label)}</span>`).join('')}</div></div>`;
+  }).join('');
+  return `<h3 class="subh">Cross-sector links</h3><p class="lede" style="margin-bottom:12px">Real business links between companies in different stock-market sectors. This is where a hub in one sector runs on spokes from another, e.g. McDonald's (XLY) and its Consumer Staples suppliers.</p><div class="ties">${rows}</div>`;
 }
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-open]'); if(b) openNode(b.dataset.open); });
 
@@ -8756,6 +9444,7 @@ function card(p){
     <div class="ctop"><span class="d"></span>${esc(CATS[p.category].short)}<span class="era">${esc(p.lifespan||'')}</span></div>
     <h3>${hl(p.name)}</h3>
     <div class="life">${hl(p.industry||'')}${p.base?' · '+esc(p.base):''}</div>
+    ${p._primary?`<div class="sect">${esc(sectorTag(p))}</div>`:''}
     <div class="kpis">
       <div class="kpi"><label>Net Worth Tier</label><b class="mono">${esc(tierLabel(p))}</b></div>
       <div class="kpi"><label>Origin</label><b>${hl(p.originBadge||'—')}</b></div>
@@ -8786,13 +9475,40 @@ function networkList(id){
     </button>`).join('')}</div>`;
 }
 
+const GICS_TIP={official:'Official GICS classification of the listed company',inferred:'Closest-fit GICS sub-industry for a private, defunct or never-listed business. It is not an ETF holding.'};
+function gicsLine(e, via){
+  if(!e?._sector) return '';
+  const S=SECTORS[e._sector], g=GICS[e._sub]||[];
+  return `<div class="gics">${via?`<span>Primary business</span><button data-go="${esc(via.id)}">${esc(via.name)}</button><span>·</span>`:''}
+    <button data-go="sector:${esc(e._sector)}">${S.etf?`<span class="etf">${S.etf}</span> `:''}${esc(e._sector)}</button>
+    ${e._sector!=='Non-market'?`<span>›</span><span>${esc(g[0]||'')}</span><span>›</span><button data-go="sub:${esc(e._sub)}">${esc(e._sub)}</button>${g[2]?`<span>· industry ETF e.g. <span class="etf">${g[2]}</span></span>`:''}`:''}
+    ${e._gicsBasis?`<span class="b" title="${GICS_TIP[e._gicsBasis]}">${e._gicsBasis==='official'?'Official GICS':'Inferred'}</span>`:''}</div>`;
+}
+function taxHTML(n){
+  const isSec=n.level==='sector', S=SECTORS[n.sector];
+  const ents=DATA.entities.filter(e=>isSec?e._sector===n.sector:e._sub===n.sub);
+  const subs=[...new Set(ents.map(e=>e._sub))].sort();
+  const ppl=isSec?DATA.profiles.filter(p=>p._sector===n.sector)
+    :DATA.profiles.filter(p=>neighbors(p.id).some(x=>x.other._sub===n.sub&&x.link.type!=='parallel'));
+  const btn=x=>`<li><button data-go="${esc(x.id)}"><span class="d" style="background:${colorOf(x)}"></span><span class="nm">${esc(x.name)}</span><span class="via">${esc(x._kind==='profile'?x.category:(x.kind||''))}${x._gicsBasis==='official'?' · listed':''}</span></button></li>`;
+  return `<div class="dhead" style="--c:#94A3B8"><button class="dclose" aria-label="Close">✕</button>
+    <div class="eyebrow"><span>${isSec?'Sector':'Sub-industry'}</span><span>${isSec?(S.etf?S.etf+' · Select Sector SPDR':'Outside the stock market'):esc(sectorName(n.sector))}</span></div>
+    <h2>${esc(isSec?n.sector:n.name)}</h2></div>
+    <div class="dbody" style="--c:#94A3B8">
+    <p class="note">${n.sector==='Non-market'?'Universities, foundations, charities and civic institutions. They are not traded and sit outside every sector ETF.':'GICS classification. Most companies on this map are private or historical, so they are not ETF holdings. The tag shows where each one would sit, and only companies marked “listed” have an official classification.'}</p>
+    ${isSec?subs.map(sb=>`<section class="sec"><h3><button class="ibtn" data-go="sub:${esc(sb)}">${esc(sb==='Non-market'?'Universities, foundations & civic':sb)}</button></h3><ul class="who">${ents.filter(e=>e._sub===sb).map(btn).join('')}</ul></section>`).join('')
+      :`<section class="sec"><h3><span class="num">${ents.length}</span>Companies</h3><ul class="who">${ents.map(btn).join('')}</ul></section>`}
+    ${ppl.length?`<section class="sec"><h3><span class="num">${ppl.length}</span>${isSec?'People whose primary business is here':'People tied to these companies'}</h3><ul class="who">${ppl.map(btn).join('')}</ul></section>`:''}
+    </div>`;
+}
 function dossierHTML(n){
+  if(n._kind==='tax') return taxHTML(n);
   if(n._kind==='entity'){
     return `<div class="dhead" style="--c:#94A3B8">
       <button class="dclose" aria-label="Close">✕</button>
       <div class="eyebrow"><span>Entity</span><span>${esc(n.kind||'')}</span></div>
       <h2>${esc(n.name)}</h2></div>
-      <div class="dbody" style="--c:#94A3B8"><p style="color:#CBD5E1">${esc(n.description||'')}</p>
+      <div class="dbody" style="--c:#94A3B8">${gicsLine(n)}<p style="color:#CBD5E1">${esc(n.description||'')}</p>
       ${n._shared>=2?`<section class="sec"><h3><span class="num">${n._shared}</span>People Who Share This</h3><ul class="who">${[...DATA.ovl.hubs.get(n.id).entries()].sort((a,b)=>a[1].length-b[1].length).map(([p,path])=>`<li><button data-go="${esc(p)}"><span class="d" style="background:${catColor(DATA.byId[p])}"></span><span class="nm">${esc(DATA.byId[p].name)}</span><span class="via">${path.length>2?esc('via '+path.slice(1,-1).map(id=>DATA.byId[id].name).join(' → ')):'direct'}</span></button></li>`).join('')}</ul></section>`:''}
       <section class="sec"><h3><span class="num">↔</span>Connected Ecosystem</h3>${networkList(n.id)}</section></div>`;
   }
@@ -8814,6 +9530,7 @@ function dossierHTML(n){
       <div class="kpi"><label>Peak Wealth</label><b class="mono">${esc(n.peakWealth||'Undisclosed')}</b></div>
       <div class="kpi"><label>Industry</label><b>${esc(n.industry||'—')}</b></div>
     </div>
+    ${n._primary?gicsLine(DATA.byId[n._primary],DATA.byId[n._primary]):''}
     ${n.wealthNote?`<div class="note">${esc(n.wealthNote)}</div>`:''}
     <section class="sec"><h3><span class="num">01</span>Humble Beginnings</h3><p>${esc(n.humbleBeginnings||'')}</p></section>
     <section class="sec"><h3><span class="num">02</span>Breakthrough Contract / Engine</h3>
@@ -8839,7 +9556,7 @@ function showDrawer(id){
   d.querySelector('.dbody').scrollTop=0;
   document.title=`${n.name} — Quiet Capital`;
   if(state.view==='map'){
-    if(G.root && !G.nodes.some(x=>x.id===id)){   // target hidden by filters → clear them
+    if(G.root && n._kind!=='tax' && !G.nodes.some(x=>x.id===id)){   // target hidden by filters → clear them
       state.cat='all'; state.tier='all'; state.q=''; document.getElementById('q').value=''; refresh();
     }
     hot(id);

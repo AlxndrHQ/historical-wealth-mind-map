@@ -6287,7 +6287,11 @@
   "type": "entity",
   "kind": "QSR Anchor Customer",
   "description": "The anchor customer behind several of the quietest supply-chain fortunes in food.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Restaurants",
+   "basis": "official"
+  }
  },
  {
   "id": "hs-bakery",
@@ -6301,7 +6305,11 @@
     "type": "ownership",
     "label": "sister division"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "northeast-foods",
@@ -6315,7 +6323,11 @@
     "type": "supply",
     "label": "McDonald's buns"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "harbor-east",
@@ -6323,7 +6335,11 @@
   "type": "entity",
   "kind": "Real Estate",
   "description": "Baltimore waterfront district developed by the Paterakis family; ~$1B of office, retail and residential.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Real Estate Development",
+   "basis": "inferred"
+  }
  },
  {
   "id": "btw-insurance",
@@ -6331,7 +6347,11 @@
   "type": "entity",
   "kind": "Insurance",
   "description": "Grew out of Gaston's 1923 burial society; the cash engine of his group.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "citizens-federal",
@@ -6339,7 +6359,11 @@
   "type": "entity",
   "kind": "Banking",
   "description": "Founded 1957 to serve Black borrowers in Birmingham.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Commercial & Residential Mortgage Finance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "gaston-motel",
@@ -6353,7 +6377,11 @@
     "type": "civic",
     "label": "campaign HQ"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Hotels, Resorts & Cruise Lines",
+   "basis": "inferred"
+  }
  },
  {
   "id": "birmingham-campaign",
@@ -6361,7 +6389,11 @@
   "type": "entity",
   "kind": "Civil Rights",
   "description": "SCLC-led campaign; Gaston provided lodging and financial support.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "venture-records",
@@ -6369,7 +6401,11 @@
   "type": "entity",
   "kind": "Record Label",
   "description": "Avant's 1967–69 label; an early Black-executive joint venture with a major label.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "sussex-records",
@@ -6383,7 +6419,11 @@
     "type": "capital",
     "label": "distribution 1970–74"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "buddah-records",
@@ -6391,7 +6431,11 @@
   "type": "entity",
   "kind": "Distributor",
   "description": "Distributed Sussex Records, 1970–1974.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "tabu-records",
@@ -6399,7 +6443,11 @@
   "type": "entity",
   "kind": "Record Label",
   "description": "Avant's label; S.O.S. Band; early home of Jimmy Jam & Terry Lewis.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "kagb-fm",
@@ -6407,7 +6455,11 @@
   "type": "entity",
   "kind": "Radio",
   "description": "First Black-owned FM station in metropolitan Los Angeles (1973).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Broadcasting",
+   "basis": "inferred"
+  }
  },
  {
   "id": "motown",
@@ -6415,7 +6467,11 @@
   "type": "entity",
   "kind": "Record Label",
   "description": "Avant became board chairman in 1993.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "otto-and-sons",
@@ -6434,7 +6490,11 @@
     "type": "supply",
     "label": "patties since 1955"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "osi-group",
@@ -6448,7 +6508,11 @@
     "type": "supply",
     "label": "global protein"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "east-balt",
@@ -6462,7 +6526,11 @@
     "type": "supply",
     "label": "buns since 1955"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "one-equity-partners",
@@ -6476,7 +6544,11 @@
     "type": "capital",
     "label": "acquired 2012"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "grupo-bimbo",
@@ -6490,7 +6562,11 @@
     "type": "capital",
     "label": "acquired 2017"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "official"
+  }
  },
  {
   "id": "dfs",
@@ -6498,7 +6574,11 @@
   "type": "entity",
   "kind": "Travel Retail",
   "description": "Co-founded 1960 by Chuck Feeney and Robert Miller.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "atlantic-philanthropies",
@@ -6506,7 +6586,11 @@
   "type": "entity",
   "kind": "Foundation",
   "description": "Received Feeney's DFS stake in 1982; spent down and closed.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lvmh",
@@ -6520,7 +6604,11 @@
     "type": "capital",
     "label": "acquired 1997"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Apparel, Accessories & Luxury Goods",
+   "basis": "official"
+  }
  },
  {
   "id": "sas-institute",
@@ -6528,7 +6616,11 @@
   "type": "entity",
   "kind": "Enterprise Software",
   "description": "Analytics software company co-founded 1976.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "nc-state",
@@ -6542,7 +6634,11 @@
     "type": "origin",
     "label": "spun out of"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "tlc-beatrice",
@@ -6556,7 +6652,11 @@
     "type": "capital",
     "label": "LBO financing"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "mccall-pattern",
@@ -6564,7 +6664,11 @@
   "type": "entity",
   "kind": "Sewing patterns",
   "description": "Bought by TLC Group in 1984 in a heavily leveraged buyout and sold about three years later at a roughly 90-to-1 return.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Leisure Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "drexel-burnham-lambert",
@@ -6572,7 +6676,11 @@
   "type": "entity",
   "kind": "Investment bank",
   "description": "Michael Milken's junk-bond house, which helped finance the 1987 Beatrice International buyout.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Investment Banking & Brokerage",
+   "basis": "inferred"
+  }
  },
  {
   "id": "black-enterprise",
@@ -6580,7 +6688,11 @@
   "type": "entity",
   "kind": "Business magazine",
   "description": "Founded by Earl Graves in 1970. Its BE 100s list and Company of the Year awards record the largest Black-owned businesses.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "pepsi-cola-washington",
@@ -6588,7 +6700,11 @@
   "type": "entity",
   "kind": "Soft-drink bottler",
   "description": "The D.C. Pepsi bottling franchise bought in 1990 by Earl Graves and Magic Johnson in a $60M deal; Graves sold his stake to Pepsi in 1998.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Soft Drinks & Non-alcoholic Beverages",
+   "basis": "inferred"
+  }
  },
  {
   "id": "johnson-publishing",
@@ -6602,7 +6718,11 @@
     "type": "origin",
     "label": "founder's first employer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "supreme-life",
@@ -6616,7 +6736,11 @@
     "type": "parallel",
     "label": "Black-owned insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "fuller-products",
@@ -6630,7 +6754,11 @@
     "type": "origin",
     "label": "spawned via alumnus"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "johnson-products",
@@ -6649,7 +6777,11 @@
     "type": "parallel",
     "label": "rival Black hair-care maker"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "independence-bank",
@@ -6663,7 +6795,11 @@
     "type": "parallel",
     "label": "Black-owned lender"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "soul-train",
@@ -6671,7 +6807,11 @@
   "type": "entity",
   "kind": "TV program",
   "description": "Don Cornelius's syndicated music show; Johnson Products was its first Black-controlled sponsor.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Broadcasting",
+   "basis": "inferred"
+  }
  },
  {
   "id": "hj-russell",
@@ -6685,7 +6825,11 @@
     "type": "supply",
     "label": "built HQ 1987"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Construction & Engineering",
+   "basis": "inferred"
+  }
  },
  {
   "id": "concessions-international",
@@ -6693,7 +6837,11 @@
   "type": "entity",
   "kind": "Airport concessions",
   "description": "Russell's airport food and beverage operator; majority control moved to trusts for his children in 2013.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Restaurants",
+   "basis": "inferred"
+  }
  },
  {
   "id": "citizens-trust-bank",
@@ -6707,7 +6855,11 @@
     "type": "parallel",
     "label": "Black-owned bank"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "coca-cola",
@@ -6715,7 +6867,11 @@
   "type": "entity",
   "kind": "Beverage company",
   "description": "Atlanta-based beverage maker; H.J. Russell & Company worked on its headquarters, completed in 1987.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Soft Drinks & Non-alcoholic Beverages",
+   "basis": "official"
+  }
  },
  {
   "id": "ariel-investments",
@@ -6723,7 +6879,11 @@
   "type": "entity",
   "kind": "Asset manager",
   "description": "Chicago value-investing firm founded by John W. Rogers Jr. in 1983, about 95% owned by employees and board; its Project Black private-equity fund raised $1.45B.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "actone-group",
@@ -6731,7 +6891,11 @@
   "type": "entity",
   "kind": "Staffing & HR services",
   "description": "Janice Bryant Howroyd's privately held workforce-services group, founded in 1978 in Beverly Hills, with more than $1B in sales.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Human Resource & Employment Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "inner-city-broadcasting",
@@ -6750,7 +6914,11 @@
     "type": "parallel",
     "label": "early Black-owned FM"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Broadcasting",
+   "basis": "inferred"
+  }
  },
  {
   "id": "apollo-theater",
@@ -6758,7 +6926,11 @@
   "type": "entity",
   "kind": "Performance venue",
   "description": "Harlem landmark bought out of bankruptcy by Inner City Broadcasting in 1981 for $225,000 and renovated; home of It's Showtime at the Apollo.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "pro-line",
@@ -6772,7 +6944,11 @@
     "type": "deal",
     "label": "acquired 2000"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "alberto-culver",
@@ -6780,7 +6956,11 @@
   "type": "entity",
   "kind": "Consumer products",
   "description": "Chicago-area personal-care company that bought Pro-Line in 2000.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "texas-rangers",
@@ -6788,7 +6968,11 @@
   "type": "entity",
   "kind": "MLB team",
   "description": "Bought in 1989 by a group including George W. Bush and Comer Cottrell, its first Black co-owner.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "paul-quinn-college",
@@ -6796,7 +6980,11 @@
   "type": "entity",
   "kind": "HBCU",
   "description": "Moved from Waco to Dallas on the former Bishop College campus, which Comer Cottrell bought in 1990.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "barden-companies",
@@ -6810,7 +6998,11 @@
     "type": "ownership",
     "label": "casino subsidiary"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Multi-Sector Holdings",
+   "basis": "inferred"
+  }
  },
  {
   "id": "majestic-star-casino",
@@ -6818,7 +7010,11 @@
   "type": "entity",
   "kind": "Casino operator",
   "description": "Barden's casino LLC (Gary, Tunica, Black Hawk, Las Vegas Fitzgeralds); filed for bankruptcy in 2009.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Casinos & Gaming",
+   "basis": "inferred"
+  }
  },
  {
   "id": "comcast",
@@ -6826,7 +7022,11 @@
   "type": "entity",
   "kind": "Cable operator",
   "description": "Bought Barden's Detroit cable system in 1994 for more than $100M.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Cable & Satellite",
+   "basis": "official"
+  }
  },
  {
   "id": "madam-cj-walker-manufacturing",
@@ -6840,7 +7040,11 @@
     "type": "parallel",
     "label": "rival agent model"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "poro-college",
@@ -6848,7 +7052,11 @@
   "type": "entity",
   "kind": "School & manufacturer",
   "description": "Annie Malone's St. Louis cosmetology school, factory and sales hub (1918).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "atlanta-life",
@@ -6867,7 +7075,11 @@
     "type": "parallel",
     "label": "Black-owned insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "nc-mutual",
@@ -6881,7 +7093,11 @@
     "type": "parallel",
     "label": "Black-owned insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "harvard-university",
@@ -6889,7 +7105,11 @@
   "type": "entity",
   "kind": "University",
   "description": "Reginald Lewis gave $3M to Harvard Law School in 1992, and the school named a building after him.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "morgan-state-university",
@@ -6897,7 +7117,11 @@
   "type": "entity",
   "kind": "HBCU",
   "description": "Earl Graves's alma mater; after his $1M gift in 1995 it named its business school for him.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "st-luke-penny-savings-bank",
@@ -6916,7 +7140,11 @@
     "type": "parallel",
     "label": "Black-owned lender"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "independent-order-st-luke",
@@ -6930,7 +7158,11 @@
     "type": "parallel",
     "label": "burial/benefit society roots"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "solvent-savings-bank",
@@ -6944,7 +7176,11 @@
     "type": "parallel",
     "label": "Southern Black bank"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "church-park",
@@ -6958,7 +7194,11 @@
     "type": "parallel",
     "label": "Black-owned civic venue"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "overton-hygienic",
@@ -6977,7 +7217,11 @@
     "type": "parallel",
     "label": "rival Black cosmetics"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Personal Care Products",
+   "basis": "inferred"
+  }
  },
  {
   "id": "douglass-national-bank",
@@ -6991,7 +7235,11 @@
     "type": "parallel",
     "label": "rival Bronzeville bank"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "victory-life",
@@ -7005,7 +7253,11 @@
     "type": "parallel",
     "label": "Chicago Black insurer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Life & Health Insurance",
+   "basis": "inferred"
+  }
  },
  {
   "id": "binga-state-bank",
@@ -7013,7 +7265,11 @@
   "type": "entity",
   "kind": "Banking",
   "description": "Jesse Binga's bank, opened privately in 1908 and state-chartered in 1921; the first Chicago bank to fail in the Depression (1930).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "chicago-defender",
@@ -7027,7 +7283,11 @@
     "type": "ownership",
     "label": "Sengstacke chain, 1960s"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "pittsburgh-courier",
@@ -7041,7 +7301,11 @@
     "type": "ownership",
     "label": "owned via Courier group"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "forten-sail-loft",
@@ -7049,7 +7313,11 @@
   "type": "entity",
   "kind": "Sailmaker",
   "description": "James Forten's Philadelphia sail loft (bought 1798), one of the city's largest and racially integrated.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Textiles",
+   "basis": "inferred"
+  }
  },
  {
   "id": "the-liberator",
@@ -7057,7 +7325,11 @@
   "type": "entity",
   "kind": "Abolitionist newspaper",
   "description": "William Lloyd Garrison's paper (1831); James Forten was a key financial backer.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Publishing",
+   "basis": "inferred"
+  }
  },
  {
   "id": "first-ame-los-angeles",
@@ -7065,7 +7337,11 @@
   "type": "entity",
   "kind": "Church",
   "description": "The city's first Black church, founded and financed in 1872 by Biddy Mason and Charles Owens.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lafon-old-folks-home",
@@ -7073,7 +7349,11 @@
   "type": "entity",
   "kind": "Charitable home",
   "description": "New Orleans home funded by Thomy Lafon's bequests.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "accessory-transit-company",
@@ -7081,7 +7361,11 @@
   "type": "entity",
   "kind": "Transport company",
   "description": "Cornelius Vanderbilt-linked Nicaragua transit firm that Jeremiah Hamilton sued in the 1850s.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Marine Transportation",
+   "basis": "inferred"
+  }
  },
  {
   "id": "general-atlantic",
@@ -7100,7 +7384,11 @@
     "type": "ownership",
     "label": "founded 1980"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cornell-university",
@@ -7114,7 +7402,11 @@
     "type": "origin",
     "label": "hotel school, GI Bill"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "oak-foundation",
@@ -7122,7 +7414,11 @@
   "type": "entity",
   "kind": "Private foundation",
   "description": "Geneva-based foundation set up in 1983 by DFS partner Alan Parker with duty-free wealth. It made about $383M in grants in 2025.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "king-power",
@@ -7136,7 +7432,11 @@
     "type": "deal",
     "label": "Downtown DFS JV 1989"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "leicester-city",
@@ -7150,7 +7450,11 @@
     "type": "ownership",
     "label": "King Power-owned"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "gebr-heinemann",
@@ -7158,7 +7462,11 @@
   "type": "entity",
   "kind": "Travel retailer & distributor",
   "description": "Hamburg family company founded in 1879 as a tax-free supplier to ships. Now one of the world's top five travel retailers, with €4.3B revenue (2024).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lotte-duty-free",
@@ -7172,7 +7480,11 @@
     "type": "deal",
     "label": "Guam concession rival"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Other Specialty Retail",
+   "basis": "inferred"
+  }
  },
  {
   "id": "britesmile",
@@ -7180,7 +7492,11 @@
   "type": "entity",
   "kind": "Teeth-whitening company",
   "description": "Public tooth-whitening company whose largest shareholder was Pilaro-family trust vehicle LCO Investments (about 44.5% in the mid-2000s).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Health Care Supplies",
+   "basis": "inferred"
+  }
  },
  {
   "id": "ron-brown-scholar-program",
@@ -7188,7 +7504,11 @@
   "type": "entity",
   "kind": "Scholarship program",
   "description": "Scholarship for high-achieving African-American students, founded in 1996 by Anthony Pilaro in memory of Commerce Secretary Ron Brown.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "stanford-university",
@@ -7196,7 +7516,11 @@
   "type": "entity",
   "kind": "University",
   "description": "Private research university. General Atlantic's Steven Denning chaired its board of trustees.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "a-and-m-records",
@@ -7215,7 +7539,11 @@
     "type": "capital",
     "label": "JV with Jam & Lewis 1991"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "rondor-music",
@@ -7234,7 +7562,11 @@
     "type": "ownership",
     "label": "held Stax publishing"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "polygram",
@@ -7263,7 +7595,11 @@
     "type": "supply",
     "label": "distributed via A&M 1991–93"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "universal-music-group",
@@ -7292,7 +7628,11 @@
     "type": "ownership",
     "label": "absorbed Tabu 1999"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "official"
+  }
  },
  {
   "id": "boston-ventures",
@@ -7306,7 +7646,11 @@
     "type": "ownership",
     "label": "owned 1988–93"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "jobete-music",
@@ -7320,7 +7664,11 @@
     "type": "ownership",
     "label": "sister company"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "emi-music-publishing",
@@ -7334,7 +7682,11 @@
     "type": "ownership",
     "label": "acquired 1997–2004"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "atlantic-records",
@@ -7348,7 +7700,11 @@
     "type": "supply",
     "label": "distributed 1965–68; kept masters"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "warner-music-group",
@@ -7372,7 +7728,11 @@
     "type": "capital",
     "label": "seed loan & distribution 1973"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "official"
+  }
  },
  {
   "id": "stax-records",
@@ -7386,7 +7746,11 @@
     "type": "deal",
     "label": "brokered 1968 sale · 10%"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cbs-records",
@@ -7410,7 +7774,11 @@
     "type": "supply",
     "label": "distribution 1978–91"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "sony-music",
@@ -7439,7 +7807,11 @@
     "type": "ownership",
     "label": "catalog via BMG"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "arista-records",
@@ -7458,7 +7830,11 @@
     "type": "supply",
     "label": "distribution 1978–83"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "laface-records",
@@ -7466,7 +7842,11 @@
   "type": "entity",
   "kind": "Record label",
   "description": "Atlanta label founded in 1989 by L.A. Reid and Babyface as a joint venture with Arista; home of TLC, Toni Braxton, OutKast and Usher.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "solar-records",
@@ -7474,7 +7854,11 @@
   "type": "entity",
   "kind": "Record label",
   "description": "Los Angeles R&B label that signed The Deele (with L.A. Reid and Babyface). Jam & Lewis first met Clarence Avant through it.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "flyte-tyme-productions",
@@ -7488,7 +7872,11 @@
     "type": "supply",
     "label": "S.O.S. Band, Cherrelle, O'Neal"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "perspective-records",
@@ -7496,7 +7884,11 @@
   "type": "entity",
   "kind": "Record label",
   "description": "Jam & Lewis's 1991 joint venture with A&M; its acts included Sounds of Blackness.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "philadelphia-international-records",
@@ -7510,7 +7902,11 @@
     "type": "origin",
     "label": "took over its Broad St building"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "mighty-three-music",
@@ -7518,7 +7914,11 @@
   "type": "entity",
   "kind": "Music publisher",
   "description": "Gamble, Huff and Thom Bell's publishing company; Warner Chappell bought it in 1990.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "universal-companies",
@@ -7526,7 +7926,11 @@
   "type": "entity",
   "kind": "Nonprofit developer",
   "description": "Kenny Gamble's South Philadelphia nonprofit for housing, charter schools and economic development; it has handled more than $1.5B of development.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cameo-parkway-records",
@@ -7534,7 +7938,11 @@
   "type": "entity",
   "kind": "Record label",
   "description": "Philadelphia label that collapsed in 1968. Neil Bogart ran its Michigan office, and its building later housed Philadelphia International.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "casablanca-records",
@@ -7548,7 +7956,11 @@
     "type": "origin",
     "label": "founded by ex-Buddah team"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "bellmark-records",
@@ -7556,7 +7968,11 @@
   "type": "entity",
   "kind": "Record label",
   "description": "Al Bell's 1989 label ('Whoomp! There It Is'); bankrupt in 1997, and its assets sold for $166K in 1999.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  }
  },
  {
   "id": "founders-national-bank",
@@ -7564,7 +7980,11 @@
   "type": "entity",
   "kind": "Bank",
   "description": "Los Angeles bank described as the first Black-owned national bank; shareholders included Jheryl Busby, Magic Johnson and Janet Jackson.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Regional Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "herb-alpert-foundation",
@@ -7572,7 +7992,11 @@
   "type": "entity",
   "kind": "Private foundation",
   "description": "Alpert's foundation for arts education; it gave $30M to endow UCLA's Herb Alpert School of Music (2007).",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "rock-and-roll-hall-of-fame",
@@ -7580,7 +8004,11 @@
   "type": "entity",
   "kind": "Institution",
   "description": "Co-founded and chaired by Ahmet Ertegun. Its non-performer award is named for him, and Gamble & Huff were its first recipients in 2008.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "keystone-foods",
@@ -7609,7 +8037,11 @@
     "type": "deal",
     "label": "distribution arm sold 2012"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "reyes-holdings",
@@ -7628,7 +8060,11 @@
     "type": "supply",
     "label": "Great Lakes Coca-Cola bottler"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Food Distributors",
+   "basis": "inferred"
+  }
  },
  {
   "id": "martin-brower",
@@ -7647,7 +8083,11 @@
     "type": "deal",
     "label": "bought 9 DCs 2018"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Food Distributors",
+   "basis": "inferred"
+  }
  },
  {
   "id": "golden-state-foods",
@@ -7676,7 +8116,11 @@
     "type": "deal",
     "label": "bought 2 DCs 2006"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "inferred"
+  }
  },
  {
   "id": "havi",
@@ -7700,7 +8144,11 @@
     "type": "deal",
     "label": "sold a DC 2006"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Air Freight & Logistics",
+   "basis": "inferred"
+  }
  },
  {
   "id": "simplot",
@@ -7719,7 +8167,11 @@
     "type": "capital",
     "label": "startup capital"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Agricultural Products & Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "micron-technology",
@@ -7727,7 +8179,11 @@
   "type": "entity",
   "kind": "Semiconductor maker",
   "description": "Boise memory-chip maker that J.R. Simplot backed early on, holding about 20% by 1994.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Semiconductors",
+   "basis": "official"
+  }
  },
  {
   "id": "franchise-realty",
@@ -7741,7 +8197,11 @@
     "type": "ownership",
     "label": "McDonald's land arm"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Real Estate Development",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cargill",
@@ -7760,7 +8220,11 @@
     "type": "deal",
     "label": "rival bidder 2018"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Agricultural Products & Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "lindsay-goldberg",
@@ -7779,7 +8243,11 @@
     "type": "ownership",
     "label": "controlling stake 2024"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "yucaipa",
@@ -7787,7 +8255,11 @@
   "type": "entity",
   "kind": "Private equity firm",
   "description": "Ron Burkle's Los Angeles buyout firm, founded 1986. It owned 70% of Golden State Foods from 1998 until 2004.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "wetterau-inc",
@@ -7795,7 +8267,11 @@
   "type": "entity",
   "kind": "Grocery wholesaler",
   "description": "St. Louis family food distributor founded in 1869 and sold to SuperValu for $1.1B in 1992. The sale funded Wetterau Associates.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Food Distributors",
+   "basis": "inferred"
+  }
  },
  {
   "id": "marfrig",
@@ -7809,7 +8285,11 @@
     "type": "deal",
     "label": "sold Keystone logistics 2012"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "official"
+  }
  },
  {
   "id": "tyson-foods",
@@ -7817,7 +8297,11 @@
   "type": "entity",
   "kind": "Protein processor",
   "description": "U.S. meat company that bought Keystone Foods from Marfrig in 2018 for $2.16B, beating bids from Cargill and others.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Packaged Foods & Meats",
+   "basis": "official"
+  }
  },
  {
   "id": "ronald-mcdonald-house-charities",
@@ -7831,7 +8315,11 @@
     "type": "civic",
     "label": "system charity"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "epic-systems",
@@ -7845,7 +8333,11 @@
     "type": "origin",
     "label": "founded in Madison"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Health Care Technology",
+   "basis": "inferred"
+  }
  },
  {
   "id": "peoplesoft",
@@ -7859,7 +8351,11 @@
     "type": "deal",
     "label": "hostile takeover 2005"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "workday",
@@ -7878,7 +8374,11 @@
     "type": "capital",
     "label": "early backer"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "official"
+  }
  },
  {
   "id": "oracle",
@@ -7886,7 +8386,11 @@
   "type": "entity",
   "kind": "Enterprise software",
   "description": "Database and applications giant whose 2003–2005 hostile takeover of PeopleSoft prompted the founding of Workday.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "official"
+  }
  },
  {
   "id": "trilogy",
@@ -7900,7 +8404,11 @@
     "type": "ownership",
     "label": "sister holding company"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "esw-capital",
@@ -7908,7 +8416,11 @@
   "type": "entity",
   "kind": "Software holding company",
   "description": "Joe Liemandt's private buyer of mature software companies (more than 100 per Forbes), run for maintenance cash flow with Crossover contractors.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "alpha-school",
@@ -7916,7 +8428,11 @@
   "type": "entity",
   "kind": "Private school network",
   "description": "Austin-founded (2014) school built on two-hour AI-tutored academic days, funded by about $1B from Joe Liemandt.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Education Services",
+   "basis": "inferred"
+  }
  },
  {
   "id": "esri",
@@ -7930,7 +8446,11 @@
     "type": "origin",
     "label": "Harvard graphics lab roots"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "vista-equity-partners",
@@ -7938,7 +8458,11 @@
   "type": "entity",
   "kind": "Private equity firm",
   "description": "Austin-based enterprise-software buyout firm founded in 2000 by Robert F. Smith, with about $100B under management.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "reynolds-and-reynolds",
@@ -7946,7 +8470,11 @@
   "type": "entity",
   "kind": "Auto-dealer software",
   "description": "Dealership-management software company taken private in 2006 by Robert Brockman's Universal Computer Systems for about $2.8B.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "barr-systems",
@@ -7954,7 +8482,11 @@
   "type": "entity",
   "kind": "Output-management software",
   "description": "Gainesville, FL print/output-management software firm founded in 1983 by SAS co-founder Anthony Barr.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Application Software",
+   "basis": "inferred"
+  }
  },
  {
   "id": "cary-academy",
@@ -7973,7 +8505,11 @@
     "type": "civic",
     "label": "SAS scholarship program"
    }
-  ]
+  ],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "giving-pledge",
@@ -7981,7 +8517,11 @@
   "type": "entity",
   "kind": "Philanthropic pledge",
   "description": "Commitment by the very wealthy to give away the majority of their wealth. Signers in this cluster include the Salls, Faulkner, the Dangermonds, Smith and the Bhusris.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "nature-conservancy",
@@ -7989,7 +8529,11 @@
   "type": "entity",
   "kind": "Conservation nonprofit",
   "description": "U.S. conservation group. John Sall sat on its board (2002–2011), and the Dangermonds gave its largest-ever gift, $165M in 2017.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "university-of-wisconsin",
@@ -7997,7 +8541,11 @@
   "type": "entity",
   "kind": "University",
   "description": "Where Judy Faulkner earned her computer science master's. Epic started in Madison.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "goldman-sachs",
@@ -8005,7 +8553,11 @@
   "type": "entity",
   "kind": "Investment bank",
   "description": "Wall Street bank where Robert F. Smith and Brian Sheth both worked in technology M&A before Vista.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Investment Banking & Brokerage",
+   "basis": "official"
+  }
  },
  {
   "id": "greylock-partners",
@@ -8013,7 +8565,11 @@
   "type": "entity",
   "kind": "Venture capital firm",
   "description": "Silicon Valley VC firm. Aneel Bhusri has been a partner since 1999, and it co-funded Workday.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
+   "basis": "inferred"
+  }
  },
  {
   "id": "maddies-fund",
@@ -8021,7 +8577,11 @@
   "type": "entity",
   "kind": "Private foundation",
   "description": "Animal-welfare foundation endowed with $200M by Dave and Cheryl Duffield in 1994 and named for their schnauzer.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  },
  {
   "id": "morehouse-college",
@@ -8029,6 +8589,10 @@
   "type": "entity",
   "kind": "HBCU",
   "description": "Atlanta men's college whose 2019 graduating class had its student debt (~$34M) paid off by Robert F. Smith.",
-  "connections": []
+  "connections": [],
+  "gics": {
+   "sub": "Non-market",
+   "basis": "inferred"
+  }
  }
 ]
