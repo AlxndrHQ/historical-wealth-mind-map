@@ -174,6 +174,12 @@ mark{background:var(--accent-soft);color:inherit;border-radius:1px;padding:0 1px
 .subh.sech button{background:none;border:0;padding:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--text)}
 .subh.sech button:hover{color:var(--accent)}
 .subh .n{color:var(--dim)}
+.fnote{max-width:1120px;margin:-6px auto 22px;font:500 10.5px/1.7 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fnote button,.clearf{background:none;border:0;border-bottom:1px solid var(--accent);padding:0;color:var(--accent);font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}
+.clearf{font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;align-self:center}
+.who li.out{padding:8px 0 2px;font-size:11.5px;line-height:1.7;color:var(--dim)}
+.who li.out button{display:inline;width:auto;border:0;padding:0;background:none;color:var(--muted);font:inherit}
+.who li.out button:hover{color:var(--accent)}
 .empty-sec{max-width:1120px;margin:0 auto;font:italic 400 14.5px var(--serif);color:var(--dim)}
 .indh{margin:30px 0 0;font:400 21px/1.2 var(--serif);letter-spacing:-.01em}
 .indh button{background:none;border:0;padding:0;font:inherit;color:var(--text)}
@@ -292,6 +298,7 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
       <div class="fgroup"><span class="lbl">Archetype</span><div class="chips" id="catChips"></div></div>
       <div class="fgroup"><span class="lbl">Net worth</span><div class="seg" id="tierSeg" role="group" aria-label="Net worth tier"></div></div>
       <div class="fgroup"><span class="lbl" title="GICS sector of each person's primary business, with its sector ETF">Sector</span><div class="seg" id="secChips" role="group" aria-label="Sector"></div></div>
+      <button class="clearf" id="clearBtn" data-clear hidden>Clear filters ✕</button>
     </div>
   </header>
 
@@ -22701,6 +22708,17 @@ const terms = () => state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
 const matchQ = n => { const t=terms(); return !t.length || t.every(w=>n._hay.includes(w)); };
 const passSector = p => state.sector==='all' || p._sector===state.sector;
 const passEra = p => state.era==='all' || p._era===state.era;
+const narrowedNow = () => state.cat!=='all'||state.tier!=='all'||state.sector!=='all'||state.era!=='all'||terms().length>0;
+function filterNote(){
+  if(!narrowedNow()) return '';
+  const bits=[state.era!=='all'?'Era '+state.era:'', state.cat!=='all'?state.cat:'', state.tier!=='all'?state.tier:'',
+    state.sector!=='all'?'Sector '+(SECTORS[state.sector]?.etf||state.sector):'', terms().length?'search “'+state.q.trim()+'”':''].filter(Boolean);
+  return `<p class="fnote">Filtered to ${esc(bits.join(' · '))}: showing ${visibleProfiles().length} of ${DATA.profiles.length} people. <button data-clear>Clear filters</button></p>`;
+}
+function clearFilters(){
+  state.cat='all'; state.tier='all'; state.sector='all'; state.era='all'; state.q=''; document.getElementById('q').value=''; refresh();
+}
+document.addEventListener('click',e=>{ if(e.target.closest('[data-clear]')) clearFilters(); });
 const visibleProfiles = () => DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&passSector(p)&&passEra(p)&&matchQ(p));
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function hl(text){
@@ -22757,6 +22775,7 @@ function renderChips(){
   const tb = DATA.profiles.filter(p=>passCat(p)&&passSector(p)&&passEra(p)&&matchQ(p));
   document.getElementById('tierSeg').innerHTML = [['all','All'],...Object.keys(TIERS).map(t=>[t,t])].map(([k,l])=>
     `<button data-tier="${esc(k)}" aria-pressed="${state.tier===k}">${esc(l)} <span class="n">${k==='all'?tb.length:tb.filter(p=>p.netWorthTier===k).length}</span></button>`).join('');
+  document.getElementById('clearBtn').hidden=!narrowedNow();
   const sb = DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&passEra(p)&&matchQ(p));
   const eb = DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&passSector(p)&&matchQ(p));
   document.getElementById('eraSeg').innerHTML = [['all','All'],['today','Today'],['historical','Historical']].map(([k,l])=>
@@ -23000,13 +23019,14 @@ function renderGrid(){
   const title = state.cat==='all' ? 'All Profiles' : state.cat;
   document.getElementById('grid').innerHTML = `
     <div class="gridhead"><h2>${esc(title)}</h2><span class="meta">${list.length} profile${list.length===1?'':'s'} · ${state.tier==='all'?'All tiers':esc(state.tier)} · by sector</span></div>
+    ${filterNote()}
     ${groups.map(([sec,ps])=>`<h3 class="subh sech"><button data-open="sector:${esc(sec)}">${esc(sectorName(sec))}</button><span class="n">${ps.length}</span></h3>
       ${ps.length?`<div class="cards">${ps.map(card).join('')}</div>`:'<p class="empty-sec">No one mapped here yet.</p>'}`).join('') || '<p class="empty-sec">No profiles match these filters.</p>'}
     <p class="foot">${esc(META.disclaimer)}</p>`;
 }
 function renderOverlaps(){
   const ok=new Set(visibleProfiles().map(p=>p.id));
-  const hubs=[...DATA.ovl.hubs.entries()].map(([id,m])=>({id,ppl:[...m.entries()].filter(([p])=>ok.has(p))}))
+  const hubs=[...DATA.ovl.hubs.entries()].map(([id,m])=>({id,ppl:[...m.entries()].filter(([p])=>ok.has(p)),out:[...m.keys()].filter(p=>!ok.has(p))}))
     .filter(h=>h.ppl.length>=2).sort((a,b)=>b.ppl.length-a.ppl.length||a.id.localeCompare(b.id));
   const ties=DATA.links.filter(l=>l.type!=='parallel'&&ok.has(l.source)&&ok.has(l.target));
   const people=new Set(); hubs.forEach(h=>h.ppl.forEach(([p])=>people.add(p))); ties.forEach(l=>{people.add(l.source);people.add(l.target);});
@@ -23014,10 +23034,11 @@ function renderOverlaps(){
     <span class="via">${path.length>2?esc('via '+path.slice(1,-1).map(id=>DATA.byId[id].name).join(' → ')):esc(linkBetween(path[0],path[1])?.label||'')}</span></button></li>`; };
   document.getElementById('grid').innerHTML = `
     <div class="gridhead"><h2>Where the Businesses Connect</h2><span class="meta">${hubs.length} shared hub${hubs.length===1?'':'s'} · ${people.size} people connected · ${ties.length} direct tie${ties.length===1?'':'s'}</span></div>
+    ${filterNote()}
     <p class="lede">A company, fund or institution counts as shared when two or more people reach it through ownership, supply, money, board, deal or family links, up to ${OVL_HOPS} steps away, never routed through a university or a very large hub. Thematic parallels are not counted. Click any name to open its dossier, or switch on “Overlaps only” to see these paths on the map.</p>
-    <div class="hubs">${hubs.map(({id,ppl})=>{ const e=DATA.byId[id]; return `<article class="hub">
+    <div class="hubs">${hubs.map(({id,ppl,out})=>{ const e=DATA.byId[id]; return `<article class="hub">
       <div class="hh"><div><button data-open="${esc(id)}">${hl(e.name)}</button><span class="kind">${esc(e.kind||'Entity')}${e._sector?' · '+esc(sectorTag(e)):''}</span></div><span class="cnt">${ppl.length} people</span></div>
-      <ul class="who">${ppl.sort((a,b)=>a[1].length-b[1].length).map(who).join('')}</ul></article>`; }).join('') || '<p style="color:var(--muted)">No shared companies among the profiles that match these filters.</p>'}</div>
+      <ul class="who">${ppl.sort((a,b)=>a[1].length-b[1].length).map(who).join('')}${out.length?`<li class="out">Outside current filters: ${out.map(p=>`<button data-open="${esc(p)}">${esc(DATA.byId[p].name)}</button>`).join(', ')}</li>`:''}</ul></article>`; }).join('') || '<p style="color:var(--muted)">No shared companies among the profiles that match these filters.</p>'}</div>
     ${crossHTML()}
     ${ties.length?`<h3 class="subh">Direct ties between people</h3><div class="ties">${ties.map(l=>`<div class="tie">
       <button data-open="${esc(l.source)}">${hl(DATA.byId[l.source].name)}</button><span class="rel">— ${esc(l.label||EDGE[l.type].label)} (${esc(EDGE[l.type].label.toLowerCase())}) —</span>
