@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Quiet Capital — Mind Map &amp; Executive Briefing</title>
+<title>Algos &amp; Capital — Mind Map &amp; Executive Briefing</title>
 <meta name="description" content="Interactive mind map and executive dossiers on quiet millionaires, billionaires, and historic Black business visionaries: origins, capital engines, and asset-protection models.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   --bg:#FAFAF7; --bg2:#F3F2EC; --text:#1F1D18; --text2:#1f1d18d9; --muted:#6B6960; --dim:#9C998E;
   --line:#E8E6DF; --line2:#D8D5CB; --accent:#8A5A2B; --accent-soft:#8a5a2b1a;
   --edge:#C4C1B6; --edge-strong:#8F8C82;
-  --c-op:#3E6A8A; --c-inv:#6B5B9A; --c-his:#8A5A2B; --c-tech:#3C7A5E;
+  --c-op:#3E6A8A; --c-inv:#6B5B9A; --c-his:#8A5A2B; --c-bhis:#9B3D2E; --c-tech:#3C7A5E;
   --doc:#3C7A5E; --pattern:#8A5A2B; --scrim:#1f1d1826;
   --serif:'Iowan Old Style','Apple Garamond',Georgia,serif;
   --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
@@ -28,7 +28,7 @@
     --bg:#0E0E10; --bg2:#151518; --text:#E8E6DF; --text2:#e8e6dfd9; --muted:#7A7A82; --dim:#56565D;
     --line:#26262B; --line2:#34343A; --accent:#C9A875; --accent-soft:#c9a8751f;
     --edge:#36363D; --edge-strong:#5E5E66;
-    --c-op:#86A8C4; --c-inv:#A99BD3; --c-his:#C9A875; --c-tech:#7FB89B;
+    --c-op:#86A8C4; --c-inv:#A99BD3; --c-his:#C9A875; --c-bhis:#E0907A; --c-tech:#7FB89B;
     --doc:#7FB89B; --pattern:#C9A875; --scrim:#00000099;
     color-scheme:dark;
   }
@@ -37,7 +37,7 @@
   --bg:#0E0E10; --bg2:#151518; --text:#E8E6DF; --text2:#e8e6dfd9; --muted:#7A7A82; --dim:#56565D;
   --line:#26262B; --line2:#34343A; --accent:#C9A875; --accent-soft:#c9a8751f;
   --edge:#36363D; --edge-strong:#5E5E66;
-  --c-op:#86A8C4; --c-inv:#A99BD3; --c-his:#C9A875; --c-tech:#7FB89B;
+  --c-op:#86A8C4; --c-inv:#A99BD3; --c-his:#C9A875; --c-bhis:#E0907A; --c-tech:#7FB89B;
   --doc:#7FB89B; --pattern:#C9A875; --scrim:#00000099;
   color-scheme:dark;
 }
@@ -107,6 +107,8 @@ svg.zoomed .elabel{opacity:.85}
 .node.tax-sector .box{fill:var(--bg);stroke:var(--text);stroke-width:1}
 .node.tax-sector text{font:600 11px var(--mono);letter-spacing:.14em;fill:var(--text);stroke:none}
 .node.tax-sector text.tax-sub{font:400 12px var(--serif);letter-spacing:0;fill:var(--muted);stroke:var(--bg)}
+.node.tax-industry .idot{fill:var(--muted)}
+.node.tax-industry text{font:400 11.5px var(--serif);fill:var(--text2)}
 .node.tax-sub .dot{fill:var(--bg);stroke:var(--muted)}
 .node.tax-sub text{font:italic 400 11px var(--serif);fill:var(--muted)}
 .node .minor{opacity:0;transition:opacity .2s}
@@ -166,6 +168,16 @@ svg.zoomed .node .minor,.node:hover .minor,.node.nb .minor,.node.sel .minor{opac
 .badge::before{content:"› ";color:var(--accent)}
 mark{background:var(--accent-soft);color:inherit;border-radius:1px;padding:0 1px}
 .foot{max-width:1120px;margin:28px auto 0;font-size:11.5px;color:var(--dim)}
+.subh.sech{margin-top:36px}
+.subh.sech:first-of-type{margin-top:8px}
+.subh.sech button{background:none;border:0;padding:0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--text)}
+.subh.sech button:hover{color:var(--accent)}
+.subh .n{color:var(--dim)}
+.empty-sec{max-width:1120px;margin:0 auto;font:italic 400 14.5px var(--serif);color:var(--dim)}
+.indh{margin:30px 0 0;font:400 21px/1.2 var(--serif);letter-spacing:-.01em}
+.indh button{background:none;border:0;padding:0;font:inherit;color:var(--text)}
+.indh button:hover{color:var(--accent)}
+.indh+.sec{margin-top:12px}
 
 /* ============ OVERLAPS ============ */
 .lede{max-width:1120px;margin:0 auto 26px;color:var(--text2);font:400 16.5px/1.6 var(--serif)}
@@ -261,7 +273,7 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
 <div id="app">
   <header class="top">
     <div class="row1">
-      <div class="brand"><h1>Quiet Capital</h1><small>Mind Map · Executive Briefing</small></div>
+      <div class="brand"><h1>Algos &amp; Capital</h1><small>Mind Map · Executive Briefing</small></div>
       <label class="search" aria-label="Search">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         <input id="q" type="search" placeholder="Search names, strategies, industries…" autocomplete="off" spellcheck="false">
@@ -314,7 +326,7 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
    ---------------------------------------------------------------------
    PROFILE (required):
      id, name, type ("operator"|"investor"|"historic"|"tech"),
-     category ("B2B Operators"|"Capital Allocators"|"Historic Visionaries"|"Tech Compounders"),
+     category ("B2B Operators"|"Capital Allocators"|"Historical Visionaries"|"Black Historical Visionaries"|"Tech Compounders"),
      netWorthTier ("$500K-$5M"|"$5M-$100M"|"$100M-$500M"|"$500M-$1B"|"$1B+"),
      humbleBeginnings, breakthrough, shieldingStrategy, industry,
      originBadge, engineBadge, capitalBadge,
@@ -412,7 +424,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "ag-gaston",
   "name": "A.G. Gaston",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$100M-$500M",
   "humbleBeginnings": "Grandson of formerly enslaved people, born in Demopolis, Alabama. After Army service in World War I he worked in mines run by Tennessee Coal, Iron & Railroad near Birmingham, selling boxed lunches to fellow miners and lending them money at 25% interest.",
   "breakthrough": "Turned a miners' burial society into a Black-owned conglomerate: Booker T. Washington Insurance, Citizens Federal Savings & Loan, funeral homes, a business college, the Gaston Motel and Birmingham radio.",
@@ -506,7 +518,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "clarence-avant",
   "name": "Clarence Avant",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$100M-$500M",
   "humbleBeginnings": "Born in Climax, North Carolina, the oldest of eight. He attended a one-room school through eighth grade, moved to New Jersey in 1947, and became manager of Teddy P's Lounge, a Newark nightclub.",
   "breakthrough": "Brokered record deals, label sales, endorsements and corporate mergers behind the scenes. His Venture Records (1967) was an early joint venture between a Black executive and a major label, and in 1973 he bought KAGB-FM, LA's first Black-owned FM station.",
@@ -937,7 +949,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "john-h-johnson",
   "name": "John H. Johnson",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$100M-$500M",
   "tierBasis": "reported",
   "peakWealth": "~$500M (Forbes, 1982 est.); ~$150M (1990 est.)",
@@ -1286,7 +1298,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "george-e-johnson",
   "name": "George E. Johnson Sr.",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "He controlled a public company with more than $31M in annual sales by 1974 and also founded a bank. No personal net-worth figure was published; the tier reflects the value of his controlling stake at peak.",
@@ -1463,7 +1475,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "percy-sutton",
   "name": "Percy Sutton",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "No published personal figure. Inner City Broadcasting had about $59M in revenue at its peak, and its stations later sold for $180M (2012), though under heavy debt.",
@@ -1719,7 +1731,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "sb-fuller",
   "name": "S.B. Fuller",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "His company peaked at about $18M in annual sales in the 1950s, and he also owned newspapers, a theater and a department store. No exact personal figure was published.",
@@ -1798,7 +1810,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "madam-cj-walker",
   "name": "Madam C.J. Walker",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "peakWealth": "$500K–$1M at death (1919)",
@@ -1878,7 +1890,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "annie-malone",
   "name": "Annie Turnbo Malone",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "Described as a multimillionaire by the 1920s; she paid nearly $40,000 in income tax in 1924, reportedly the highest in Missouri. Even $1M in the 1920s is more than $15M in today's dollars.",
@@ -1952,7 +1964,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "alonzo-herndon",
   "name": "Alonzo Herndon",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "Known as Atlanta's first Black millionaire. Real estate alone was valued at nearly $325,000 at his death in 1927, plus control of Atlanta Life. $1M in 1927 is roughly $18M today.",
@@ -2024,7 +2036,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "maggie-lena-walker",
   "name": "Maggie Lena Walker",
@@ -2117,7 +2129,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "robert-reed-church",
   "name": "Robert Reed Church Sr.",
@@ -2201,7 +2213,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "anthony-overton",
   "name": "Anthony Overton",
@@ -2291,7 +2303,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "jesse-binga",
   "name": "Jesse Binga",
@@ -2371,7 +2383,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "robert-abbott",
   "name": "Robert S. Abbott",
@@ -2459,7 +2471,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "james-forten",
   "name": "James Forten",
@@ -2534,7 +2546,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "biddy-mason",
   "name": "Bridget \"Biddy\" Mason",
@@ -2604,7 +2616,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "thomy-lafon",
   "name": "Thomy Lafon",
@@ -2682,7 +2694,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
  },
  {
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "originBadge": "Historic Pioneer",
   "id": "jeremiah-hamilton",
   "name": "Jeremiah G. Hamilton",
@@ -3318,7 +3330,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "shin-kyuk-ho",
   "name": "Shin Kyuk-ho",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$1B+",
   "tierBasis": "reported",
   "humbleBeginnings": "Born in Korea in 1921, he stowed away to Japan in 1941 to study chemical engineering at Waseda. His first factory was destroyed in wartime air raids, and in 1948 he started Lotte selling chewing gum.",
@@ -3404,7 +3416,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "berry-gordy",
   "name": "Berry Gordy",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$100M-$500M",
   "tierBasis": "reported",
   "wealthNote": "Celebrity Net Worth puts him at $400 million. That fits the documented exits: $61M for Motown in 1988 and $332M for Jobete paid by EMI in three tranches from 1997 to 2004.",
@@ -3509,7 +3521,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "jerry-moss",
   "name": "Jerry Moss",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$500M-$1B",
   "tierBasis": "reported",
   "wealthNote": "Celebrity Net Worth reported $700 million at his death in 2023. Over the years, the partners received $500M from PolyGram, a $200M settlement and about $400M in stock for Rondor.",
@@ -3607,7 +3619,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "herb-alpert",
   "name": "Herb Alpert",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$500M-$1B",
   "tierBasis": "reported",
   "wealthNote": "Wikipedia cites an estimate of $850 million (2025), and Celebrity Net Worth says $650 million. Both put him in this tier.",
@@ -3710,7 +3722,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "ahmet-ertegun",
   "name": "Ahmet Ertegun",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$100M-$500M",
   "tierBasis": "reported",
   "wealthNote": "Celebrity Net Worth puts his net worth at $300 million when he died in 2006. Most of it came from Warner stock received in the 1967 sale, plus art and real estate.",
@@ -4213,7 +4225,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "kenny-gamble",
   "name": "Kenny Gamble",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "No reliable published figure exists. The estimate rests on co-ownership of Philadelphia International Records (more than 170 gold and platinum records) and Mighty Three Music publishing, sold to Warner Chappell in 1990.",
@@ -4319,7 +4331,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "leon-huff",
   "name": "Leon Huff",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "No reliable published figure exists. The estimate rests on his co-ownership of PIR and of Mighty Three Music (sold to Warner Chappell in 1990), plus writer royalties on more than 3,500 songs.",
@@ -4407,7 +4419,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "neil-bogart",
   "name": "Neil Bogart",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "No reliable published figure exists. PolyGram paid $15M for half of Casablanca in 1977 and bought the rest in 1980; he used the proceeds to start Boardwalk, then died at 39.",
@@ -4622,7 +4634,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "al-bell",
   "name": "Al Bell",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Black Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "Low-confidence estimate; no published figure. He owned Stax (one of the largest Black-owned businesses of the 1970s) before it went bankrupt in 1975, and Bellmark's 4x-platinum 'Whoomp!' came before Bellmark's own 1997 bankruptcy.",
@@ -5245,7 +5257,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
    "Jack Simplot"
   ],
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$1B+",
   "tierBasis": "reported",
   "peakWealth": "~$3.2B (Forbes 400, 2006)",
@@ -5328,7 +5340,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "harry-sonneborn",
   "name": "Harry J. Sonneborn",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "He sold his McDonald's stock for about $3 million when he left in 1967, roughly $28M in today's dollars. Claims that he was later worth ~$100M come from a memorial biography and are not corroborated, so the lower tier is used.",
@@ -5759,7 +5771,7 @@ const EMBEDDED_DATA = /*DATA-START*/[
   "id": "anthony-barr",
   "name": "Anthony J. Barr",
   "type": "historic",
-  "category": "Historic Visionaries",
+  "category": "Historical Visionaries",
   "netWorthTier": "$5M-$100M",
   "tierBasis": "estimated",
   "wealthNote": "No published net-worth figure. He sold his 40% SAS stake for $340,000 in 1979. The tier rests on four decades of owning the private Barr Systems and a $1M gift he and his wife made in 2021. Low-to-moderate confidence.",
@@ -8938,10 +8950,11 @@ const META = {
 const CATS = {
   'B2B Operators':        {short:'B2B / Supply Chain',  color:'var(--c-op)'},
   'Capital Allocators':   {short:'Capital Allocator',   color:'var(--c-inv)'},
-  'Historic Visionaries': {short:'Historic Visionary',  color:'var(--c-his)'},
+  'Black Historical Visionaries': {short:'Black Historical Visionary', color:'var(--c-bhis)'},
+  'Historical Visionaries':       {short:'Historical Visionary',       color:'var(--c-his)'},
   'Tech Compounders':     {short:'Tech Compounder',     color:'var(--c-tech)'}
 };
-const TYPE_TO_CAT = {operator:'B2B Operators', investor:'Capital Allocators', historic:'Historic Visionaries', tech:'Tech Compounders'};
+const TYPE_TO_CAT = {operator:'B2B Operators', investor:'Capital Allocators', historic:'Historical Visionaries', tech:'Tech Compounders'};
 const TIERS = {'$500K-$5M':{r:9,rank:-1}, '$5M-$100M':{r:11,rank:0}, '$100M-$500M':{r:15,rank:1}, '$500M-$1B':{r:20,rank:2}, '$1B+':{r:26,rank:3}};
 const EDGE = {
   ownership: {label:'Ownership / founder', color:'#94A3B8'},
@@ -8964,13 +8977,16 @@ const ENTITY_COLOR = 'var(--edge-strong)';
 /* GICS taxonomy. Sector ETFs are the Select Sector SPDRs; industry ETFs are common examples, not exhaustive.
    GICS[subIndustry] = [industry, sector, industryETF?] */
 const SECTORS = {
+  'Energy':{etf:'XLE',short:'Energy'}, 'Materials':{etf:'XLB',short:'Materials'}, 'Industrials':{etf:'XLI',short:'Industrials'},
   'Consumer Discretionary':{etf:'XLY',short:'Cons. Discretionary'}, 'Consumer Staples':{etf:'XLP',short:'Cons. Staples'},
-  'Industrials':{etf:'XLI',short:'Industrials'}, 'Real Estate':{etf:'XLRE',short:'Real Estate'},
-  'Financials':{etf:'XLF',short:'Financials'}, 'Non-market':{etf:'',short:'Non-market'},
-  'Information Technology':{etf:'XLK',short:'Technology'}, 'Health Care':{etf:'XLV',short:'Health Care'},
-  'Communication Services':{etf:'XLC',short:'Comm. Services'}, 'Energy':{etf:'XLE',short:'Energy'},
-  'Materials':{etf:'XLB',short:'Materials'}, 'Utilities':{etf:'XLU',short:'Utilities'}
+  'Health Care':{etf:'XLV',short:'Health Care'}, 'Financials':{etf:'XLF',short:'Financials'},
+  'Information Technology':{etf:'XLK',short:'Technology'}, 'Communication Services':{etf:'XLC',short:'Comm. Services'},
+  'Utilities':{etf:'XLU',short:'Utilities'}, 'Real Estate':{etf:'XLRE',short:'Real Estate'},
+  'Non-market':{etf:'',short:'Non-market'}
 };
+// ring order for the By Sector layout keeps sectors that trade with each other next to each other
+const SECTOR_RING = ['Consumer Discretionary','Consumer Staples','Industrials','Materials','Energy','Utilities','Real Estate','Financials','Non-market','Information Technology','Health Care','Communication Services'];
+const subLabel = sb => sb==='Non-market' ? 'Universities, foundations & civic' : sb;
 const GICS = {
   'Restaurants':['Hotels, Restaurants & Leisure','Consumer Discretionary'],
   'Hotels, Resorts & Cruise Lines':['Hotels, Restaurants & Leisure','Consumer Discretionary'],
@@ -9046,10 +9062,11 @@ function normalize(raw){
     const pick=biz.find(x=>x.l.type==='ownership')||biz[0];
     if(pick){ p._primary=pick.o.id; p._sector=pick.o._sector; p._sub=pick.o._sub; } else p._sector='Non-market';
   });
+  Object.keys(SECTORS).forEach(sec=>{ byId['sector:'+sec]={id:'sector:'+sec, _kind:'tax', level:'sector', sector:sec, name:sectorName(sec)}; });
   entities.forEach(e=>{ if(!e._sector) return;
-    const sid='sector:'+e._sector, bid='sub:'+e._sub;
-    byId[sid] ||= {id:sid, _kind:'tax', level:'sector', sector:e._sector, name:sectorName(e._sector)};
-    byId[bid] ||= {id:bid, _kind:'tax', level:'sub', sector:e._sector, sub:e._sub, name:e._sub==='Non-market'?'Universities, foundations & civic':e._sub};
+    if(e._sector!=='Non-market' && e._ind!==e._sub)
+      byId['ind:'+e._ind] ||= {id:'ind:'+e._ind, _kind:'tax', level:'industry', sector:e._sector, industry:e._ind, name:e._ind};
+    byId['sub:'+e._sub] ||= {id:'sub:'+e._sub, _kind:'tax', level:'sub', sector:e._sector, industry:e._ind, sub:e._sub, name:subLabel(e._sub)};
   });
   const nbNames = id => links.filter(l=>l.source===id||l.target===id).map(l=>byId[l.source===id?l.target:l.source].name);
   profiles.forEach(p=>{ p._hay=[p.name,...(p.aliases||[]),p.category,p.industry,p.netWorthTier,p.originBadge,p.engineBadge,p.capitalBadge,
@@ -9201,7 +9218,7 @@ function renderChips(){
   document.getElementById('tierSeg').innerHTML = [['all','All'],...Object.keys(TIERS).map(t=>[t,t])].map(([k,l])=>
     `<button data-tier="${esc(k)}" aria-pressed="${state.tier===k}">${esc(l)} <span class="n">${k==='all'?tb.length:tb.filter(p=>p.netWorthTier===k).length}</span></button>`).join('');
   const sb = DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&matchQ(p));
-  const secs = Object.keys(SECTORS).filter(k=>DATA.profiles.some(p=>p._sector===k));
+  const secs = Object.keys(SECTORS).filter(k=>k!=='Non-market'||DATA.profiles.some(p=>p._sector===k));
   document.getElementById('secChips').innerHTML = [['all','All'],...secs.map(k=>[k,SECTORS[k].etf||'Non-mkt'])].map(([k,l])=>
     `<button data-sector="${esc(k)}" aria-pressed="${state.sector===k}" title="${esc(k==='all'?'All sectors':sectorName(k))}">${esc(l)} <span class="n">${k==='all'?sb.length:sb.filter(p=>p._sector===k).length}</span></button>`).join('');
 }
@@ -9281,18 +9298,19 @@ function renderMap(){
     return {...src, home, r:rFor(src), x:p?.x ?? cx+(Math.random()-.5)*120, y:p?.y ?? cy+(Math.random()-.5)*120};
   });
   G.links=links.map(l=>({...l}));
-  if(state.layout==='sector'){   // add sector-ETF hubs and sub-industry spokes for the visible companies
-    const add=new Map(), seen=new Set();
+  if(state.layout==='sector'){   // sector ETF → industry → sub-industry → company; people attach through their real links
+    const add=new Map(), seen=new Set(), tie=(x,y)=>{ const k=x+'>'+y; if(!seen.has(k)){ seen.add(k); G.links.push({source:x,target:y,type:'tax',label:''}); } };
+    G.sectors=SECTOR_RING.filter(sec=>sec!=='Non-market'||G.nodes.some(n=>n._sector==='Non-market'));
+    G.sectors.forEach(sec=>add.set('sector:'+sec,DATA.byId['sector:'+sec]));
     G.nodes.forEach(n=>{ if(n._kind!=='entity'||!n._sector) return;
-      const sid='sector:'+n._sector, bid='sub:'+n._sub;
-      add.set(sid,DATA.byId[sid]); add.set(bid,DATA.byId[bid]);
-      if(!seen.has(bid)){ seen.add(bid); G.links.push({source:sid,target:bid,type:'tax',label:''}); }
-      G.links.push({source:bid,target:n.id,type:'tax',label:''});
+      const sid='sector:'+n._sector, iid=DATA.byId['ind:'+n._ind]&&n._sector!=='Non-market'&&n._ind!==n._sub?'ind:'+n._ind:null, bid='sub:'+n._sub;
+      add.set(bid,DATA.byId[bid]);
+      if(iid){ add.set(iid,DATA.byId[iid]); tie(sid,iid); tie(iid,bid); } else tie(sid,bid);
+      tie(bid,n.id);
     });
-    const cnt=new Map(); G.nodes.forEach(n=>{ const s=n._sector; if(s) cnt.set(s,(cnt.get(s)||0)+1); });
-    G.sectors=Object.keys(SECTORS).filter(s=>cnt.has(s));
-    add.forEach(t=>{ const [x,y]=sectorCenter(t.sector,w,h); G.nodes.push({...t, r:t.level==='sector'?26:6, x, y}); });
+    add.forEach(t=>{ const [x,y]=sectorCenter(t.sector,w,h); G.nodes.push({...t, r:t.level==='sector'?26:t.level==='industry'?4:3, x:x+(Math.random()-.5)*40, y:y+(Math.random()-.5)*40}); });
   }
+
 
   const svg=d3.select(host).insert('svg',':first-child').attr('viewBox',[0,0,w,h]).attr('role','img').attr('aria-label','Network mind map');
   G.svg=svg;
@@ -9313,7 +9331,7 @@ function renderMap(){
       if(isHub(d)){ d.label=d.name.toUpperCase(); if(d.label.length>28) d.label=d.label.slice(0,27)+'…'; d.hw=d.label.length*CH/2+9; d.hh=9; }
       else { d.label=d.name.toUpperCase(); d.hw=d.hh=3.5; }
     } else if(d.level==='sector'){ d.label=SECTORS[d.sector].etf||'NON-MKT'; d.hw=d.label.length*7.6/2+12; d.hh=11; }
-    else if(d.level==='sub'){ d.r=3; }
+    else if(d.level==='sub'){ d.r=3; } else if(d.level==='industry'){ d.r=4; }
     if(d.hw) d.r=Math.max(d.hw,d.hh);
   });
   const reach=(n,ux,uy)=>n.hw ? Math.min(n.hw/Math.max(Math.abs(ux),1e-6), n.hh/Math.max(Math.abs(uy),1e-6)) : n.r;
@@ -9346,16 +9364,19 @@ function renderMap(){
   node.filter(d=>d._kind==='entity'&&!isHub(d)).append('text').attr('text-anchor','middle').attr('dy',d=>d.hh+11)
     .attr('class',crowded?'minor':null).text(d=>d.label);
   node.filter(d=>d.level==='sector').append('text').attr('class','tax-sub').attr('text-anchor','middle').attr('dy',d=>d.hh+16).text(d=>d.sector);
+  const ind=node.filter(d=>d.level==='industry');
+  ind.append('circle').attr('class','idot').attr('r',4);
+  ind.append('text').attr('text-anchor','middle').attr('dy',16).text(d=>d.name);
   const sub=node.filter(d=>d.level==='sub');
   sub.append('circle').attr('class','dot').attr('r',3);
-  sub.append('text').attr('text-anchor','middle').attr('dy',15).text(d=>d.name);
+  sub.append('text').attr('text-anchor','middle').attr('dy',15).attr('class',crowded?'minor':null).text(d=>d.name);
   node.filter(isHub).append('title').text(d=>`${d.name}: shared by ${d._shared} people`);
 
   G.sim=d3.forceSimulation(G.nodes)
     .force('link',d3.forceLink(G.links).id(d=>d.id)
-      .distance(l=>l.type==='tax'?(l.source.level==='sector'?70:40):l.type==='parallel'?220:(l.source._kind==='profile'||l.target._kind==='profile')?95:70)
+      .distance(l=>l.type==='tax'?(l.source.level==='sector'?62:l.source.level==='industry'?38:32):l.type==='parallel'?220:(l.source._kind==='profile'||l.target._kind==='profile')?95:70)
       .strength(l=>l.type==='tax'?.8:state.layout==='sector'?(l.type==='parallel'?0:.03):l.type==='parallel'?.05:SOFT.includes(l.type)?.25:.7))
-    .force('charge',d3.forceManyBody().strength(d=>d._kind==='profile'?-340:d.level==='sector'?-500:isHub(d)?-240:-110).distanceMax(600))
+    .force('charge',d3.forceManyBody().strength(d=>d._kind==='profile'?-340:d.level==='sector'?-500:d.level==='industry'?-160:isHub(d)?-240:-110).distanceMax(600))
     .force('collide',d3.forceCollide(d=>d._kind==='profile'?d.r+26:d.hw?d.hw*.7+10:12))
     .on('tick',()=>{
       link.attr('d',d=>{
@@ -9375,7 +9396,7 @@ function renderMap(){
 function applyLayout(reheat){
   if(!G.sim) return;
   const {w,h}=G, sim=G.sim;
-  const quad={'B2B Operators':[.3,.32],'Capital Allocators':[.7,.32],'Historic Visionaries':[.3,.72],'Tech Compounders':[.7,.72]};
+  const quad={'B2B Operators':[.25,.3],'Capital Allocators':[.75,.3],'Black Historical Visionaries':[.5,.75],'Historical Visionaries':[.18,.75],'Tech Compounders':[.82,.75]};
   const tierX={'$500K-$5M':.1,'$5M-$100M':.3,'$100M-$500M':.5,'$500M-$1B':.7,'$1B+':.9};
   sim.force('center', state.layout==='force' ? d3.forceCenter(w/2,h/2) : null);
   if(state.layout!=='sector') G.sectors=null;
@@ -9427,10 +9448,14 @@ function clearHot(){
    ===================================================================== */
 function renderGrid(){
   const list=visibleProfiles().sort((a,b)=>(TIERS[b.netWorthTier]?.rank||0)-(TIERS[a.netWorthTier]?.rank||0));
+  const narrowed=state.cat!=='all'||state.tier!=='all'||state.sector!=='all'||terms().length>0;
+  const groups=Object.keys(SECTORS).map(sec=>[sec,list.filter(p=>p._sector===sec)])
+    .filter(([sec,ps])=>ps.length||(!narrowed&&sec!=='Non-market'));
   const title = state.cat==='all' ? 'All Profiles' : state.cat;
   document.getElementById('grid').innerHTML = `
-    <div class="gridhead"><h2>${esc(title)}</h2><span class="meta">${list.length} profile${list.length===1?'':'s'} · ${state.tier==='all'?'All tiers':esc(state.tier)}</span></div>
-    <div class="cards">${list.map(card).join('') || '<p style="color:var(--muted)">No profiles match these filters.</p>'}</div>
+    <div class="gridhead"><h2>${esc(title)}</h2><span class="meta">${list.length} profile${list.length===1?'':'s'} · ${state.tier==='all'?'All tiers':esc(state.tier)} · by sector</span></div>
+    ${groups.map(([sec,ps])=>`<h3 class="subh sech"><button data-open="sector:${esc(sec)}">${esc(sectorName(sec))}</button><span class="n">${ps.length}</span></h3>
+      ${ps.length?`<div class="cards">${ps.map(card).join('')}</div>`:'<p class="empty-sec">No one mapped here yet.</p>'}`).join('') || '<p class="empty-sec">No profiles match these filters.</p>'}
     <p class="foot">${esc(META.disclaimer)}</p>`;
 }
 function renderOverlaps(){
@@ -9520,24 +9545,31 @@ function gicsLine(e, via){
   const S=SECTORS[e._sector], g=GICS[e._sub]||[];
   return `<div class="gics">${via?`<span>Primary business</span><button data-go="${esc(via.id)}">${esc(via.name)}</button><span>·</span>`:''}
     <button data-go="sector:${esc(e._sector)}">${S.etf?`<span class="etf">${S.etf}</span> `:''}${esc(e._sector)}</button>
-    ${e._sector!=='Non-market'?`<span>›</span><span>${esc(g[0]||'')}</span><span>›</span><button data-go="sub:${esc(e._sub)}">${esc(e._sub)}</button>${g[2]?`<span>· industry ETF e.g. <span class="etf">${g[2]}</span></span>`:''}`:''}
+    ${e._sector!=='Non-market'?`<span>›</span>${DATA.byId['ind:'+g[0]]?`<button data-go="ind:${esc(g[0])}">${esc(g[0])}</button>`:`<span>${esc(g[0]||'')}</span>`}<span>›</span><button data-go="sub:${esc(e._sub)}">${esc(e._sub)}</button>${g[2]?`<span>· industry ETF e.g. <span class="etf">${g[2]}</span></span>`:''}`:''}
     ${e._gicsBasis?`<span class="b" title="${GICS_TIP[e._gicsBasis]}">${e._gicsBasis==='official'?'Official GICS':'Inferred'}</span>`:''}</div>`;
 }
 function taxHTML(n){
-  const isSec=n.level==='sector', S=SECTORS[n.sector];
-  const ents=DATA.entities.filter(e=>isSec?e._sector===n.sector:e._sub===n.sub);
-  const subs=[...new Set(ents.map(e=>e._sub))].sort();
-  const ppl=isSec?DATA.profiles.filter(p=>p._sector===n.sector)
-    :DATA.profiles.filter(p=>neighbors(p.id).some(x=>x.other._sub===n.sub&&x.link.type!=='parallel'));
+  const lv=n.level, S=SECTORS[n.sector], LV={sector:'Sector',industry:'Industry',sub:'Sub-industry'}[lv];
+  const ents=DATA.entities.filter(e=>lv==='sector'?e._sector===n.sector:lv==='industry'?(e._sector===n.sector&&e._ind===n.industry):e._sub===n.sub);
+  const ppl=lv==='sector'?DATA.profiles.filter(p=>p._sector===n.sector)
+    :DATA.profiles.filter(p=>neighbors(p.id).some(x=>ents.includes(x.other)&&x.link.type!=='parallel'));
   const btn=x=>`<li><button data-go="${esc(x.id)}"><span class="d" style="background:${colorOf(x)}"></span><span class="nm">${esc(x.name)}</span><span class="via">${esc(x._kind==='profile'?x.category:(x.kind||''))}${x._gicsBasis==='official'?' · listed':''}</span></button></li>`;
+  const subs=list=>[...new Set(list.map(e=>e._sub))].sort();
+  const subBlock=sb=>`<section class="sec"><h3><button class="ibtn" data-go="sub:${esc(sb)}">${esc(subLabel(sb))}</button></h3><ul class="who">${ents.filter(e=>e._sub===sb).map(btn).join('')}</ul></section>`;
+  const indETF=lv==='industry'?Object.values(GICS).find(g=>g[0]===n.industry&&g[2])?.[2]:lv==='sub'?GICS[n.sub]?.[2]:null;
+  let body;
+  if(!ents.length) body=`<p class="empty-sec">No companies mapped to this ${LV.toLowerCase()} yet. It fills in as people whose businesses sit here are added.</p>`;
+  else if(lv==='sector') body=[...new Set(ents.map(e=>e._ind))].sort().map(i=>`<h4 class="indh">${DATA.byId['ind:'+i]?`<button data-go="ind:${esc(i)}">${esc(i)}</button>`:esc(i)}</h4>${subs(ents.filter(e=>e._ind===i)).map(subBlock).join('')}`).join('');
+  else if(lv==='industry') body=subs(ents).map(subBlock).join('');
+  else body=`<section class="sec"><h3><span class="num">${ents.length}</span>Companies</h3><ul class="who">${ents.map(btn).join('')}</ul></section>`;
+  const crumbs=lv==='sector'?(S.etf?S.etf+' · Select Sector SPDR':'Outside the stock market'):sectorName(n.sector)+(lv==='sub'&&n.industry&&n.industry!==n.sub&&n.sector!=='Non-market'?' › '+n.industry:'');
   return `<div class="dhead" style="--c:var(--muted)"><button class="dclose" aria-label="Close">✕</button>
-    <div class="eyebrow"><span>${isSec?'Sector':'Sub-industry'}</span><span>${isSec?(S.etf?S.etf+' · Select Sector SPDR':'Outside the stock market'):esc(sectorName(n.sector))}</span></div>
-    <h2>${esc(isSec?n.sector:n.name)}</h2></div>
+    <div class="eyebrow"><span>${LV}</span><span>${esc(crumbs)}</span></div>
+    <h2>${esc(lv==='sector'?n.sector:n.name)}</h2></div>
     <div class="dbody" style="--c:var(--muted)">
-    <p class="note">${n.sector==='Non-market'?'Universities, foundations, charities and civic institutions. They are not traded and sit outside every sector ETF.':'GICS classification. Most companies on this map are private or historical, so they are not ETF holdings. The tag shows where each one would sit, and only companies marked “listed” have an official classification.'}</p>
-    ${isSec?subs.map(sb=>`<section class="sec"><h3><button class="ibtn" data-go="sub:${esc(sb)}">${esc(sb==='Non-market'?'Universities, foundations & civic':sb)}</button></h3><ul class="who">${ents.filter(e=>e._sub===sb).map(btn).join('')}</ul></section>`).join('')
-      :`<section class="sec"><h3><span class="num">${ents.length}</span>Companies</h3><ul class="who">${ents.map(btn).join('')}</ul></section>`}
-    ${ppl.length?`<section class="sec"><h3><span class="num">${ppl.length}</span>${isSec?'People whose primary business is here':'People tied to these companies'}</h3><ul class="who">${ppl.map(btn).join('')}</ul></section>`:''}
+    <p class="note">${n.sector==='Non-market'?'Universities, foundations, charities and civic institutions. They are not traded and sit outside every sector ETF.':'GICS classification. Most companies on this map are private or historical, so they are not ETF holdings. The tag shows where each one would sit, and only companies marked “listed” have an official classification.'}${indETF?` Industry ETF, e.g. <b>${indETF}</b>.`:''}</p>
+    ${body}
+    ${ppl.length?`<section class="sec"><h3><span class="num">${ppl.length}</span>${lv==='sector'?'People whose primary business is here':'People tied to these companies'}</h3><ul class="who">${ppl.map(btn).join('')}</ul></section>`:''}
     </div>`;
 }
 function dossierHTML(n){
@@ -9593,7 +9625,7 @@ function showDrawer(id){
   d.querySelector('.dclose').onclick=closeDrawer;
   d.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>openNode(b.dataset.go));
   d.querySelector('.dbody').scrollTop=0;
-  document.title=`${n.name} — Quiet Capital`;
+  document.title=`${n.name} — Algos & Capital`;
   if(state.view==='map'){
     if(G.root && n._kind!=='tax' && !G.nodes.some(x=>x.id===id)){   // target hidden by filters → clear them
       state.cat='all'; state.tier='all'; state.q=''; document.getElementById('q').value=''; refresh();
@@ -9607,7 +9639,7 @@ function hideDrawer(){
   const d=document.getElementById('drawer');
   d.classList.remove('open'); d.setAttribute('aria-hidden','true');
   document.getElementById('scrim').classList.remove('on');
-  document.title='Quiet Capital — Mind Map & Executive Briefing';
+  document.title='Algos & Capital — Mind Map & Executive Briefing';
   clearHot();
 }
 
