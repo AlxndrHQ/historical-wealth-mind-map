@@ -15892,6 +15892,207 @@
   ]
  },
  {
+  "id": "steve-jobs",
+  "name": "Steve Jobs",
+  "type": "entrepreneur",
+  "category": "Entrepreneurs",
+  "netWorthTier": "$1B+",
+  "tierBasis": "reported",
+  "peakWealth": "$7B (Forbes 400, Sept 1, 2011)",
+  "humbleBeginnings": "Born in San Francisco in 1955 and adopted by Paul and Clara Jobs, he grew up in Mountain View and Los Altos and attended Homestead High in Cupertino. He dropped out of Reed College after one semester in 1972 and worked as a technician at Atari in 1974.",
+  "breakthrough": "He co-founded Apple with Steve Wozniak and Ronald Wayne on April 1, 1976 in the family's Los Altos garage; Apple's December 1980 IPO made him worth about $250M at 25. Forced out in 1985, he founded NeXT and bought Pixar from Lucasfilm for $10M, then returned to Apple when it bought NeXT in 1997 and led it through the iMac, iPod, iTunes, iPhone and iPad.",
+  "shieldingStrategy": "Most of his fortune ended up in Disney stock, not Apple: the 2006 all-stock sale of Pixar turned his 49.65% stake into about 7% of Disney. At Apple he took a $1 salary and was paid in restricted stock, and his estate passed to the Steven P. Jobs Trust run by his widow, Laurene Powell Jobs.",
+  "industry": "Consumer Technology & Animation",
+  "originBadge": "College Dropout",
+  "engineBadge": "Serial Founder",
+  "capitalBadge": "Stock-for-Stock Sale",
+  "lifespan": "1955–2011",
+  "base": "Palo Alto, CA",
+  "breakthroughDetail": [
+   {
+    "t": "Garage start, VC-backed IPO.",
+    "d": "Former Intel manager Mike Markkula put in $92,000 and secured a $250,000 Bank of America credit line for a third of Apple in 1977. In 1978 Venrock, Don Valentine's Sequoia ($150,000) and Arthur Rock (640,000 shares) invested. The December 12, 1980 IPO sold 4.6M shares at $22, raising over $100M, the most since Ford in 1956.",
+    "basis": "documented"
+   },
+   {
+    "t": "Pixar for $10M.",
+    "d": "On February 3, 1986 he paid George Lucas $5M for technology rights and put $5M of capital into the Lucasfilm computer-graphics unit, becoming chairman. Toy Story (1995) grossed about $362M, and Pixar's IPO on November 29, 1995 was the year's biggest.",
+    "basis": "documented"
+   },
+   {
+    "t": "NeXT as the way back.",
+    "d": "He founded NeXT in 1985 after leaving Apple; Ross Perot put in $20M for 16% in 1987 and Canon $100M in 1989. Apple bought NeXT in February 1997 for about $429M plus 1.5M shares, and NeXTSTEP became the base of Mac OS X and iOS. He was named interim CEO that September.",
+    "basis": "documented"
+   },
+   {
+    "t": "Rebuilding Apple.",
+    "d": "In August 1997 he announced a $150M Microsoft investment in Apple and put Larry Ellison on Apple's board. He hired Tim Cook from Compaq in 1998, launched the iTunes Store in 2003 with help from Interscope's Jimmy Iovine in signing the labels, and introduced the iPhone in 2007.",
+    "basis": "documented"
+   }
+  ],
+  "shieldingDetail": [
+   {
+    "t": "Pixar into Disney stock.",
+    "d": "Disney bought Pixar in an all-stock deal worth about $7.4B (announced January 24, 2006, closed May 5). Jobs got about 138M Disney shares, roughly 7%, became its largest individual shareholder and joined its board. Forbes put his Disney stake at about $4.47B when he died.",
+    "basis": "documented"
+   },
+   {
+    "t": "Sold Apple, kept one share.",
+    "d": "After his 1985 ouster he sold his whole Apple stake (about 11% at the IPO) except one share, which let him attend shareholder meetings. So his Apple wealth at death came from post-1997 grants, not his founder stake.",
+    "basis": "documented"
+   },
+   {
+    "t": "$1 salary, stock pay.",
+    "d": "He took a $1 salary from 1997. Apple granted him 10M split-adjusted restricted shares in March 2003; when they vested in 2006 Apple withheld over 4.5M shares (about $296M) for taxes. He also received a Gulfstream jet in 2001.",
+    "basis": "documented"
+   },
+   {
+    "t": "Trust and family office.",
+    "d": "His estate passed to the Steven P. Jobs Trust led by Laurene Powell Jobs; in 2013 it held about 7.3% of Disney. She runs the family's giving and investing through Emerson Collective, an LLC rather than a private foundation, which does not have to publish grant details the way a foundation does.",
+    "basis": "pattern"
+   }
+  ],
+  "sources": [
+   {
+    "label": "Wikipedia — Steve Jobs",
+    "url": "https://en.wikipedia.org/wiki/Steve_Jobs"
+   },
+   {
+    "label": "Forbes — Steve Jobs profile",
+    "url": "https://www.forbes.com/profile/steve-jobs/"
+   },
+   {
+    "label": "Wikipedia — Pixar",
+    "url": "https://en.wikipedia.org/wiki/Pixar"
+   },
+   {
+    "label": "Wikipedia — NeXT",
+    "url": "https://en.wikipedia.org/wiki/NeXT"
+   },
+   {
+    "label": "Wikipedia — History of Apple Inc.",
+    "url": "https://en.wikipedia.org/wiki/History_of_Apple_Inc."
+   },
+   {
+    "label": "Wikipedia — Don Valentine",
+    "url": "https://en.wikipedia.org/wiki/Don_Valentine"
+   },
+   {
+    "label": "Wikipedia — Arthur Rock",
+    "url": "https://en.wikipedia.org/wiki/Arthur_Rock"
+   },
+   {
+    "label": "Apple Newsroom — Letter from Steve Jobs (Aug 24, 2011)",
+    "url": "https://www.apple.com/newsroom/2011/08/24Letter-from-Steve-Jobs/"
+   },
+   {
+    "label": "Macworld — Ellison resigns from Apple board (2002)",
+    "url": "https://www.macworld.com/article/155949/ellison.html"
+   },
+   {
+    "label": "NBC News — Jobs's $1 salary and 2003 restricted stock",
+    "url": "https://www.nbcnews.com/id/wbna18140941"
+   },
+   {
+    "label": "Yahoo Finance — Jobs sold most of his Apple stock in 1985",
+    "url": "https://finance.yahoo.com/news/steve-jobs-sold-most-apple-193700822.html"
+   },
+   {
+    "label": "MacRumors — Jimmy Iovine on Jobs and Apple (2014)",
+    "url": "https://www.macrumors.com/2014/12/03/jimmy-iovine-on-apple-acquisition/"
+   },
+   {
+    "label": "Apple Newsroom — Nike and Apple launch Nike+iPod (2006)",
+    "url": "https://www.apple.com/au/newsroom/2006/05/23Nike-and-Apple-Team-Up-to-Launch-Nike-iPod/"
+   },
+   {
+    "label": "Wikipedia — Laurene Powell Jobs",
+    "url": "https://en.wikipedia.org/wiki/Laurene_Powell_Jobs"
+   },
+   {
+    "label": "Wikipedia — Emerson Collective",
+    "url": "https://en.wikipedia.org/wiki/Emerson_Collective"
+   }
+  ],
+  "connections": [
+   {
+    "id": "apple",
+    "type": "ownership",
+    "label": "co-founded 1976; CEO 1997–2011"
+   },
+   {
+    "id": "next-computer",
+    "type": "ownership",
+    "label": "founded 1985; sold to Apple"
+   },
+   {
+    "id": "pixar",
+    "type": "ownership",
+    "label": "bought 1986; 49.65% stake"
+   },
+   {
+    "id": "lucasfilm",
+    "type": "deal",
+    "label": "bought Pixar unit, $10M"
+   },
+   {
+    "id": "disney",
+    "type": "board",
+    "label": "top holder, director 2006–11"
+   },
+   {
+    "id": "bob-iger",
+    "type": "deal",
+    "label": "sold Pixar to Disney 2006"
+   },
+   {
+    "id": "tim-cook",
+    "type": "mentorship",
+    "label": "hired 1998; named successor"
+   },
+   {
+    "id": "sequoia-capital",
+    "type": "capital",
+    "label": "$150K into Apple, 1978"
+   },
+   {
+    "id": "larry-ellison",
+    "type": "board",
+    "label": "Apple director 1997–2002"
+   },
+   {
+    "id": "microsoft",
+    "type": "deal",
+    "label": "$150M Apple investment, 1997"
+   },
+   {
+    "id": "bill-gates",
+    "type": "deal",
+    "label": "1997 Microsoft–Apple pact"
+   },
+   {
+    "id": "jimmy-iovine",
+    "type": "deal",
+    "label": "iTunes label deals; U2 iPod"
+   },
+   {
+    "id": "nike",
+    "type": "deal",
+    "label": "Nike+iPod launch, 2006"
+   },
+   {
+    "id": "stanford-university",
+    "type": "civic",
+    "label": "2005 commencement speech"
+   },
+   {
+    "id": "emerson-collective",
+    "type": "family",
+    "label": "widow's LLC; family office"
+   }
+  ]
+ },
+ {
   "id": "mcdonalds-corp",
   "name": "McDonald's",
   "type": "entity",
@@ -22069,6 +22270,36 @@
   "description": "Bought from Frank McCourt in 2012 for $2.15B by Guggenheim Baseball Management (Mark Walter, Magic Johnson, Peter Guber, Stan Kasten, Todd Boehly, Bobby Patton).",
   "gics": {
    "sub": "Movies & Entertainment",
+   "basis": "inferred"
+  },
+  "connections": []
+ },
+ {
+  "id": "next-computer",
+  "name": "NeXT",
+  "type": "entity",
+  "kind": "Computer and software maker",
+  "description": "Founded by Steve Jobs in 1985 after he left Apple and based in Redwood City. Ross Perot invested $20M in 1987 and Canon $100M in 1989; Tim Berners-Lee built the first web server and browser on a NeXT computer. Apple bought it in February 1997 for about $429M plus 1.5M shares, and NeXTSTEP became the base of Mac OS X and iOS.",
+  "gics": {
+   "sub": "Technology Hardware, Storage & Peripherals",
+   "basis": "inferred"
+  },
+  "connections": [
+   {
+    "id": "apple",
+    "type": "ownership",
+    "label": "acquired by Apple 1997"
+   }
+  ]
+ },
+ {
+  "id": "emerson-collective",
+  "name": "Emerson Collective",
+  "type": "entity",
+  "kind": "Family office (LLC)",
+  "description": "Laurene Powell Jobs's Palo Alto LLC, which combines venture investing and philanthropy and acts as her family office. It owns a majority of The Atlantic (bought 2017) and backs the XQ Institute.",
+  "gics": {
+   "sub": "Asset Management & Custody Banks",
    "basis": "inferred"
   },
   "connections": []
