@@ -345,10 +345,10 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
         <kbd>/</kbd>
       </label>
       <nav class="tabs" role="group" aria-label="View">
-        <button data-view="map" aria-pressed="true">Map</button>
+        <button data-view="map" aria-pressed="true" title="Network graph of people, companies and deals">Web</button>
         <button data-view="grid" aria-pressed="false">Directory</button>
         <button data-view="overlaps" aria-pressed="false">Overlaps</button>
-        <button data-view="atlas" aria-pressed="false" title="Geographic map: people by home base, plus the Black-Owned Index (MD/DC)">Atlas</button>
+        <button data-view="atlas" aria-pressed="false" title="Geographic map: people by home base, plus the Black-Owned Index (MD/DC)">Map</button>
       </nav>
       <button class="theme" id="themeBtn" type="button">☾ Dark</button>
     </div>
@@ -23106,7 +23106,7 @@ function bindUI(){
   document.getElementById('tierSeg').addEventListener('click',e=>{
     const b=e.target.closest('[data-tier]'); if(b){ state.tier=b.dataset.tier; refresh(); }
   });
-  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{ location.hash='#/'+b.dataset.view; }));
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{ location.hash='#/'+hashOf(b.dataset.view); }));
   document.getElementById('ovlBtn').addEventListener('click',e=>{
     state.overlap=!state.overlap; e.currentTarget.setAttribute('aria-pressed',state.overlap);
     refresh();
@@ -23400,7 +23400,7 @@ document.addEventListener('keydown',e=>{ const c=e.target.closest?.('.card[data-
    EXECUTIVE BRIEFING DRAWER
    ===================================================================== */
 function openNode(id){ location.hash='#/p/'+encodeURIComponent(id); }
-function closeDrawer(){ location.hash='#/'+state.view; }
+function closeDrawer(){ location.hash='#/'+hashOf(state.view); }
 
 const BASIS_TIP={documented:'Documented in public sources',pattern:'Interpretive read of the strategy — not a documented legal structure'};
 const bullets=(arr,tag)=>!(arr||[]).length?'':`<${tag} class="${tag==='ol'?'steps':'bul'}">${arr.map(x=>`<li><span class="basis ${esc(x.basis)}" title="${BASIS_TIP[x.basis]||''}">${x.basis==='documented'?'Doc':'Pattern'}</span><b>${esc(x.t)}</b> ${esc(x.d)}</li>`).join('')}</${tag}>`;
@@ -23872,7 +23872,7 @@ function bindAtlas(){
 }
 
 /* =====================================================================
-   ROUTER  (#/map · #/grid · #/overlaps · #/atlas · #/p/<id>)
+   ROUTER  (#/web graph · #/map geographic · #/grid · #/overlaps · #/p/<id>)
    ===================================================================== */
 function setView(v){
   state.view=v;
@@ -23883,12 +23883,17 @@ function setView(v){
   document.querySelector('header.top .row2').hidden = v==='atlas' && ATLAS.layer==='boi';
   if(v==='map') renderMap(); else if(v==='overlaps') renderOverlaps(); else if(v==='atlas') renderAtlas(); else renderGrid();
 }
+/* URL names differ from internal view ids: the graph lives at #/web, the geographic map at #/map (#/atlas still works) */
+const VIEW_HASH = {map:'web', atlas:'map', grid:'grid', overlaps:'overlaps'};
+const HASH_VIEW = {web:'map', map:'atlas', atlas:'atlas', grid:'grid', overlaps:'overlaps'};
+const hashOf = v => VIEW_HASH[v] || v;
+const viewOfHash = () => HASH_VIEW[location.hash.replace(/^#\/?/,'').split('/')[0]] || null;
 function route(){
   const [a,b]=location.hash.replace(/^#\/?/,'').split('/');
   const id=b?decodeURIComponent(b):'';
   if(a==='p' && DATA.byId[id]){ showDrawer(id); return; }
   hideDrawer();
-  if((a==='grid'||a==='map'||a==='overlaps'||a==='atlas') && a!==state.view) setView(a);
+  const v=HASH_VIEW[a]; if(v && v!==state.view) setView(v);
 }
 
 /* =====================================================================
@@ -23904,7 +23909,7 @@ function route(){
   DATA.nComm=computeCommunities(DATA);
   renderChips(); renderLegend(); bindUI();
   bindAtlas();
-  setView(location.hash.startsWith('#/grid')?'grid':location.hash.startsWith('#/overlaps')?'overlaps':location.hash.startsWith('#/atlas')?'atlas':'map');
+  setView(viewOfHash() || 'map');
   route();
 })();
 </script>
