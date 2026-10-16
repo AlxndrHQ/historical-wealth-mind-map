@@ -78,7 +78,7 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);padding:16px
 
 /* ============ STAGE ============ */
 main{flex:1;min-height:0;position:relative}
-#map,#grid,#atlas{position:absolute;inset:0}
+#map,#grid{position:absolute;inset:0}
 #map{background:var(--bg)}
 #map svg{display:block;width:100%;height:100%;cursor:grab}
 #map svg:active{cursor:grabbing}
@@ -250,64 +250,6 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
 .srcs{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
 .disc{margin-top:30px;font-size:11px;color:var(--dim);border-top:1px solid var(--line);padding-top:12px}
 
-/* ============ ATLAS ============ */
-#atlas{position:absolute;inset:0}
-#atlasMap{position:absolute;inset:0;background:var(--bg);z-index:0}
-.atlas-bar{left:20px;top:16px;max-width:calc(100% - 40px);z-index:500;display:flex;flex-direction:column;gap:9px;padding:11px 14px}
-.atlas-bar .seg button{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase}
-.atlas-bar .chips{gap:3px 13px}
-.atlas-status{margin:0;font:500 9.5px/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.atlas-status .dim{color:var(--dim)}
-.atlas-status .live{color:var(--doc)}
-.atlas-status .warn{color:var(--c-bhis);cursor:help}
-.atlas-status a{color:var(--accent);text-decoration:none}
-.atlas-off{left:20px;bottom:24px;z-index:500;max-width:340px;max-height:46vh;overflow:auto;padding:10px 14px}
-.atlas-off summary{cursor:pointer;font:500 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);list-style:none}
-.atlas-off summary::-webkit-details-marker{display:none}
-.atlas-off summary::before{content:"› ";color:var(--accent)}
-.atlas-off details[open] summary::before{content:"⌄ "}
-.atlas-off .n{color:var(--dim)}
-.atlas-off ul{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line)}
-.atlas-off li{display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
-.atlas-off li b{font:400 14px var(--serif)}
-.atlas-off .d{width:6px;height:6px;border-radius:50%;margin-top:7px;flex:none}
-.atlas-off .sub{font-size:11.5px;color:var(--muted)}
-.atlas-off .links,.pop-l{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:3px}
-.atlas-off .links a{font:500 10px var(--mono);letter-spacing:.04em;text-decoration:none}
-/* pins */
-.apin{background:none;border:0}
-.apin span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;box-sizing:border-box;font:600 9.5px var(--mono);color:var(--bg);transition:transform .15s}
-.apin.boi span{background:var(--c);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--c)}
-.apin.boi.approx span{background:var(--bg);border:2px dashed var(--c);box-shadow:none}
-.apin.fort span{background:var(--c);border:1.5px solid var(--bg);box-shadow:0 0 0 1px var(--c);opacity:.92}
-.apin:hover span{transform:scale(1.25)}
-/* popups */
-.apop .leaflet-popup-content-wrapper{background:var(--bg);color:var(--text);border:1px solid var(--line2);border-radius:2px;box-shadow:0 10px 30px -12px #0005}
-.apop .leaflet-popup-tip{background:var(--bg);border:1px solid var(--line2);box-shadow:none}
-.apop .leaflet-popup-content{margin:16px 18px 14px;font:13px/1.5 var(--sans);min-width:220px}
-.apop a.leaflet-popup-close-button{color:var(--muted);top:6px;right:6px}
-.pop-k{display:flex;align-items:center;gap:8px;font:500 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.pop-k .d{width:7px;height:7px;border-radius:50%;background:var(--c)}
-.pop h4{margin:8px 0 4px;font:400 21px/1.15 var(--serif);letter-spacing:-.01em}
-.pop-a{margin:0;color:var(--text2)}
-.pop-n{margin:6px 0 0;padding-left:9px;border-left:1px solid var(--accent);font-size:11.5px;color:var(--muted)}
-.pop-l{flex-direction:column;gap:0;margin-top:12px;border-top:1px solid var(--line)}
-.pop-l a{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--text);font-size:12.5px}
-.pop-l a span{font:500 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:2px}
-.pop-l a:hover{color:var(--accent)}
-.pop .who{max-height:240px;overflow:auto}
-.pop .who .nm{font-size:14px}
-.leaflet-container{font:13px var(--sans);background:var(--bg)}
-.leaflet-control-zoom a{background:var(--bg)!important;color:var(--text)!important;border-color:var(--line)!important;border-radius:2px!important}
-.leaflet-bar{border:1px solid var(--line2)!important;box-shadow:none!important;border-radius:2px!important}
-.leaflet-control-attribution{background:color-mix(in srgb,var(--bg) 85%,transparent)!important;color:var(--dim)!important;font:9.5px var(--sans)}
-.leaflet-control-attribution a{color:var(--muted)!important}
-@media (max-width:760px){
-  .atlas-bar{left:10px;right:10px;top:10px;max-width:none}
-  .atlas-bar .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-  .atlas-off{left:10px;right:58px;bottom:16px;max-width:none}
-}
-
 /* ============ RESPONSIVE ============ */
 @media (max-width:760px){
   header.top{padding:12px 16px 0}
@@ -345,10 +287,9 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
         <kbd>/</kbd>
       </label>
       <nav class="tabs" role="group" aria-label="View">
-        <button data-view="map" aria-pressed="true" title="Network graph of people, companies and deals">Web</button>
+        <button data-view="map" aria-pressed="true">Map</button>
         <button data-view="grid" aria-pressed="false">Directory</button>
         <button data-view="overlaps" aria-pressed="false">Overlaps</button>
-        <button data-view="atlas" aria-pressed="false" title="Geographic map: people by home base, plus the Black-Owned Index (MD/DC)">Map</button>
       </nav>
       <button class="theme" id="themeBtn" type="button">☾ Dark</button>
     </div>
@@ -382,18 +323,6 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
       <div class="empty" id="mapEmpty" hidden>No profiles match these filters.</div>
     </section>
     <section id="grid" aria-label="Directory" hidden></section>
-    <section id="atlas" aria-label="Atlas" hidden>
-      <div id="atlasMap"></div>
-      <div class="overlay atlas-bar">
-        <div class="seg" id="atlasLayer" role="group" aria-label="Map layer">
-          <button data-layer="fortunes" aria-pressed="true" title="Every profile pinned to its home base">Fortunes</button>
-          <button data-layer="boi" aria-pressed="false" title="Live directory of Black-owned businesses in Maryland and DC">Black-Owned Index · MD/DC</button>
-        </div>
-        <div class="chips" id="boiChips" role="group" aria-label="Business categories" hidden></div>
-        <p class="atlas-status" id="atlasStatus" aria-live="polite"></p>
-      </div>
-      <div class="overlay atlas-off" id="atlasOff" hidden></div>
-    </section>
   </main>
 </div>
 
@@ -23106,7 +23035,7 @@ function bindUI(){
   document.getElementById('tierSeg').addEventListener('click',e=>{
     const b=e.target.closest('[data-tier]'); if(b){ state.tier=b.dataset.tier; refresh(); }
   });
-  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{ location.hash='#/'+hashOf(b.dataset.view); }));
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{ location.hash='#/'+b.dataset.view; }));
   document.getElementById('ovlBtn').addEventListener('click',e=>{
     state.overlap=!state.overlap; e.currentTarget.setAttribute('aria-pressed',state.overlap);
     refresh();
@@ -23131,12 +23060,12 @@ function bindUI(){
     if(e.key==='Escape'){ if(state.openId) closeDrawer(); else if(document.activeElement===q){ q.value=''; state.q=''; refresh(); q.blur(); } }
   });
   document.getElementById('scrim').onclick=closeDrawer;
-  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(()=>{ if(state.view==='map') renderMap(); else if(state.view==='atlas') ATLAS.map?.invalidateSize(); },180); });
+  let rt; window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(()=>{ if(state.view==='map') renderMap(); },180); });
   window.addEventListener('hashchange',route);
 }
 function refresh(){
   renderChips();
-  if(state.view==='map') renderMap(); else if(state.view==='overlaps') renderOverlaps(); else if(state.view==='atlas') renderAtlas(); else renderGrid();
+  if(state.view==='map') renderMap(); else if(state.view==='overlaps') renderOverlaps(); else renderGrid();
 }
 
 /* =====================================================================
@@ -23400,7 +23329,7 @@ document.addEventListener('keydown',e=>{ const c=e.target.closest?.('.card[data-
    EXECUTIVE BRIEFING DRAWER
    ===================================================================== */
 function openNode(id){ location.hash='#/p/'+encodeURIComponent(id); }
-function closeDrawer(){ location.hash='#/'+hashOf(state.view); }
+function closeDrawer(){ location.hash='#/'+state.view; }
 
 const BASIS_TIP={documented:'Documented in public sources',pattern:'Interpretive read of the strategy — not a documented legal structure'};
 const bullets=(arr,tag)=>!(arr||[]).length?'':`<${tag} class="${tag==='ol'?'steps':'bul'}">${arr.map(x=>`<li><span class="basis ${esc(x.basis)}" title="${BASIS_TIP[x.basis]||''}">${x.basis==='documented'?'Doc':'Pattern'}</span><b>${esc(x.t)}</b> ${esc(x.d)}</li>`).join('')}</${tag}>`;
@@ -23520,380 +23449,22 @@ function hideDrawer(){
   clearHot();
 }
 
-
 /* =====================================================================
-   ATLAS · BLACK-OWNED INDEX — sheet parsing & address normalization
-   The sheet is a directory, not a flat table: each tab holds sections, and
-   each section starts with a header row whose 2nd cell is "Address". The
-   section's first cell is the category ("Restaurants", "Sweet Treats", …).
-   Columns are positional: Name, Address, "City, State", Website, Instagram.
-   To add a tab: add its gid below (File → Share → Publish isn't required;
-   the sheet only needs "Anyone with the link can view").
-   ===================================================================== */
-const BOI = {
-  sheetId: '1Qqolc72-Xw_KKCM216aMCBodEKLUuuyeSSbC2dbcb0g',
-  tabs: [
-    {gid:'1503975372', name:'Food'},
-    {gid:'1312788263', name:'Retail'},
-    {gid:'256715758',  name:'Service'},
-    {gid:'636642570',  name:'Farms/Meat Process'},
-    {gid:'371386867',  name:'Vendors'}
-  ],
-  csvUrl: gid => `https://docs.google.com/spreadsheets/d/${BOI.sheetId}/export?format=csv&gid=${gid}`,
-  viewUrl: () => `https://docs.google.com/spreadsheets/d/${BOI.sheetId}/edit`
-};
-/* section header → category. First match wins; unknown headers keep their own name. */
-const BOI_CATS = [
-  [/^restaurant/i,               'Restaurants',    '#B5542C'],
-  [/coffee|cafe|café|juice|tea/i,'Coffee & Juice', '#7A5230'],
-  [/sweet|dessert|bak/i,         'Desserts',       '#C0517A'],
-  [/vegan/i,                     'Vegan',          '#4E8B4A'],
-  [/^store|retail|shop/i,        'Retail',         '#3E6A8A'],
-  [/service/i,                   'Services',       '#6B5B9A'],
-  [/farm|meat/i,                 'Farms & Meat',   '#8A7A2B'],
-  [/truck/i,                     'Food Trucks',    '#C27C2C'],
-  [/cater/i,                     'Catering',       '#9B3D2E'],
-  [/drink|bar\b/i,               'Drinks',         '#2F7A80']
-];
-const BOI_FALLBACK_COLORS = ['#5E7D6B','#8A5A2B','#4A6FA5','#A0522D'];
-const boiClean = s => String(s ?? '').replace(/\s+/g, ' ').trim();
-function boiCategory(h){
-  h = boiClean(h);
-  for (const [re, name] of BOI_CATS) if (re.test(h)) return name;
-  return h.replace(/\b\w/g, m => m.toUpperCase());
-}
-function boiColor(cat){
-  const hit = BOI_CATS.find(c => c[1] === cat);
-  if (hit) return hit[2];
-  let h = 0; for (const ch of cat) h = (h*31 + ch.charCodeAt(0)) >>> 0;
-  return BOI_FALLBACK_COLORS[h % BOI_FALLBACK_COLORS.length];
-}
-const NO_PLACE = /^(mobile|online|delivery|delivery\s*\/\s*shipping|shipping|food truck|app|n\/?a|tbd|virtual)$/i;
-const REGION_ONLY = /^(maryland|md|dmv|virginia|va|dc|d\.c\.|washington|online|nationwide)$/i;
-const STREETY = /\d|\b(st|street|ave|avenue|rd|road|blvd|boulevard|dr|drive|pike|way|place|pl|ln|lane|ct|court|terrace|hwy|highway|pkwy|parkway|sq|square|market)\b/i;
-
-function boiCity(raw){
-  // keep "Forest Heights,\n MD" together; drop a 2nd line like "Washington, DC\nMaryland"
-  let s = String(raw ?? '').replace(/,\s*\n\s*/g, ', ').split('\n')[0];
-  s = boiClean(s).replace(/,$/, '');
-  s = s.replace(/^washington,?\s*d\.?\s*c\.?$/i, 'Washington, DC').replace(/,\s*d\.?\s*c\.?$/i, ', DC');
-  if (!s || REGION_ONLY.test(s)) return '';
-  if (!/,\s*[A-Za-z]{2}$/.test(s) && !/,\s*\w+/.test(s)) s += ', MD';      // "Owings Mills" → "Owings Mills, MD"
-  return s;
-}
-function boiStreet(raw){
-  // for geocoding only: drop suite/stall/floor detail the geocoders choke on
-  return boiClean(raw)
-    .replace(/,?\s*\d+(st|nd|rd|th)\s+floor.*$/i, '')
-    .replace(/,?\s*\b(suite|ste\.?|unit|stall|floor|fl\.?|apt\.?)\b.*$/i, '')
-    .replace(/,?\s*#\s*\w[\w-]*.*$/, '')
-    .replace(/,\s*[\d-]+$/, '')
-    .replace(/,$/, '').trim();
-}
-function boiUrl(w){
-  w = boiClean(w);
-  if (!w || /^ig\s*:/i.test(w) || /^@/.test(w)) return null;
-  if (/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(w)) return {href:'mailto:'+w, label:w};
-  if (/^[\d\s().+-]{7,}$/.test(w)) return {href:'tel:'+w.replace(/[^\d+]/g,''), label:w};
-  w = w.replace(/\.$/, '').replace(/^ww\./i, 'www.');
-  if (!/^https?:\/\//i.test(w)) { if (!/\.[a-z]{2,}/i.test(w)) return null; w = 'https://' + w; }
-  let label = w; try { label = new URL(w).hostname.replace(/^www\./, ''); } catch (_) { return null; }
-  return {href:w, label};
-}
-function boiHandle(...cells){
-  for (const c of cells){
-    const s = boiClean(c);
-    const m = s.match(/@([A-Za-z0-9._]{2,30})/) || s.match(/^ig\s*:\s*@?([A-Za-z0-9._]{2,30})/i);
-    if (m) return m[1].replace(/\.$/, '');
-  }
-  return '';
-}
-function boiRecord(c, cat, tab, rowIdx){
-  const name = boiClean(c[0]).replace(/\s*\(\s*/g, ' (').replace(/\s+\)/g, ')');
-  const addrRaw = boiClean(c[1]), city = boiCity(c[2]);
-  const offline = NO_PLACE.test(addrRaw) || (!addrRaw && !city);
-  const street = !offline && addrRaw && STREETY.test(addrRaw) ? boiStreet(addrRaw) : '';
-  const mode = offline ? 'none' : street ? 'street' : city ? 'city' : 'none';
-  const query = mode === 'street' ? `${street}, ${city || 'MD'}` : mode === 'city' ? city : '';
-  return {
-    id: `${tab}:${rowIdx}`, name, category: cat, tab,
-    address: offline ? '' : addrRaw, city, offlineLabel: offline ? (addrRaw || 'No storefront') : '',
-    website: boiUrl(c[3]), instagram: boiHandle(c[4], c[3]),
-    mode, query, key: query.toLowerCase()
-  };
-}
-/* rows: array of arrays (PapaParse output, header:false). Returns records. */
-function parseBOI(rows, tab){
-  const out = []; let cat = null;
-  rows.forEach((r, i) => {
-    const c = (r || []).map(x => x ?? '');
-    if (!c.some(x => boiClean(x))) return;
-    if (/^address$/i.test(boiClean(c[1]))) { cat = boiCategory(c[0]); return; }
-    if (/^column \d+$/i.test(boiClean(c[0]))) return;
-    if (!cat || !boiClean(c[0])) return;               // banner/quote rows above the first section
-    out.push(boiRecord(c, cat, tab, i));
-  });
-  return out;
-}
-/* Profiles: their "base" string → a single geocodable place */
-function baseQuery(base){
-  let s = boiClean(base).replace(/\barea\b/i, '').replace(/\s+,/g, ',');
-  if (/^global\b/i.test(s)) { const m = s.match(/\(([^/)]+)/); s = m ? m[1] : s; }
-  s = s.split(/\s*[\/;]\s*/)[0];
-  if (/^NY$/i.test(s.trim())) s = 'New York, NY';
-  return boiClean(s);
-}
-
-/* =====================================================================
-   ATLAS (Leaflet) — two layers on one minimalist basemap
-     · Fortunes: every profile pinned to its "base", grouped by city.
-       Uses the same Era / Archetype / Net worth / Sector / Search filters.
-     · Black-Owned Index: read live from the Google Sheet on every visit.
-   Locations come from places.json (pre-geocoded). Anything new in the
-   sheet is geocoded in the visitor's browser (OpenStreetMap Nominatim,
-   one request per ~1.1s) and remembered in that browser.
-   To pin a profile somewhere other than its base, give it "geo":[lat,lng].
-   ===================================================================== */
-const ATLAS = {
-  map:null, tiles:null, theme:null, layer:'fortunes', group:null,
-  places:null, boi:null, boiSource:'', boiErr:'', boiOff:new Set(), geoLive:{}, pending:0,
-  libs:null, booting:null, fitted:{fortunes:false, boi:false}
-};
-const ATLAS_LIBS = {
-  css:'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
-  js:'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',
-  papa:'https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js'
-};
-const GEO_LS = 'atlas-geo-v1';
-function loadScript(src){ return new Promise((ok,no)=>{ const s=document.createElement('script'); s.src=src; s.onload=ok; s.onerror=()=>no(new Error('Could not load '+src)); document.head.appendChild(s); }); }
-function atlasLibs(){
-  if (ATLAS.libs) return ATLAS.libs;
-  const l=document.createElement('link'); l.rel='stylesheet'; l.href=ATLAS_LIBS.css; document.head.appendChild(l);
-  return ATLAS.libs = Promise.all([window.L?null:loadScript(ATLAS_LIBS.js), window.Papa?null:loadScript(ATLAS_LIBS.papa)]);
-}
-const atlasTheme = () => document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-function atlasTiles(){
-  // Esri gray canvas: keyless, quiet, with a light and a dark variant (CARTO now needs a key off localhost)
-  const t=atlasTheme(); if (ATLAS.tiles && ATLAS.theme===t) return;
-  ATLAS.theme=t; (ATLAS.tiles||[]).forEach(l=>ATLAS.map.removeLayer(l));
-  const v = t==='dark' ? 'Dark' : 'Light', url = k => `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_${v}_Gray_${k}/MapServer/tile/{z}/{y}/{x}`;
-  ATLAS.tiles = [
-    L.tileLayer(url('Base'), {maxNativeZoom:16, maxZoom:19, attribution:'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'}),
-    L.tileLayer(url('Reference'), {maxNativeZoom:16, maxZoom:19, pane:'shadowPane', opacity:.85})
-  ];
-  ATLAS.tiles.forEach(l=>l.addTo(ATLAS.map));
-}
-
-/* ---------- data ---------- */
-function geoCache(){ try { return JSON.parse(localStorage.getItem(GEO_LS)||'{}'); } catch(_) { return {}; } }
-function geoSave(){ try { localStorage.setItem(GEO_LS, JSON.stringify(ATLAS.geoLive)); } catch(_) {} }
-function geoFor(r){ return ATLAS.places?.geo?.[r.key] || ATLAS.geoLive[r.key] || null; }
-async function loadPlaces(){
-  try { const res=await fetch('places.json',{cache:'no-store'}); if (res.ok) return await res.json(); } catch(_) {}
-  return {geo:{}, bases:{}, boiSnapshot:[]};
-}
-async function loadBOI(){
-  const parse = txt => Papa.parse(txt,{skipEmptyLines:false}).data;
-  try {
-    const parts = await Promise.all(BOI.tabs.map(async t=>{
-      const res = await fetch(BOI.csvUrl(t.gid),{cache:'no-store'});
-      if (!res.ok) throw new Error(`${t.name}: HTTP ${res.status}`);
-      return parseBOI(parse(await res.text()), t.name);
-    }));
-    ATLAS.boi = parts.flat(); ATLAS.boiSource='live'; ATLAS.boiErr='';
-  } catch (e) {
-    ATLAS.boi = ATLAS.places?.boiSnapshot || []; ATLAS.boiSource='snapshot'; ATLAS.boiErr=String(e.message||e);
-  }
-}
-/* geocode anything the pre-built file doesn't cover, politely, one at a time */
-async function geocodeMissing(){
-  const todo = (ATLAS.boi||[]).filter(r=>r.mode!=='none' && !geoFor(r));
-  const seen = new Set(); ATLAS.pending = todo.length; atlasStatus();
-  for (const r of todo){
-    if (seen.has(r.key)) { ATLAS.pending--; continue; } seen.add(r.key);
-    let hit = await nominatim(r.query);
-    if (!hit && r.mode==='street' && r.city) { hit = await nominatim(r.city); if (hit) hit[2]='city'; }
-    if (hit) { ATLAS.geoLive[r.key] = [hit[0], hit[1], hit[2] || r.mode]; geoSave(); }
-    ATLAS.pending--; if (ATLAS.layer==='boi' && state.view==='atlas') drawAtlas(false);
-  }
-  atlasStatus();
-}
-let lastNom = 0;
-async function nominatim(q){
-  const wait = 1100 - (Date.now()-lastNom); if (wait>0) await new Promise(r=>setTimeout(r,wait)); lastNom=Date.now();
-  try {
-    const u='https://nominatim.openstreetmap.org/search?'+new URLSearchParams({q, format:'json', limit:'1', countrycodes:'us'});
-    const d=await (await fetch(u,{headers:{'Accept-Language':'en'}})).json();
-    return d[0] ? [ +(+d[0].lat).toFixed(5), +(+d[0].lon).toFixed(5) ] : null;
-  } catch(_) { return null; }
-}
-
-/* ---------- UI ---------- */
-function boiVisible(){
-  const t = terms();
-  return (ATLAS.boi||[]).filter(r=>!ATLAS.boiOff.has(r.category) &&
-    (!t.length || t.every(w=>[r.name,r.category,r.address,r.city,r.instagram].join(' ').toLowerCase().includes(w))));
-}
-function renderAtlasBar(){
-  document.querySelectorAll('#atlasLayer button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.layer===ATLAS.layer));
-  document.querySelector('header.top .row2').hidden = ATLAS.layer==='boi';
-  const chips = document.getElementById('boiChips');
-  if (ATLAS.layer!=='boi' || !ATLAS.boi) { chips.innerHTML=''; chips.hidden=true; return; }
-  const cats = [...new Set(ATLAS.boi.map(r=>r.category))];
-  const n = c => ATLAS.boi.filter(r=>r.category===c).length;
-  chips.hidden=false;
-  chips.innerHTML = `<button class="chip" data-boi="__all" aria-pressed="${!ATLAS.boiOff.size}">All <span class="n">${ATLAS.boi.length}</span></button>` +
-    cats.map(c=>`<button class="chip" data-boi="${esc(c)}" aria-pressed="${!ATLAS.boiOff.has(c)}" style="--c:${boiColor(c)}"><span class="d"></span>${esc(c)} <span class="n">${n(c)}</span></button>`).join('');
-}
-function atlasStatus(){
-  const el=document.getElementById('atlasStatus'); if (!el) return;
-  if (ATLAS.layer==='fortunes'){
-    const ps = visibleProfiles(); const cities = new Set(ps.map(p=>profileLatLng(p)?.join(',')).filter(Boolean));
-    el.innerHTML = `${ps.length} people · ${cities.size} cities · <span class="dim">pinned to each person's home base</span>`;
-    return;
-  }
-  if (!ATLAS.boi){ el.textContent='Loading the index…'; return; }
-  const vis = boiVisible(), onMap = vis.filter(r=>geoFor(r)).length;
-  el.innerHTML = `${vis.length} listings · ${onMap} on map` +
-    (ATLAS.pending>0 ? ` · locating ${ATLAS.pending}…` : '') +
-    (ATLAS.boiSource==='live' ? ` · <span class="live">live from Google Sheet</span>` : ` · <span class="warn" title="${esc(ATLAS.boiErr)}">sheet unreachable, showing saved copy</span>`) +
-    ` · <a href="${BOI.viewUrl()}" target="_blank" rel="noopener">source ↗</a>`;
-}
-function renderOffList(){
-  const el = document.getElementById('atlasOff');
-  if (ATLAS.layer!=='boi' || !ATLAS.boi){ el.hidden=true; return; }
-  const off = boiVisible().filter(r=>r.mode==='none' || (!geoFor(r) && ATLAS.pending===0));
-  if (!off.length){ el.hidden=true; return; }
-  el.hidden=false;
-  el.innerHTML = `<details><summary>No storefront to pin <span class="n">${off.length}</span></summary><ul>${off.map(r=>
-    `<li><span class="d" style="background:${boiColor(r.category)}"></span><span><b>${esc(r.name)}</b><br><span class="sub">${esc(r.category)} · ${esc(r.offlineLabel || r.city || 'Location not found')}</span>${linksHTML(r)}</span></li>`).join('')}</ul></details>`;
-}
-const igHref = h => 'https://www.instagram.com/'+encodeURIComponent(h)+'/';
-function linksHTML(r){
-  const a=[];
-  if (r.website) a.push(`<a href="${esc(r.website.href)}" target="_blank" rel="noopener">${esc(r.website.label)} ↗</a>`);
-  if (r.instagram) a.push(`<a href="${igHref(r.instagram)}" target="_blank" rel="noopener">@${esc(r.instagram)}</a>`);
-  return a.length ? `<span class="links">${a.join('')}</span>` : '';
-}
-function boiPopup(r, g){
-  const addr = [r.address, r.city].filter(Boolean).join(', ');
-  const dir = 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([r.name, addr].join(', '));
-  return `<div class="pop" style="--c:${boiColor(r.category)}">
-    <div class="pop-k"><span class="d"></span>${esc(r.category)}</div>
-    <h4>${esc(r.name)}</h4>
-    ${addr?`<p class="pop-a">${esc(addr)}</p>`:''}
-    ${g[2]==='city'?`<p class="pop-n">Pin is approximate. The sheet lists a city, not a street address.</p>`:''}
-    <div class="pop-l">
-      ${r.website?`<a href="${esc(r.website.href)}" target="_blank" rel="noopener"><span>Website</span>${esc(r.website.label)} ↗</a>`:''}
-      ${r.instagram?`<a href="${igHref(r.instagram)}" target="_blank" rel="noopener"><span>Instagram</span>@${esc(r.instagram)} ↗</a>`:''}
-      <a href="${dir}" target="_blank" rel="noopener"><span>Directions</span>Google Maps ↗</a>
-    </div></div>`;
-}
-function profileLatLng(p){
-  if (Array.isArray(p.geo) && p.geo.length>=2) return [+p.geo[0], +p.geo[1]];
-  const b = ATLAS.places?.bases?.[p.base]; return b ? [b[0], b[1]] : null;
-}
-function fortunesPopup(label, ps){
-  return `<div class="pop">
-    <div class="pop-k">Home base · ${ps.length} ${ps.length===1?'person':'people'}</div>
-    <h4>${esc(label)}</h4>
-    <ul class="who">${ps.slice().sort((a,b)=>(TIERS[b.netWorthTier]?.rank||0)-(TIERS[a.netWorthTier]?.rank||0)).map(p=>
-      `<li><button data-go="${esc(p.id)}"><span class="d" style="background:${catColor(p)}"></span><span class="nm">${esc(p.name)}</span><span class="via">${esc(p.industry||p.category)}</span></button></li>`).join('')}</ul></div>`;
-}
-/* spread markers that share an exact spot (Lexington Market stalls, chains) */
-function spread(items){
-  const at = new Map();
-  items.forEach(it=>{ const k=it.ll.join(','); (at.get(k)||at.set(k,[]).get(k)).push(it); });
-  for (const group of at.values()){
-    if (group.length<2) continue;
-    group.forEach((it,i)=>{ const a=2*Math.PI*i/group.length, r=0.00028; it.ll=[it.ll[0]+r*Math.sin(a), it.ll[1]+r*Math.cos(a)*1.3]; });
-  }
-  return items;
-}
-function drawAtlas(fit){
-  if (!ATLAS.map) return;
-  atlasTiles();
-  if (ATLAS.group) ATLAS.map.removeLayer(ATLAS.group);
-  const g = ATLAS.group = L.featureGroup().addTo(ATLAS.map);
-  if (ATLAS.layer==='fortunes'){
-    const byCity = new Map();
-    visibleProfiles().forEach(p=>{ const ll=profileLatLng(p); if(!ll) return; const k=ll.join(','); (byCity.get(k)||byCity.set(k,{ll,ps:[],label:p.geo?p.name:baseQuery(p.base)}).get(k)).ps.push(p); });
-    for (const {ll,ps,label} of byCity.values()){
-      const cats = new Set(ps.map(p=>p.category)), c = cats.size===1 ? catColor(ps[0]) : 'var(--accent)';
-      const s = Math.round(12 + 5*Math.sqrt(ps.length));
-      const icon = L.divIcon({className:'apin fort', iconSize:[s,s], html:`<span style="--c:${c}">${ps.length>1?ps.length:''}</span>`});
-      L.marker(ll,{icon, title:`${label} · ${ps.length}`, riseOnHover:true}).bindPopup(fortunesPopup(label, ps), {maxWidth:320, className:'apop', autoPanPaddingTopLeft:[24,180], autoPanPaddingBottomRight:[24,60]}).addTo(g);
-    }
-  } else if (ATLAS.boi){
-    const items = spread(boiVisible().map(r=>({r, g:geoFor(r)})).filter(x=>x.g).map(x=>({...x, ll:[x.g[0],x.g[1]]})));
-    items.forEach(({r,g:geo,ll})=>{
-      const icon = L.divIcon({className:'apin boi'+(geo[2]==='city'?' approx':''), iconSize:[14,14], html:`<span style="--c:${boiColor(r.category)}"></span>`});
-      L.marker(ll,{icon, title:r.name, riseOnHover:true, keyboard:true}).bindPopup(boiPopup(r,geo),{maxWidth:300, className:'apop', autoPanPaddingTopLeft:[24,180], autoPanPaddingBottomRight:[24,60]}).addTo(g);
-    });
-  }
-  renderAtlasBar(); atlasStatus(); renderOffList();
-  if (fit || !ATLAS.fitted[ATLAS.layer]) {
-    let b = g.getBounds();
-    if (ATLAS.layer==='boi') {   // open on the Baltimore–DC corridor; outliers (e.g. Farmville, VA) stay one zoom-out away
-      const core = L.latLngBounds([]); g.eachLayer(m=>{ const p=m.getLatLng(); if (p.lat>38.6 && p.lat<39.75 && p.lng>-77.6 && p.lng<-76.3) core.extend(p); });
-      if (core.isValid()) b = core;
-    }
-    if (b.isValid()) { ATLAS.map.fitBounds(b.pad(ATLAS.layer==='boi'?0.08:0.15), {maxZoom: ATLAS.layer==='boi'?13:6, animate:false}); ATLAS.fitted[ATLAS.layer]=true; }
-  }
-}
-async function renderAtlas(){
-  document.getElementById('atlasLayer').hidden=false;
-  if (!ATLAS.booting) ATLAS.booting = (async ()=>{
-    await atlasLibs();
-    ATLAS.geoLive = geoCache();
-    ATLAS.map = L.map('atlasMap', {zoomControl:false, worldCopyJump:true, minZoom:2}).setView([39.0,-77.0], 4);
-    L.control.zoom({position:'bottomright'}).addTo(ATLAS.map);
-    ATLAS.map.on('popupopen', e=>e.popup.getElement()?.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>openNode(b.dataset.go)));
-    new MutationObserver(()=>ATLAS.map&&atlasTiles()).observe(document.documentElement,{attributes:true, attributeFilter:['data-theme']});
-    matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>ATLAS.map&&atlasTiles());
-    ATLAS.places = await loadPlaces();
-  })().catch(e=>{ document.getElementById('atlasStatus').textContent='The map library could not load. Check your connection and reload.'; throw e; });
-  await ATLAS.booting;
-  ATLAS.map.invalidateSize();
-  if (ATLAS.layer==='boi' && !ATLAS.boi){ atlasStatus(); await loadBOI(); geocodeMissing(); }
-  drawAtlas(false);
-}
-function bindAtlas(){
-  document.getElementById('atlasLayer').addEventListener('click', e=>{
-    const b=e.target.closest('[data-layer]'); if(!b || b.dataset.layer===ATLAS.layer) return;
-    ATLAS.layer=b.dataset.layer; ATLAS.map?.closePopup(); renderAtlas();
-  });
-  document.getElementById('boiChips').addEventListener('click', e=>{
-    const b=e.target.closest('[data-boi]'); if(!b) return; const c=b.dataset.boi;
-    if (c==='__all') ATLAS.boiOff.clear();
-    else if (ATLAS.boiOff.has(c)) ATLAS.boiOff.delete(c); else ATLAS.boiOff.add(c);
-    drawAtlas(false);
-  });
-}
-
-/* =====================================================================
-   ROUTER  (#/web graph · #/map geographic · #/grid · #/overlaps · #/p/<id>)
+   ROUTER  (#/map · #/grid · #/p/<id>)
    ===================================================================== */
 function setView(v){
   state.view=v;
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v));
   document.getElementById('map').hidden = v!=='map';
-  document.getElementById('grid').hidden = v==='map'||v==='atlas';
-  document.getElementById('atlas').hidden = v!=='atlas';
-  document.querySelector('header.top .row2').hidden = v==='atlas' && ATLAS.layer==='boi';
-  if(v==='map') renderMap(); else if(v==='overlaps') renderOverlaps(); else if(v==='atlas') renderAtlas(); else renderGrid();
+  document.getElementById('grid').hidden = v==='map';
+  if(v==='map') renderMap(); else if(v==='overlaps') renderOverlaps(); else renderGrid();
 }
-/* URL names differ from internal view ids: the graph lives at #/web, the geographic map at #/map (#/atlas still works) */
-const VIEW_HASH = {map:'web', atlas:'map', grid:'grid', overlaps:'overlaps'};
-const HASH_VIEW = {web:'map', map:'atlas', atlas:'atlas', grid:'grid', overlaps:'overlaps'};
-const hashOf = v => VIEW_HASH[v] || v;
-const viewOfHash = () => HASH_VIEW[location.hash.replace(/^#\/?/,'').split('/')[0]] || null;
 function route(){
   const [a,b]=location.hash.replace(/^#\/?/,'').split('/');
   const id=b?decodeURIComponent(b):'';
   if(a==='p' && DATA.byId[id]){ showDrawer(id); return; }
   hideDrawer();
-  const v=HASH_VIEW[a]; if(v && v!==state.view) setView(v);
+  if((a==='grid'||a==='map'||a==='overlaps') && a!==state.view) setView(a);
 }
 
 /* =====================================================================
@@ -23908,8 +23479,7 @@ function route(){
   DATA.ovl=computeOverlaps(DATA);
   DATA.nComm=computeCommunities(DATA);
   renderChips(); renderLegend(); bindUI();
-  bindAtlas();
-  setView(viewOfHash() || 'map');
+  setView(location.hash.startsWith('#/grid')?'grid':location.hash.startsWith('#/overlaps')?'overlaps':'map');
   route();
 })();
 </script>
