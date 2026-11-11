@@ -65,6 +65,7 @@ header.top{border-bottom:1px solid var(--line);background:var(--bg);padding:16px
 .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
 .search kbd{position:absolute;right:8px;top:50%;transform:translateY(-50%);font:500 10px var(--mono);color:var(--dim);border:1px solid var(--line);border-radius:2px;padding:0 5px}
 .tabs{display:flex;gap:18px}
+a.backmap{text-decoration:none;color:var(--accent)}
 .tabs button,.theme{background:none;border:0;border-bottom:1px solid transparent;padding:4px 0;font:500 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .tabs button:hover,.theme:hover{color:var(--text)}
 .tabs button[aria-pressed="true"]{color:var(--text);border-bottom-color:var(--accent)}
@@ -292,6 +293,7 @@ ol.steps li b,ul.bul li b{color:var(--text);font-weight:600}
         <button data-view="grid" aria-pressed="false">Directory</button>
         <button data-view="overlaps" aria-pressed="false">Overlaps</button>
       </nav>
+      <a class="theme backmap" id="backMap" href="https://alxndrhq.github.io/pg-county-land-map/" hidden>← Real Estate Map</a>
       <button class="theme" id="themeBtn" type="button">☾ Dark</button>
     </div>
     <div class="row2">
@@ -22947,18 +22949,22 @@ const terms = () => state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
 const matchQ = n => { const t=terms(); return !t.length || t.every(w=>n._hay.includes(w)); };
 const passSector = p => state.sector==='all' || p._sector===state.sector;
 const passEra = p => state.era==='all' || p._era===state.era;
-const narrowedNow = () => state.cat!=='all'||state.tier!=='all'||state.sector!=='all'||state.era!=='all'||terms().length>0;
+// Region filter, set from the Real Estate Map link (?near=MD,DC,VA&label=...): matches the person's base.
+const NEAR = { codes: [], label: '' };
+const passNear = p => !NEAR.codes.length || NEAR.codes.some(c => c==='DC'
+  ? /Washington,? D\.?C\.?|, DC\b/.test(p.base||'') : new RegExp(', '+c+'\\b').test(p.base||''));
+const narrowedNow = () => NEAR.codes.length>0||state.cat!=='all'||state.tier!=='all'||state.sector!=='all'||state.era!=='all'||terms().length>0;
 function filterNote(){
   if(!narrowedNow()) return '';
-  const bits=[state.era!=='all'?'Era '+state.era:'', state.cat!=='all'?state.cat:'', state.tier!=='all'?state.tier:'',
+  const bits=[NEAR.codes.length?'Based near '+(NEAR.label||NEAR.codes.join(', ')):'', state.era!=='all'?'Era '+state.era:'', state.cat!=='all'?state.cat:'', state.tier!=='all'?state.tier:'',
     state.sector!=='all'?'Sector '+(SECTORS[state.sector]?.etf||state.sector):'', terms().length?'search “'+state.q.trim()+'”':''].filter(Boolean);
   return `<p class="fnote">Filtered to ${esc(bits.join(' · '))}: showing ${visibleProfiles().length} of ${DATA.profiles.length} people. <button data-clear>Clear filters</button></p>`;
 }
 function clearFilters(){
-  state.cat='all'; state.tier='all'; state.sector='all'; state.era='all'; state.q=''; document.getElementById('q').value=''; refresh();
+  NEAR.codes=[]; NEAR.label=''; state.cat='all'; state.tier='all'; state.sector='all'; state.era='all'; state.q=''; document.getElementById('q').value=''; refresh();
 }
 document.addEventListener('click',e=>{ if(e.target.closest('[data-clear]')) clearFilters(); });
-const visibleProfiles = () => DATA.profiles.filter(p=>passCat(p)&&passTier(p)&&passSector(p)&&passEra(p)&&matchQ(p));
+const visibleProfiles = () => DATA.profiles.filter(p=>passNear(p)&&passCat(p)&&passTier(p)&&passSector(p)&&passEra(p)&&matchQ(p));
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function hl(text){
   const t=terms(); let out=esc(text); if(!t.length) return out;
@@ -23460,6 +23466,16 @@ function setView(v){
   document.getElementById('grid').hidden = v==='map';
   if(v==='map') renderMap(); else if(v==='overlaps') renderOverlaps(); else renderGrid();
 }
+// ?near=MD,DC,VA&label=Prince George's County&back=<Real Estate Map URL>
+function readFromParams(){
+  const q=new URLSearchParams(location.search);
+  NEAR.codes=(q.get('near')||'').toUpperCase().split(',').map(x=>x.trim()).filter(x=>/^[A-Z]{2}$/.test(x)).slice(0,10);
+  NEAR.label=(q.get('label')||'').slice(0,80);
+  const back=q.get('back')||'';
+  if(/^https:\/\/alxndrhq\.github\.io\/pg-county-land-map\//.test(back)){
+    const a=document.getElementById('backMap'); a.href=back; a.hidden=false;
+  }
+}
 function route(){
   const [a,b]=location.hash.replace(/^#\/?/,'').split('/');
   const id=b?decodeURIComponent(b):'';
@@ -23479,6 +23495,7 @@ function route(){
   if(!DATA) DATA=normalize(EMBEDDED_DATA);
   DATA.ovl=computeOverlaps(DATA);
   DATA.nComm=computeCommunities(DATA);
+  readFromParams();
   renderChips(); renderLegend(); bindUI();
   setView(location.hash.startsWith('#/grid')?'grid':location.hash.startsWith('#/overlaps')?'overlaps':'map');
   route();
